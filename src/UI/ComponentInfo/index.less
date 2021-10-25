@@ -1,0 +1,113 @@
+.table {
+  height: calc(100% - 10px);
+  padding: 5px;
+  overflow: auto;
+  color: #DDDDDD;
+  :global(.mobile-device) &{
+    height: 100%;
+    padding: 0;
+  }
+}
+
+// 每个级别的缩进距离
+@baseIndentDis:12px;
+
+.indent-level-0 {
+  margin-bottom: @baseIndentDis;
+  >.expand {
+    >.item{
+      margin-left: @baseIndentDis*2;
+    }
+  }
+}
+
+.indent-level-1 {
+  margin-bottom: 4px;
+  .title{
+    padding-left: @baseIndentDis*2;
+  }
+  >.expand {
+    margin-top: 4px;
+    padding-top: 0px;
+    .title{
+      padding-left: @baseIndentDis*3;
+    }
+    .item{
+      margin-left: @baseIndentDis*4;
+    }
+  }
+}
+.indent-level-2 {
+  margin-bottom: 4px;
+  .title{
+    padding-left: @baseIndentDis*3;
+  }
+  >.expand {
+    margin-top: 4px;
+    padding-top: 0px;
+    .title{
+      padding-left: @baseIndentDis*4;
+    }
+    .item{
+      margin-left: @baseIndentDis*5;
+    }
+  }
+}
+
+.expand{
+  background-color: #2B2C2D;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  // padding-right: 16px;
+}
+.item {
+  margin-bottom: 4px;
+  margin-right: 16px;
+  height: 28px;
+  display: flex;
+  box-sizing: border-box;
+  .lable,.value{
+    line-height: 28px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lable{
+    width: 30%;
+  }
+  .value{
+    padding: 0 8px;
+    width: 70%;
+    background-color: #212223;
+  }
+}
+
+.title {
+  padding: 0px 3px;
+  line-height: 28px;
+  background-color:#373737;
+  display: flex;
+  align-items: center;
+  outline: none;
+  font-weight: 500;
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: #85D2FF66;
+  }
+
+  &:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-image: url("../Icon/img/white/expand.png");
+    transform: rotateZ(-90deg);
+  }
+}
+
+.title.collapse:before {
+  transform: rotateZ(0deg);
+}

@@ -1,0 +1,54 @@
+@import "../../theme/index";
+
+.undo-container{
+  padding: 16px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  .list {
+    flex: 1;
+     .item {
+       display: flex;
+       align-items: center;
+       box-sizing: border-box;
+       height: 32px;
+       background: #2E2F30;
+       border-radius: 2px;
+       border: 1px solid rgba(255, 255, 255, 0.1);
+       cursor: pointer;
+       margin-bottom: 12px;
+       color: #BBBBBB;
+       &.item-visiable{
+        background: rgba(40, 120, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+       }
+       .icon-wrap{
+        height: 32px;
+        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+       }
+       .title {
+         margin-left: 8px;
+       }
+    }
+    svg{
+      width: 16px;
+      height: 16px;
+      color: #BBBBBB;
+    }
+  }
+
+  .footer{
+    .line{
+      margin: 17px 0;
+      height: 1px;
+      width: 100%;
+      background:rgba(255, 255, 255, 0.08);
+    }
+  }
+}

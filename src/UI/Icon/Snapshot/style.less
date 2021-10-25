@@ -1,0 +1,215 @@
+@import "../../theme/index.less";
+
+@blue: @skyblue;
+
+.shot-manager {
+  height: 98%;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  .shot-content {
+    overflow-y: auto;
+  }
+
+  .btn-wrap{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    flex-shrink: 0;
+  }
+  .btn{
+    cursor: pointer;
+    background-color: transparent;
+    width: 100%;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #999999;
+    padding: 0 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #DDDDDD;
+    transition: background 100ms,border 100ms;
+    &:hover{
+      background-color: #B8E0FF;
+      color:#419CFF;
+      border-color: #007AFF;
+    }
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+.snapshot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+
+  .header, .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+  }
+
+  .header img {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+
+  .preview-wrap {
+    position: relative;
+    height: 200px;
+
+    :global(.mobile-device) &{
+      height: 90px;
+    }
+    
+    .remove{
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      width: 16px;
+      height: 16px;
+      background-image: url("./img/close.png");
+      background-size: cover;
+      cursor: pointer;
+      &:hover{
+        background-image: url("./img/close-hover.png");
+      }
+        
+      :global(.mobile-device) &{
+          margin-left: 30px;
+          margin-bottom: 30px;
+      }
+    }
+
+    &:hover{
+      .action{
+        display: flex;
+        transform: translate3d(-50%,-50%,0);
+      }
+    }
+    .action{
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transition: transform 300ms;
+      transform: translate3d(-50%,0%,0);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .action-btn{
+        width: 100px;
+        padding:0;
+        margin:6px 0;
+        :global(.anticon){
+          margin-right:5px;
+        }
+      }
+      svg{
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    .preview {
+      height: 100%;
+      flex-grow: 1;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-color: #CBCCD0;
+    }
+
+    .footer {
+      position: absolute;
+      left:0;
+      bottom: 0px;
+      width: 100%;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #BBBBBB;
+      font-size: 12px;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      :global(.mobile-device) &{
+        padding-right: 0;
+      }
+      &:hover + .action {
+        display: none;
+      }
+    }
+  }
+
+  .icon{
+    font-size: 22px;
+  } 
+}
+
+.text {
+  flex-grow: 1;
+  max-width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.confirm-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  & > div {
+    width: 80%;
+    height: 50%;
+  }
+}
+
+// ==== 移动端适配相关相关样式 START ====
+.mobileActionWrap{
+  :global(.mobile-device) &{
+    display: flex;
+    flex-direction: column;
+    .action-btn{
+      background-color: transparent;
+      height: 38px;
+      &:hover{
+        background-color:#2B4C82;
+      }
+    }
+  }
+}
+
+.mobilePopOverlayClass{
+  margin-left:14px;
+  :global{
+    .bos3d-popover-arrow-content{
+      background-color: #2E2F30;
+    }
+    .bos3d-popover-inner-content{
+      padding: 0;
+      background-color: #2E2F30;
+    }
+    .anticon{
+      margin-right:5px;
+    }
+  }
+}
+
+.mobileMoreAction{
+  :global(.mobile-device) &{
+    padding:0 10px;
+    margin-left: 10px;
+  }
+}
+// ==== 移动端适配相关相关样式 END ====

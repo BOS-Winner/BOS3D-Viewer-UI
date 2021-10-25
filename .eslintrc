@@ -1,0 +1,134 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+     "ecmaVersion": 6,
+     "sourceType": "module",
+     "ecmaFeatures": {
+       "jsx": true,
+       "impliedStrict": true
+     }
+  },
+  "settings": {
+    "polyfills": ["promises"],
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack/webpack.dev.config.js"
+      },
+      "alias": {
+        "map": [
+          ["BOS3D", "./jest/__mocks__/BOS3D"],
+          ["BOS2D", "./jest/__mocks__/BOS2D.js"],
+          ["BOS3DUI", "./jest/__mocks__/BOS3DUI.js"],
+          ["jest", "./jest"],
+          ["mock", "./jest/__mocks__"]
+        ],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "rules": {
+    "arrow-parens": 0,
+    "class-methods-use-this": 0,
+    "compat/compat": "error",
+    "comma-dangle": 0,
+    "consistent-return": 2,
+    "dot-notation": "off",
+    "func-names": "off",
+    "function-paren-newline": "off",
+    "generator-star-spacing": ["error", {"before": false, "after": true}],
+    "import/extensions": 0,
+    "import/no-cycle": "error",
+    "import/no-extraneous-dependencies": ["off"],
+    "import/no-unresolved": ["error", {
+      "caseSensitive": false
+    }],
+    "import/prefer-default-export": "off",
+    "indent": ["error", 2, {
+      "SwitchCase": 1
+    }],
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off", // 似乎有bug
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/media-has-caption": "off", // h5 video,audio需要track字幕
+    "jsx-a11y/no-onchange": "off",
+    "jsx-a11y/no-static-element-interactions": ["error", {
+      "handlers": [
+        "onClick"
+      ]
+    }],
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "linebreak-style": ["error", "unix"],
+    "max-len": ["error", {
+      "ignoreComments": true,
+      "code": 100,
+      "ignoreRegExpLiterals": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true
+    }],
+    "new-cap": 2,
+    "no-bitwise": "off",
+    "no-console": "off",
+    "no-else-return": "off",
+    "no-implicit-coercion": "error",
+    "no-mixed-operators": 0,
+    "no-param-reassign": ["error", { "props": false }],
+    "no-plusplus": 0,
+    "no-use-before-define": "error",
+    "no-nested-ternary": 0,
+    "no-restricted-imports": ["error", {
+        "patterns": [
+          "@material-ui/*/*/*",
+          "!@material-ui/core/test-utils/*"
+        ]
+      }],
+    "no-underscore-dangle": 0,
+    "no-var": "error",
+    "semi": ["error", "always", { "omitLastInOneLineBlock": true }],
+    "prefer-destructuring": "off",
+    "promise/always-return": "off",
+    "promise/catch-or-return": ["error", { "terminationMethod": ["done", "then", "catch", "finally"] }],
+    "promise/no-native": 0,
+    "promise/param-names": 2,
+    "quote-props": "off",
+    "quotes": "off",
+    "react/destructuring-assignment": "off",
+    "react/forbid-prop-types": ["error", {
+      "forbid": []
+    }],
+    "react/jsx-filename-extension": 0,
+    "react/jsx-props-no-spreading": ["error", {
+      "custom": "ignore"
+    }],
+    "react/no-array-index-key": "warn",
+    "react/no-danger": "error",
+    "react/no-did-mount-set-state": "warn",
+    "react/prefer-stateless-function": ["error", {
+      "ignorePureComponents": true
+    }],
+    "react/sort-comp": "off",
+    "react/static-property-placement": "off",
+    "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
+    "react-hooks/exhaustive-deps": "error", // 检查 effect 的依赖
+    "strict": "error"
+  },
+  "plugins": [
+    "compat",
+    "import",
+    "promise",
+    "react",
+    "react-hooks",
+    "jsx-a11y"
+  ]
+}

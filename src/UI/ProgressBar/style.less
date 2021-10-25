@@ -1,0 +1,20 @@
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  @height: 10px;
+  @keyframes progress-bar-stripes {
+    0% { background-position-x: @height; }
+  }
+
+  .progress-bar-striped {
+    height: @height;
+    background-size: @height;
+    background-color: #4DC0FF;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    transition: width .3s ease;
+    animation: progress-bar-stripes .5s linear infinite;
+  }
+}

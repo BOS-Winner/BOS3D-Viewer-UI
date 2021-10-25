@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section index should render dom 1`] = `
+<div>
+  <div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="toolbar popup"
+        style="display: none;"
+      >
+        <div
+          class=""
+          role="button"
+          tabindex="0"
+          title="模型剖切"
+        >
+          <div
+            class="icon "
+            data-selected="false"
+            role="button"
+            style="background-image: url(modelSection.png);"
+            tabindex="0"
+          />
+          <div>
+            <div
+              class="switch"
+            >
+              <div
+                class="reset"
+                role="presentation"
+                style="background-image: url(hide@2x.png);"
+                title="隐藏剖切盒"
+              />
+              <div
+                class="eye"
+                role="presentation"
+                style="background-image: url(reset2.png);"
+                title="重置剖切状态"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class=""
+          role="button"
+          tabindex="0"
+          title="自由剖切"
+        >
+          <div
+            class="icon "
+            data-selected="false"
+            role="button"
+            style="background-image: url(freeSection.png);"
+            tabindex="0"
+          />
+          <div>
+            <div
+              class="freeSection"
+            >
+              <select
+                title="改变轴向"
+              >
+                <option
+                  selected=""
+                  value="X"
+                >
+                  X
+                </option>
+                <option
+                  value="Y"
+                >
+                  Y
+                </option>
+                <option
+                  value="Z"
+                >
+                  Z
+                </option>
+                <option
+                  value="-X"
+                >
+                  -X
+                </option>
+                <option
+                  value="-Y"
+                >
+                  -Y
+                </option>
+                <option
+                  value="-Z"
+                >
+                  -Z
+                </option>
+              </select>
+              <img
+                alt="点击隐藏剖切面"
+                class="eye"
+                src="show@2x.png"
+                title="点击隐藏剖切面"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      role="button"
+      tabindex="0"
+      title="剖切"
+    >
+      <div
+        class="icon "
+        data-selected="false"
+        role="button"
+        style="background-image: url(section.png);"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;

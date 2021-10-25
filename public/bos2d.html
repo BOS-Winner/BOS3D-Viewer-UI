@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>BOS2D UI example</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      position: fixed;
+    }
+    #viewport {
+      height: 100%;
+    }
+  </style>
+  <%= htmlWebpackPlugin.tags.headTags %>
+</head>
+<body>
+  <div id="viewport" class="viewport"></div>
+  <script>
+    const html = document.querySelector("html");
+    const viewport = document.querySelector(".viewport");
+    // viewport.style.width = html.clientWidth - 200 + 'px';
+    // viewport.style.height = html.clientHeight - 200 + 'px';
+    // viewport.style.margin = "100px 0 0 100px";
+  </script>
+  <script type="module">
+    import * as BOS2D from "http://localhost:8899/src/viewer2D/src/index.js";
+    window.BOS2D = BOS2D;
+  </script>
+  <%= htmlWebpackPlugin.tags.bodyTags %>
+  <script>
+    document.body.onload = () => {
+      const BOS2D = window.BOS2D;
+      const option = { host: "https://bos3d-alpha.bimwinner.com", viewport: "viewport", oldUI: false };
+      // 测试
+      // const option = {host: "https://bos3d-beta.bimwinner.com", viewport: "viewport"};
+      // prod
+      // const option = {host: "//bos3d.bimwinner.com", viewport: "viewport"};
+      const viewer2D = new BOS2D.Viewer2D(option);
+      // revit江湖别墅，研发
+      // viewer2D.addView('M1597053680222', 'bos3dalpha');
+      // house，研发
+      viewer2D.addView('M1601446436883', 'bos3dalpha');
+      window.bos2dui = new BOS2DUI({
+        viewer2D,
+        BOS2D,
+      });
+      window.viewer2D = viewer2D;
+    }
+  </script>
+</body>
+</html>

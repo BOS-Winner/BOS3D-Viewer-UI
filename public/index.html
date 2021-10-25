@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit" />
+  <!--主要是强制让文档的宽度与设备宽度保持1:1，最大宽度1.0，禁止屏幕缩放。-->
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+  <!--这个也是iphone私有标签，允许全屏浏览。-->
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <!--iphone的私有标签，iphone顶端状态条的样式。-->
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <!--禁止数字自动识别为电话号码，这个比较有用，因为一串数字在iphone上会显示成蓝色，样式加成别的颜色也是不生效的。-->
+  <meta content="telephone=no" name="format-detection" />
+  <!--禁止email识别-->
+  <meta content="email=no" name="format-detection" />
+  <title>Bos3d viewer UI example</title>
+  <%= htmlWebpackPlugin.tags.headTags %>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #viewport{
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="viewport" class="viewport"></div>
+  <script type="module">
+    // import * as BOS3D from "http://localhost:8899/Viewer/src/index.js";
+    import * as BOS3D from "http://localhost:8899/src/index.js"; // 岳晨飞定义
+    // import * as BOS3D from "http://192.168.1.254:8899/src/index.js"; // 岳晨飞定义
+    window.BOS3D = BOS3D;
+  </script>
+
+  <%= htmlWebpackPlugin.tags.bodyTags %>
+    <script>
+      document.body.onload = function () {
+        const BOS3D = window.BOS3D;
+        // BOS3D.GlobalData.AutoMergeComponent = false;
+        // BOS3D.GlobalData.MergeComponent = false;
+        // 开启按需加载
+        // BOS3D.GlobalData.LoadComponentOnDemand = true;
+        // 本地环境
+        // const option = {host: "http://192.168.1.16:8081", viewport: "viewport"};
+        // 研发环境
+        // const option = { host: "https://bos3d-alpha.bimwinner.com", viewport: "viewport" };
+        // 测试环境
+        // const option = {host: "https://bos3d-beta.bimwinner.com", viewport: "viewport"};
+        // 生产环境
+         const option = {host: "//bos3d.bimwinner.com", viewport: "viewport"};
+        // 数字建筑物
+        // const option = {host: "//building-bos3d-demo.rickricks.com", viewport: "viewport"};
+        // 预生产环境
+        // const option = { host: "https://bos3d-pre.bimwinner.com", viewport: "viewport" };
+        const viewer3D = new BOS3D.Viewer(option);
+        BOS3D.GlobalData.usePack = true
+        window.bos3dui = new BOS3DUI({
+          viewer3D: viewer3D,
+          BOS3D: BOS3D,
+          // 正序配置：{layer: 3, order:true},只显示从1层（根节点）到第3层的节点统计；倒序配置：{layer: 1, order: false}，只显示从第1层（每个分支的叶子节点为第1层）到最顶层的节点数量统计
+          // treeNodeStatistic: {layer: 2, order: true}, 
+          // offline: true,
+          funcOption: {
+            // fit: false,
+            // reset: false,
+            // undo: false,
+            // reset:false,
+            // roam: false,
+            // pickByRect: false,
+            // hide: false,
+            // isolate: false,
+            // section: false,
+            // wireFrame: false,
+            // scatter: false,
+            // changeCptColor: false,
+            // fullScreen: false,
+            // changeBgColor: false,
+            // cptInfo: false,
+            // cptsearch: false,
+            // infoTree: false,
+            // measure: false,
+            // mark: false,
+            // snapshot: false,
+            // annotation: false,
+            // moreMenu: false
+          },
+          //  自定义菜单功能传参
+          // customMenu: [
+          //   {
+          //     label: "隐藏",
+          //     disable: true,
+          //     func: null,
+          //     aka: "我就试试",
+          //     children: null,
+          //   },
+          //   {
+          //     label: "聚焦",
+          //     disable: false,
+          //     func: null,
+          //     aka: null,
+          //     children: null,
+          //   },
+          //   {
+          //     label: "属性信息", // 原来的名称
+          //     disable: false, // 是否禁用
+          //     func: null, // 自定义功能 系统默认有的功能不能覆盖
+          //     aka: null, // 别名
+          //     children: null, // 子菜单
+          //   },
+          //   {
+          //     label: "更多",
+          //     disable: false,
+          //     func: null,
+          //     aka: null,
+          //     children: [
+          //       {
+          //         label: "其他构件半透明",
+          //         disable: false,
+          //         func: null,
+          //         aka: null,
+          //         children: null,
+          //       },
+          //       {
+          //         label: "相同类型构件",
+          //         disable: false,
+          //         func: null,
+          //         aka: null,
+          //         children: null,
+          //       },
+          //       {
+          //         label: "所属部件/族",
+          //         disable: false,
+          //         func: null,
+          //         aka: null,
+          //         children: null,
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     label: "显示所有对象",
+          //     disable: false,
+          //     func: null,
+          //     aka: null,
+          //     children: null,
+          //   },
+          // ],
+        });
+
+        // 合并模型，部件族，link，测试环境
+        // viewer3D.addView("C1630379305449", "test");
+        // fbx有光照，本地环境
+        // viewer3D.addView("M1596763535039", "test");
+        // 空间、系统树，大模型,本地环境
+        // viewer3D.addView("M1575540535787", "test");
+        // 亚控，专业树，本地环境
+        // viewer3D.addView("M1595568775190", "test");
+        // architect，本地环境
+        // viewer3D.addView("M1596450095788", "test");
+        // 乌镇实验室，ifc，路网，本地环境
+        // viewer3D.addView("M1577330026632", "test");
+        // revit空间树，小邹大制作，本地
+        // viewer3D.addView("M1571647498967", "test");
+        // revit，江湖别墅，rvt，研发
+        // viewer3D.addView("M1608890243077", "bos3dalpha");
+        // 嵌套族测试，研发
+        // viewer3D.addView("M1608871895901", "j6c46b6c3d4d4676a7e528980a1a42b5");
+        // 样例模型-别墅，ifc，研发
+        // viewer3D.addView("M1601286031493", "bos3dalpha");
+        // 厂房-机电模型，模型树有同一个构件挂在不同父节点下,研发
+        // viewer3D.addView("M1601446436883", "bos3dalpha");
+        // 超大模型，生产环境
+        // viewer3D.addView("M1564052798032", "de7dc5ab86a74217ababdd8d2ff2ae52");
+        // 显示房间的模型
+        // viewer3D.addView("M1598257565598", "he3285593fdc4ea3b91784c5741ff8aa");
+        // debug
+        // merged model
+        // viewer3D.addView("C1631771352361", "j6c46b6c3d4d4676a7e528980a1a42b5");
+        // viewer3D.addView("C1620898468744", "j6c46b6c3d4d4676a7e528980a1a42b5");
+        // test env
+        // viewer3D.addView("M1623327674765", "z310fb094efa4850a1c9fb5894c6874c");
+        // localhost env
+        // viewer3D.addViewFromLocal("M1624265365298");
+        // Lots of tree node model
+        viewer3D.addView(
+          "M1631601457559",
+          "h0c9677bc2d049a6ab45532d5f9bf0fe",
+          "",
+          "1c9c5aa09fae44a7b93db07a1f33eeb5"
+        );
+        // offline mode
+        // viewer3D.addViewFromLocal("M1623327674765");
+        window.viewer3D = viewer3D;
+
+        // 添加坐标轴
+        const scene = viewer3D.getRootScene();
+        window.axes = new BOS3D.THREE.AxisHelper(100000); // 10000 是坐标轴的长度...
+        scene.add(window.axes);
+        viewer3D.render();
+
+        /**
+         * 设备组装模拟功能测试
+         */
+        // viewer3D.registerModelEventListener(
+        //   BOS3D.EVENTS.ON_LOAD_COMPLETE,
+        //   (e) => {
+        //     // 获取所需构件
+        //     const keyList = viewer3D.getAllComponentsKey();
+        //     const cptKeyList1 = []; // 第一批构件key
+        //     const cptKeyList2 = []; // 第二批构件key
+        //     const cptKeyList = keyList.forEach((item, index) => {
+        //       if (index % 2 === 0) {
+        //         cptKeyList1.push({
+        //           cptKey: item,
+        //           showPoint: undefined,
+        //           offset: { x: 10000, y: 10000, z: 10000 }
+        //         });
+        //       } else {
+        //         cptKeyList2.push({
+        //           cptKey: item,
+        //           showPoint: undefined,
+        //           offset: { x: 10000, y: 10000, z: 10000 }
+        //         });
+        //       }
+        //     })
+        //     // 第一批动画实例
+        //     window.assemble1 = new BOS3D.Plugins.Assemble({
+        //       viewer3D,
+        //       cptKeyList:cptKeyList1,
+        //       isCustom: false, // 是否自定义
+        //       overallOffset: { // 是否整体偏移
+        //         status: false,
+        //         position: { x: 0, y: 0, z: 0 } // 偏移坐标
+        //       },
+        //       callbackFunc: () => { console.log("回调函数"); }
+        //     })
+        //     // 第二批动画实例
+        //     window.assemble2 = new BOS3D.Plugins.Assemble({
+        //       viewer3D,
+        //       cptKeyList:cptKeyList2,
+        //       isCustom: false, // 是否自定义
+        //       overallOffset: { // 是否整体偏移
+        //         status: false,
+        //         position: { x: 0, y: 0, z: 0 } // 偏移坐标
+        //       },
+        //       callbackFunc: () => { console.log("回调函数"); }
+        //     })
+
+        //     // 全部展示
+        //     window.customShow = () => {
+        //       assemble1.show();
+        //       assemble2.show();
+        //     }
+
+        //     // 分批组装
+        //     window.assemblyAnimation = async function() {
+        //       try {
+        //         await assemble1.assemble();
+        //         await assemble2.assemble();
+        //       } catch (error) {
+        //         console.log(error);
+        //       }
+        //     }
+        //   }
+        // );
+
+        // 路网测试
+        /*
+        let route = [];
+        viewer3D.registerModelEventListener(BOS3D.EVENTS.ON_CLICK_PICK, e => {
+          if (e.intersectInfo) {
+            route.push([
+              Math.round(e.intersectInfo.point.x),
+              Math.round(e.intersectInfo.point.y),
+              Math.round(e.intersectInfo.point.z),
+            ]);
+            if (route.length === 2) {
+              bos3dui.roadnet.add(e.intersectInfo.modelKey, route[0], route[1]);
+              route = [];
+            }
+          }
+        })
+         */
+
+        // 自由漫游
+        // BOS3D.Plugins.Roam.FreeRoam(viewer3D);
+      };
+    </script>
+</body>
+
+</html>

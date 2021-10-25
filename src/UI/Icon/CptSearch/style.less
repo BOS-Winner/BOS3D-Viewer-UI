@@ -1,0 +1,159 @@
+@import "../../theme/index";
+.paper-base() {
+  margin: 6px 4%;
+  background-color: unset !important;
+}
+
+.customTabs {
+  color: #fff !important;
+  :global {
+    * {
+      font-size: 13px !important;
+    }
+    .bos3d-tabs-nav::before {
+      position: absolute;
+      right: 0;
+      left: 0;
+      border-bottom: 3px solid #565a5b;
+      content: "";
+    }
+    .bos3d-tabs-ink-bar {
+      position: absolute;
+      background: #2878ff;
+      pointer-events: none;
+      height: 3px !important;
+    }
+    .bos3d-tabs-tab.bos3d-tabs-tab-active .bos3d-tabs-tab-btn {
+      color: #2878ff;
+      font-weight: 500;
+  }
+  }
+}
+
+.table {
+  table-layout: fixed;
+
+  thead {
+    background-color: #ffffff33;
+  }
+
+  .cell {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: white;
+  }
+
+  .row {
+    background-color: #00000066;
+
+    &.row-selected {
+      background-color: #85d2ff33;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 8px 0;
+
+  button {
+    border-radius: 13px;
+    background-color: inherit;
+    padding: 0 4px;
+
+    &:hover {
+      color: @skyblue;
+    }
+  }
+
+  div {
+    color: white;
+  }
+}
+
+.paper-root {
+  .paper-base();
+
+  form {
+    padding: 16px 0;
+  }
+
+  .label {
+    margin: 8px 0;
+    cursor: default;
+
+    span {
+      min-width: 100px;
+      color: white;
+      font-size: 16px;
+    }
+  }
+}
+
+.button-group {
+  align-self: flex-end;
+
+  .button {
+    margin-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+.input-paper {
+  flex-grow: 1;
+  height: 24px;
+  .input {
+    width: calc(100% - 16px);
+    margin: 0px 8px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+  }
+}
+
+.checkbox-cell {
+  width: 42px;
+
+  svg {
+    fill: white;
+  }
+
+  .checked svg {
+    fill: @skyblue;
+  }
+}
+
+.operation {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 4%;
+}
+
+.cpt-not-found {
+  .paper-base();
+  padding: 60px 0;
+
+  & > div {
+    color: white;
+    text-align: center;
+  }
+}
+
+.Number {
+  font-size: 22px;
+  color: #2878ff;
+}
+
+.result-container {
+  position: relative;
+  margin: 20px 0 0 0;
+  overflow-y: auto;
+}
+
+.customTable {
+  margin: 20px 0 0 0;
+}

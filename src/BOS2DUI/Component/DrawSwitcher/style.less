@@ -1,0 +1,147 @@
+@import "../../../UI/theme/index";
+
+@drawItemWidth: 180px;
+@drawItemHeight: 40px;
+@eyeSize: calc(@fontSize + 4px);
+
+.default-theme() {
+  background-color: black;
+  color: white;
+}
+
+.ellipsis() {
+  width: calc(@drawItemWidth - 30px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.draw {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  // opacity: 0.8;
+
+  &.draw-popup {
+    .draw-select:after {
+      transform: rotateZ(180deg);
+    }
+
+    .draw-option {
+      display: initial;
+    }
+  }
+
+  .draw-select {
+    .default-theme();
+    width: @drawItemWidth;
+    height: @drawItemHeight;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    background: hsla(0, 0%, 12%, 1);
+    > span {
+      color: #fff;
+      font-size: 14px
+    }
+    &>div {
+      width: 128px;
+      height: 32px;
+      background: #2E2F30;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 5px 0 0;
+      >span{
+        .ellipsis();
+        display: inline-block;
+        width: 120px;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      right: 14px;
+      content: "";
+      opacity: 0.6;
+      border-bottom: 0;
+      border-top: 5px solid rgb(255, 255, 255);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      transition: all 0.5s ease 0s;
+    }
+  }
+
+  .draw-option {
+    position: relative;
+    display: none;
+
+    .draw-option-container {
+      .default-theme();
+      width: @drawItemWidth;
+      position: absolute;
+      left: 0;
+      bottom: @drawItemHeight + 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 260px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 10px 0;
+      background: #2E2F30;
+      box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.4);
+      border: 1px solid #575758;
+      .draw-item {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        padding: 5px 0;
+        // height: 83px;
+        background: #555;
+        display: flex;
+        align-items: center;
+        width: 90%;
+        height: 25px;
+        border-radius: 5px;
+        // padding: 0 0 0 5px;
+        border: 1px solid transparent;
+        margin: 5px 0;
+        position: relative;
+        // &:hover {
+        //   background-color: gray;
+        //   border: 1px solid hsla(218, 100%, 58%, 1);
+        // }
+        &.draw-loading:before {
+          content: "\00a0\00a0\00a0";
+          width: 12px;
+          height: 12px;
+          background-image: url('./img/loading.gif');
+          background-size: 12px;
+          background-repeat: no-repeat;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .draw-item>span {
+    .ellipsis();
+    flex-shrink: 0;
+    cursor: pointer;
+    width: calc(100% + 2px);
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    display: inline-block;
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    text-indent: 8px;
+    // background: hsla(0, 0%, 11%, 0.6);
+    // border-radius: 0 0 5px 5px;
+  }
+}

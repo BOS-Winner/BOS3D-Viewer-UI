@@ -1,0 +1,33 @@
+@iconSize: 24px;
+
+.icon{
+  cursor: pointer;
+  border-radius: 2px 2px 0 0;
+  color: #A1A1A1;
+  height: 40px;
+  width: 40px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ;
+  // &.canTap{
+  //   color: #DDDDDD;
+  // }
+  &.disabled{
+    cursor: not-allowed;
+  }
+  &:hover{
+    // background-color: #000000;
+    color: #fff;
+  }
+  svg{
+    width: @iconSize;
+    height: @iconSize;
+  }
+}
+.icon-selected {
+  // background-color: #000000;
+  color: #fff;
+}
+

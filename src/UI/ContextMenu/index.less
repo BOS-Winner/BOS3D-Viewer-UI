@@ -1,0 +1,58 @@
+.container {
+  position: absolute;
+  width: 100px;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: default;
+}
+
+@textHeight: 28px;
+
+.item {
+  padding-left: 5px;
+  height: @textHeight;
+  font-size: 14px;
+  color: white;
+  font-family: "MicrosoftYaHei, sans-serif";
+  line-height: @textHeight;
+}
+.more{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 1s linear;
+}
+.moreContainer{
+  position: absolute;
+  display: none;
+  width: 115px;
+  left: 115px;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.more:hover > .moreContainer,
+.moreContainer:hover{
+  display: block;
+}
+
+.more:hover > .more-icon {
+  transform: rotate(90deg);
+}
+
+.item:hover {
+  background-color: rgba(38,172,249,0.6);
+}
+
+.disabled:hover {
+  cursor: not-allowed
+}
+
+.more-icon {
+   @font-size: 20px;
+   svg{
+     width: @font-size;
+     height: @font-size;
+   }
+}

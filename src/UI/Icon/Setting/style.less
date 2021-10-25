@@ -1,0 +1,302 @@
+@import "../../theme/index";
+
+@mobileColor:#252525;
+@mobileItemDis:8px;
+
+.setting-panel {
+  width: 100%;
+  padding: 10px 0px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  :global(.mobile-device) &{
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 16px;
+    background-color: #1B1B1C;
+  }
+}
+
+.tabsWrap{
+  :global(.mobile-device) &{
+    padding: 10px 16px;
+    background-color: @mobileColor;
+    // margin-bottom:@mobileItemDis;
+  }
+}
+// tabs wrap start
+.tabs{
+  display: flex;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+  padding: 0px 6px;
+  :global(.mobile-device) &{
+    padding: 1px;
+    background-color: #666666;
+    border-radius: 8px;
+    margin-bottom: 0;
+  }
+  .tab{
+    cursor: pointer;
+    transition: background 300ms,border 300ms,border-radius 300ms;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    background: #2E2F30;
+    color: #DDDDDD;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    font-weight: 500;
+    :global(.mobile-device) &{
+      background-color: transparent;
+      border: none;
+      &.active{
+        background: #34548A;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+      }
+    }
+
+    &:not(:last-child){
+      border-right: none;
+    }
+    &.active{
+      background: rgba(0, 122, 255, 0.1);
+      color: #3A97FB;
+      border: 1px solid rgba(0, 122, 255, 0.5);
+    }
+    &.active +.tab{
+      border-left: none;
+    }
+    svg {
+      width: 14px;
+      height: 14px;
+      margin-right: 3px;
+    }
+  }
+}
+// tabs end
+
+.tab-panel {
+  flex-grow: 1;
+  overflow: auto;
+  padding: 0px 6px;
+  :global(.mobile-device) &{
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 16px;
+  }
+}
+
+.setting-container {
+  font-size: 12px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #BBBBBB;
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+
+  .settingList{
+    :global(.mobile-device) &{
+      padding: 0px 16px;
+      background-color: @mobileColor;
+      // &:first-child{
+      //   margin-top: 12px;
+      // }
+    }
+  }
+  .setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+
+    :global(.mobile-device) &{
+      padding: 10px 16px;
+      background-color: @mobileColor;
+      &:first-child{
+        margin-top: @mobileItemDis;
+      }
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    input[type="text"], input[type="number"]{
+      width: 50px;
+    }
+  }
+
+  
+  .settingItemModelSelect{
+    flex-direction: column;
+    align-items: flex-start;
+    :global(.mobile-device) &{
+      flex-direction: row;
+      align-items: center;
+      .select{
+        margin-top: 0px;
+      }
+    }
+    .select{
+      margin-top: 10px;
+      width: 60%;
+    }
+  }
+
+  .base-position {
+    padding: 12px 0;
+    :global(.mobile-device) &{
+      margin-top: @mobileItemDis;
+      padding: 0;
+      background-color: @mobileColor;
+      .title{
+        padding: 10px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      >.input{
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+        padding:0 16px;
+      }
+      .basePositionInputItem{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    }
+    &>.input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+
+      input {
+        width: 88px;
+        height: 28px;
+      }
+    }
+  }
+
+  // 输入框通用样式
+  input[type="text"], input[type="number"],select{
+    color:  #BBBBBB;
+    background-color:  #2E2F30;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.rotate-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 122px;
+}
+
+.range-input {
+  display: flex;
+  width: 220px;
+  :global(.mobile-device) &{
+    width:70%;
+  }
+}
+
+.mobileBtnWrap{
+  :global(.mobile-device) &{
+    background-color: @mobileColor;
+    padding: 10px 12px;
+    margin:@mobileItemDis 0;
+  }
+}
+
+.mobileSettingItemOne {
+  :global(.mobile-device) &{
+    width: 100%;
+    padding: 5px 20px;
+    .mobileSettingItemOneBottom{
+      display: flex;
+      justify-content: space-between;
+    }
+    :global{
+      .bos3d-slider-track{
+        height: 8px;
+        background-color:#2878FF;
+      }
+      .bos3d-slider-rail{
+        height: 8px;
+        background-color: #444444;
+      }
+      .bos3d-slider-handle{
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+
+.pickMobileWrap{
+    width: 360px;
+    height: 264px;
+    margin: auto;
+}
+
+.mobilePolarAngleWrap{
+  :global(.mobile-device) &{
+     display: flex;
+     align-items: center;
+      .mobileValue{
+        display: inline-block;
+        margin: 0 10px;
+      }
+      .mobilePolarAngleIcon{
+         padding-left: 5px;
+         padding-right: 5px;
+         margin-left: 5px;
+         &.open{
+           transform: rotate(90deg);
+         }
+         svg{
+           color: #2878FF;
+           width: 16px;
+           height: 16px;
+         }
+      }
+  }
+}
+
+
+.settingItemHasChild {
+  :global(.mobile-device) &{
+    .settingItemHasChildTop{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    padding: 12px 0;
+    padding: 10px 16px;
+    background-color: @mobileColor;
+    &:first-child{
+      margin-top: @mobileItemDis;
+    }
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  }
+
+
+
+}
+
+

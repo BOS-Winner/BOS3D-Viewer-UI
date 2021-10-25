@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`miniWindow should render dom correctly 1`] = `
+<div>
+  <div
+    class="miniWindow "
+  >
+    <div
+      class="title"
+      style="height: 40px;"
+    >
+      <div />
+      <img
+        alt="close"
+        class="iconClose"
+        src="close.png"
+      />
+    </div>
+    <div
+      class="container"
+    >
+      <div>
+        test
+      </div>
+      <div
+        class="toolbar toolbar"
+      >
+        <div
+          title="切换3D视图"
+        >
+          <div
+            class="icon "
+            data-selected="false"
+            role="button"
+            style="background-image: url(3D.png);"
+            tabindex="0"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`miniWindow should render dom correctly 2`] = `
+<div>
+  <div
+    class="miniWindow "
+  >
+    <div
+      class="title"
+      style="height: 40px;"
+    >
+      <div />
+    </div>
+    <div
+      class="container"
+    >
+      <div>
+        test
+      </div>
+      <div
+        class="toolbar toolbar"
+      >
+        <div
+          title="切换3D视图"
+        >
+          <div
+            class="icon "
+            data-selected="false"
+            role="button"
+            style="background-image: url(3D.png);"
+            tabindex="0"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`miniWindow should render dom correctly 3`] = `
+<div>
+  <div
+    class="miniWindow "
+  >
+    <div
+      class="title"
+      style="height: 40px;"
+    >
+      <div>
+        test
+      </div>
+    </div>
+    <div
+      class="container"
+    >
+      <div>
+        test
+      </div>
+      <div
+        class="toolbar toolbar"
+      >
+        <div
+          title="切换3D视图"
+        >
+          <div
+            class="icon "
+            data-selected="false"
+            role="button"
+            style="background-image: url(3D.png);"
+            tabindex="0"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

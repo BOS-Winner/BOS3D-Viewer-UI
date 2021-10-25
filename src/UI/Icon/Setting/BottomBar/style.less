@@ -1,0 +1,59 @@
+@mobileColor:#252525;
+@mobileItemDis:8px;
+
+.footer{
+  color: #BBBBBB;
+
+  .top,.bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    :global(.mobile-device) &{
+      background-color: @mobileColor;
+      padding: 10px 16px;
+    }
+  }
+  .top{
+    :global(.mobile-device) &{
+      border-top: none;
+      margin-top: @mobileItemDis;
+    }
+  }
+  .bottom{
+    :global(.mobile-device) &{
+      border-top: none;
+      margin-top: @mobileItemDis;
+      padding-bottom: 20px;
+
+    }
+  }
+}
+
+.menu-wrap{
+  padding: 16px 0;
+  .menu{
+    .menu-item {
+      background: #2E2F30;
+      border-radius: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px;
+      margin-bottom: 12px;
+    }
+    :global {
+      .bos3d-checkbox-wrapper{
+        color: #DDDDDD;
+      }
+      .bos3d-checkbox-inner{
+        width: 13px;
+        height: 13px;
+      }
+    }
+  }
+  .btn-wrap{
+    margin-top: 16px;
+  }
+}
+
+

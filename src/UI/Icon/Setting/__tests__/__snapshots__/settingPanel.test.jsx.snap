@@ -1,0 +1,278 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`setting panel should switch panel 1`] = `
+<div>
+  <div
+    class="settingPanel"
+  >
+    <div
+      class="switch"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="switchItem"
+        data-name="model"
+      >
+        模型设置
+      </div>
+      <div
+        class="switchSelect"
+        data-name="camera"
+      >
+        相机设置
+      </div>
+      <div
+        class="switchItem"
+        data-name="display"
+      >
+        显示与效果
+      </div>
+      <div
+        class="switchItem"
+        data-name="toolbar"
+      >
+        工具栏配置
+      </div>
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="ModelSetting"
+      />
+    </div>
+    <div
+      style="display: block;"
+    >
+      <div
+        title="CameraSetting"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="DisplayAndEffect"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="ToolSetting"
+      />
+    </div>
+    <div
+      title="BottomBar"
+    />
+  </div>
+</div>
+`;
+
+exports[`setting panel should switch panel 2`] = `
+<div>
+  <div
+    class="settingPanel"
+  >
+    <div
+      class="switch"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="switchItem"
+        data-name="model"
+      >
+        模型设置
+      </div>
+      <div
+        class="switchItem"
+        data-name="camera"
+      >
+        相机设置
+      </div>
+      <div
+        class="switchSelect"
+        data-name="display"
+      >
+        显示与效果
+      </div>
+      <div
+        class="switchItem"
+        data-name="toolbar"
+      >
+        工具栏配置
+      </div>
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="ModelSetting"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="CameraSetting"
+      />
+    </div>
+    <div
+      style="display: block;"
+    >
+      <div
+        title="DisplayAndEffect"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="ToolSetting"
+      />
+    </div>
+    <div
+      title="BottomBar"
+    />
+  </div>
+</div>
+`;
+
+exports[`setting panel should switch panel 3`] = `
+<div>
+  <div
+    class="settingPanel"
+  >
+    <div
+      class="switch"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="switchItem"
+        data-name="model"
+      >
+        模型设置
+      </div>
+      <div
+        class="switchItem"
+        data-name="camera"
+      >
+        相机设置
+      </div>
+      <div
+        class="switchItem"
+        data-name="display"
+      >
+        显示与效果
+      </div>
+      <div
+        class="switchSelect"
+        data-name="toolbar"
+      >
+        工具栏配置
+      </div>
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="ModelSetting"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="CameraSetting"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="DisplayAndEffect"
+      />
+    </div>
+    <div
+      style="display: block;"
+    >
+      <div
+        title="ToolSetting"
+      />
+    </div>
+    <div
+      title="BottomBar"
+    />
+  </div>
+</div>
+`;
+
+exports[`setting panel should switch panel 4`] = `
+<div>
+  <div
+    class="settingPanel"
+  >
+    <div
+      class="switch"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="switchSelect"
+        data-name="model"
+      >
+        模型设置
+      </div>
+      <div
+        class="switchItem"
+        data-name="camera"
+      >
+        相机设置
+      </div>
+      <div
+        class="switchItem"
+        data-name="display"
+      >
+        显示与效果
+      </div>
+      <div
+        class="switchItem"
+        data-name="toolbar"
+      >
+        工具栏配置
+      </div>
+    </div>
+    <div
+      style="display: block;"
+    >
+      <div
+        title="ModelSetting"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="CameraSetting"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="DisplayAndEffect"
+      />
+    </div>
+    <div
+      style="display: none;"
+    >
+      <div
+        title="ToolSetting"
+      />
+    </div>
+  </div>
+</div>
+`;

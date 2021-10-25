@@ -1,0 +1,48 @@
+@ratio: 2.4;
+@width: 150px;
+
+.container {
+  position: absolute;
+  width: @width;
+  height: @width;
+}
+
+.control {
+  background-size: cover;
+  background-image: url("./control.png");
+  width: @width;
+  height: @width/@ratio;
+  position: absolute;
+  bottom: 0;
+}
+
+.confirm {
+  position: absolute;
+  left: 0;
+  width: @width/3;
+  height: 100%;
+}
+
+.move {
+  position: absolute;
+  left: @width/3;
+  width: @width/3;
+  height: 100%;
+}
+
+.cancel {
+  position: absolute;
+  left: @width/3*2;
+  width: @width/3;
+  height: 100%;
+}
+
+
+.target {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  left: (@width - 10)/2;
+  background-color: rgba(0,0,0,1);
+  border-radius: 3px;
+}

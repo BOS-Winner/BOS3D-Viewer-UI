@@ -1,0 +1,24 @@
+.popup{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 22px;
+}
+
+
+.popup-container{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+.popup-container::after{
+  content: "";
+  border-top: 5px solid #1e1e1e;
+  border-bottom: 5px solid transparent;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  top: -12px;
+  position: relative;
+}

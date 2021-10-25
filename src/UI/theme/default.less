@@ -1,0 +1,339 @@
+@charset "utf-8";
+
+@import "index";
+
+/* 滚动条样式 */
+.scroll-bar() {
+  &::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    /*滚动条滑块*/
+    min-height: 20px;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #535353;
+  }
+  &::-webkit-scrollbar-track {
+    /*滚动条轨道*/
+    //box-shadow: inset 0 0 1px rgba(0,0,0,0);
+    border-radius: 5px;
+    background: none;
+  }
+}
+
+:global(.bos3dui),:global(.bos2dui) {
+  // button {
+  //   cursor: pointer;
+  //   color: white;
+  //   background-color: @skyblue;
+  //   border: none;
+  //   border-radius: 4px;
+  //   padding: 6px 18px;
+  //   line-height: 1;
+  // }
+
+  * {
+    .scroll-bar();
+    // box-sizing: content-box;
+    font-size: @font-size;
+  }
+
+  // select, input, textarea {
+  //   color: black;
+  // }
+
+  // input[type="text"] {
+  //   height: 15px;
+  //   padding: 1px 0;
+  // }
+
+  select {
+    padding: 4px 16px 4px 4px;
+    border-radius: 4px;
+    color: white;
+    background: rgba(0, 0, 0, 0.4) url("./img/select.png") right no-repeat;
+    appearance: none;
+  }
+
+  :global(.MuiSelect-iconOutlined) {
+    right: 0;
+  }
+}
+
+// 魔改mui日期控件
+h4:global(.MuiPickersToolbarText-toolbarTxt):after {
+  content: '\65e5';
+}
+
+
+
+
+// BUTTON boss按钮样式
+:global{
+  @dangerColor:#FF2845;
+  @primaryColor:#2878FF;
+  @defaultColor:#6A6B6E;
+  .bos-btn {
+    cursor: pointer;
+    box-sizing: border-box;
+    color: white;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 12px;
+    border: none;
+    &.bos-btn-block,&[block]{
+      width: 100%;
+    }
+    &.bos-btn-default{
+      background-color: @defaultColor;
+      &:active,&:hover{
+        background-color: #64666D;
+      }
+    }
+    &.bos-btn-danger{
+      background-color: @dangerColor;
+      &:active,&:hover{
+        background-color: #FA0C48;
+      }
+    }
+    &.bos-btn-primary{
+      background-color: @primaryColor;
+      &:active,&:hover{
+        background-color: @skyblue;
+      }
+    }
+    &[disabled]{
+      opacity: 0.8;
+      cursor: not-allowed;
+    }
+   
+  }
+}
+
+// antd select 相关属性重构样式
+:global{
+  @textColor:#DDDDDD;
+  @bgColor:#2E2F30;
+  @borderColor:rgba(255, 255, 255, 0.1);
+  @selectItemBg:#232323;
+  @placeholderColor:#999999;
+
+  // 加上这个类，即可使用
+  .boss3d-theme-one-form-form-antd{
+    box-sizing: border-box;
+    .bos3d-input::placeholder,.bos3d-input-number::placeholder {
+      color:@placeholderColor;
+    }
+    // antd select 样式start
+    .bos3d-select{
+      color: @textColor;
+    }
+    .bos3d-form-item{
+      color: @textColor;
+    }
+    .bos3d-form-item-label > label{
+      color: @textColor;
+    }
+    .bos3d-select:not(.bos3d-select-customize-input) .bos3d-select-selector{
+      border-color: @borderColor;
+    }
+    .bos3d-select-focused:not(.bos3d-select-disabled).bos3d-select:not(.bos3d-select-customize-input) .bos3d-select-selector {
+      border-color: #fff;
+    }
+    .bos3d-select:not(.bos3d-select-customize-input) .bos3d-select-selector{
+      background-color: @bgColor;
+      box-sizing: border-box;
+    }
+    .bos3d-select-arrow{
+      color: @textColor;
+    }
+    .bos3d-select-multiple .bos3d-select-selection-item{
+      color: @textColor;
+      background-color: @selectItemBg;
+      border: 1px solid @borderColor;
+    }
+    .bos3d-select-multiple .bos3d-select-selection-item-remove{
+      color: @textColor;
+    }
+    .bos3d-select-multiple .bos3d-select-selection-item-remove{
+      color: @textColor;
+    }
+    .bos3d-select-multiple .bos3d-select-selection-item-remove:hover{
+      color: @textColor;
+    }
+    // antd select 样式end
+
+    // antd input-number 样式start
+    .bos3d-input-number{
+      width: 100%;
+      background: @bgColor;
+      border-radius: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: @textColor;
+    }
+
+    .bos3d-input-number-input{
+      width: 100%;
+      background: @bgColor;
+      font-weight: 400;
+      color: @textColor;
+      box-sizing: border-box;
+      &.bos3d-input-number-input-focused{
+        border-color: #fff;
+      }
+    }
+    .bos3d-input-number:hover {
+      border-color:   #fff;
+      border-right-width: 1px !important;
+    }
+    .bos3d-input-number:focus,
+    .bos3d-input-number-focused {
+      border-color: #fff;
+      box-shadow:none;
+    }
+  
+    // antd input-number 样式end
+
+
+    // 输入框样式 start
+    .bos3d-input{
+      padding: 4px 11px !important;
+      background-color:  @bgColor;
+      color:@textColor ;
+    }
+
+    .bos3d-input-affix-wrapper{
+      background-color:  @bgColor;
+      color:@textColor ;
+    }
+    .bos3d-input-affix-wrapper > input.bos3d-input{
+      padding: 0 !important;
+    }
+    .anticon.bos3d-input-clear-icon{
+      color:@textColor ;
+    }
+    .anticon.bos3d-input-clear-icon:hover {
+      color: rgba(255, 255, 255, 0.45);
+    }
+    .anticon.bos3d-input-clear-icon:active {
+      color: rgba(255, 255, 255, 0.45);
+    }
+    // 输入框样式 end
+     
+    .bos3d-radio-wrapper{
+      color:@textColor;
+    }
+
+    // cascader 输入框样式 start
+    .bos3d-cascader-input.bos3d-input{
+      background-color:  @bgColor !important;
+      color:@textColor ;
+    }
+    .bos3d-cascader-picker-arrow{
+      color:@textColor ;
+    }
+    .bos3d-cascader-picker-label{
+      color: @textColor;
+    }
+    .bos3d-cascader-picker-clear{
+      background-color: @bgColor;
+      color: @textColor;
+    }
+    .bos3d-cascader-picker-clear:hover {
+      color: @textColor;
+    }
+    // cascader 输入框样式 end
+  }
+
+
+
+  // antd selectdrow 下拉样式样式 START
+  .boss3d-theme-one-form-form-antd-dropdown.bos3d-select-dropdown{
+    background-color: #333333;
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    border: 1px solid #575758;
+    
+    //  如果是单选，后面要加个 打钩 ，请加上这个类
+    &.bos3d-select-dropdown-select-single-has-anticon{
+    
+      .bos3d-select-item-option-selected::after{
+        content: "";
+        width: 16px;
+        height: 16px;
+        background: url('../Icon/img/blue/selected.png') no-repeat center center;
+        background-size: 16px 16px;
+        position: absolute;      
+        right: 8px;
+        top: 8px;
+      }
+    }
+    
+    .bos3d-select-item-option-content{
+      box-sizing: border-box;
+    }
+
+    .bos3d-select-item-option-selected:not(.bos3d-select-item-option-disabled){
+      background-color: @selectItemBg;
+    }
+
+    .bos3d-select-item-option:hover ,.bos3d-select-item-option-active:not(.bos3d-select-item-option-disabled){
+      background-color: @selectItemBg;
+    }
+
+    .bos3d-select-item{
+      color: @textColor;
+    }
+    
+    // cascader 下拉样式 start
+    .bos3d-cascader-menu-item{
+      color: @textColor;
+    }
+    .bos3d-cascader-menu-item:hover {
+      // background: #1B1B1B;
+      background: @selectItemBg;
+    }
+    .bos3d-cascader-menu-item-active:not(.bos3d-cascader-menu-item-disabled),
+    .bos3d-cascader-menu-item-active:not(.bos3d-cascader-menu-item-disabled):hover {
+      background: @selectItemBg;
+    }
+    .bos3d-cascader-menu-item-expand .bos3d-cascader-menu-item-expand-icon, .bos3d-cascader-menu-item-loading-icon{
+      color: @textColor;
+    }
+    .bos3d-cascader-menu{
+      border-right: 1px solid @borderColor;
+    }
+
+    // 选中后是否加勾选
+    &.bos3d-cascader-dropdown-single-has-check-anticon{
+      .bos3d-cascader-menu-item{
+        position: relative;
+      }
+      .bos3d-cascader-menu-item-active:not(.bos3d-cascader-menu-item-expand)::after{
+        content: "";
+        width: 16px;
+        height: 16px;
+        background: url('../Icon/img/blue/selected.png') no-repeat center center;
+        background-size: 16px 16px;
+        position: absolute;      
+        right: 8px;
+        top: 8px;
+      }
+    }
+
+    // cascader .bos3d-cascader-picker end
+  }
+   // antd selectdrow 下拉样式样式 END
+
+
+
+}

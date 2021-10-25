@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reset should show and hide by calling onHide 1`] = `
+<div>
+  <div
+    style="display: block; position: absolute; bottom: 20%; left: 20px; width: 163px; height: 216px;"
+    title="复位设置"
+  >
+    <div>
+      <span>
+        复位设置
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <form
+      class="reset"
+    >
+      <label>
+        <input
+          name="visible"
+          type="checkbox"
+        />
+        构件可见
+      </label>
+      <label>
+        <input
+          name="highlight"
+          type="checkbox"
+        />
+        构件高亮
+      </label>
+      <label>
+        <input
+          name="perspective"
+          type="checkbox"
+        />
+        模型视角
+      </label>
+      <label>
+        <input
+          name="wireframe"
+          type="checkbox"
+        />
+        构件线框
+      </label>
+      <label>
+        <input
+          name="colorful"
+          type="checkbox"
+        />
+        构件颜色
+      </label>
+      <label>
+        <input
+          name="all"
+          type="checkbox"
+        />
+        全选
+      </label>
+      <button
+        type="submit"
+      >
+        复位选中项目
+      </button>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`reset should show and hide by calling onHide 2`] = `
+<div>
+  <div
+    style="display: none; position: absolute; bottom: 20%; left: 20px; width: 163px; height: 216px;"
+    title="复位设置"
+  >
+    <div>
+      <span>
+        复位设置
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <form
+      class="reset"
+    >
+      <label>
+        <input
+          name="visible"
+          type="checkbox"
+        />
+        构件可见
+      </label>
+      <label>
+        <input
+          name="highlight"
+          type="checkbox"
+        />
+        构件高亮
+      </label>
+      <label>
+        <input
+          name="perspective"
+          type="checkbox"
+        />
+        模型视角
+      </label>
+      <label>
+        <input
+          name="wireframe"
+          type="checkbox"
+        />
+        构件线框
+      </label>
+      <label>
+        <input
+          name="colorful"
+          type="checkbox"
+        />
+        构件颜色
+      </label>
+      <label>
+        <input
+          name="all"
+          type="checkbox"
+        />
+        全选
+      </label>
+      <button
+        type="submit"
+      >
+        复位选中项目
+      </button>
+    </form>
+  </div>
+</div>
+`;

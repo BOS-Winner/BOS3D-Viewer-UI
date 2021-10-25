@@ -1,0 +1,42 @@
+@import "../../theme/index";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .changer() {
+    font-weight: bold;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px 0px 0px 2px;
+    border: 1px solid #515454;
+    outline: none;
+  }
+
+  .min-button {
+    .changer();
+  }
+
+  .max-button {
+    .changer();
+  }
+
+  .number {
+    .changer();
+    width: 26px;
+    background-color: #000;
+    color: rgba(255, 255, 255, 0.65);
+    cursor: default;
+  }
+
+  .disabled {
+    background-color: gray;
+    pointer-events: none;
+  }
+}

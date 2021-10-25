@@ -1,0 +1,48 @@
+.container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.small-window {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%);
+  width: 660px;
+  height: 505px;
+  z-index: 1;
+}
+
+.mobile-small-window {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 80%;
+  height: 80%;
+  z-index: 2;
+}
+.mobile-small-td-window{
+  position: absolute;
+  width: 464px;
+  height: 300px;
+  z-index: 2;
+  top: 50px;
+  left: 8px;
+}
+
+.half-window {
+  width: 50%;
+}
+
+.full-window {
+  width: 100%;
+  border-radius: 0
+}
+
+.no-window {
+  .small-window();
+  z-index: -100;
+  visibility: hidden;
+}

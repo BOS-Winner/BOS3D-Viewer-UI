@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`instruction should render dom 1`] = `
+<body>
+  <div
+    id="test"
+  >
+    <div
+      class="instruction"
+      role="presentation"
+    >
+      <div
+        class="title"
+      >
+        <span
+          role="button"
+          tabindex="0"
+        >
+          x
+        </span>
+      </div>
+      <div
+        class="container"
+      >
+        <div
+          class="row1"
+        >
+          <div>
+            速度
+          </div>
+          <div>
+            视角
+          </div>
+        </div>
+        <img
+          alt="tips"
+          src="freeRoamCtrl.png"
+        />
+        <div
+          class="row3"
+        >
+          按Shift键加速
+        </div>
+      </div>
+    </div>
+  </div>
+  <div />
+</body>
+`;
+
+exports[`instruction should render dom 2`] = `
+<body>
+  <div
+    id="test"
+  />
+  <div>
+    
+  </div>
+</body>
+`;

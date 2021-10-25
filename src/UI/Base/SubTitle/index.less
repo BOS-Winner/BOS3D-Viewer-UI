@@ -1,0 +1,37 @@
+.container{
+    height: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // justify-content: space-between;
+    background: linear-gradient(90deg, rgba(89, 226, 255, 0.06) 0%, rgba(40, 116, 243, 0.28) 100%);
+    padding: 0 5px;
+    box-sizing: border-box;
+    position: relative;
+    margin: 16px 0 0 0;
+    .customIcon{
+        position: absolute;
+        height: 100%;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(40, 120, 255, 0) 0%, #2878FF 28%, #51D8FF 53%, #2878FF 77%, rgba(40, 120, 255, 0) 100%);
+        left: 0;
+    }
+    > span {
+        color: #fff;
+        text-indent: 5px;
+    }
+}
+
+.tip-icon{
+    @size: 16px;
+    color: #3997fb;
+    svg{
+        width: @size;
+        height: @size;
+    }
+}
+.close-icon{
+    position: absolute;
+    right: 10px;
+}

@@ -1,0 +1,456 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scatter index should switch scatter mode 1`] = `
+<div>
+  <div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="toolbar popup"
+        style="display: none;"
+      >
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="模型分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(modelScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="楼层分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(floorScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="range"
+        role="presentation"
+        style="display: none;"
+      >
+        <span>
+          离散系数：
+          1
+        </span>
+        <div
+          class="container"
+          role="presentation"
+        >
+          <div
+            class="rail"
+          />
+          <div
+            class="track"
+            style="width: 0%;"
+          />
+          <div
+            class="step"
+            style="left: 0%;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      role="button"
+      tabindex="0"
+      title="分解"
+    >
+      <div
+        class="icon "
+        data-selected="false"
+        role="button"
+        style="background-image: url(scatter.png);"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`scatter index should switch scatter mode 2`] = `
+<div>
+  <div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="toolbar popup"
+        style="display: flex;"
+      >
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="模型分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(modelScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="楼层分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(floorScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="range"
+        role="presentation"
+        style="display: none;"
+      >
+        <span>
+          离散系数：
+          1
+        </span>
+        <div
+          class="container"
+          role="presentation"
+        >
+          <div
+            class="rail"
+          />
+          <div
+            class="track"
+            style="width: 0%;"
+          />
+          <div
+            class="step"
+            style="left: 0%;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      role="button"
+      tabindex="0"
+      title="分解"
+    >
+      <div
+        class="icon "
+        data-selected="false"
+        role="button"
+        style="background-image: url(scatter.png);"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`scatter index should switch scatter mode 3`] = `
+<div>
+  <div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="toolbar popup"
+        style="display: none;"
+      >
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="模型分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(modelScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="楼层分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(floorScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="range"
+        role="presentation"
+        style=""
+      >
+        <span>
+          离散系数：
+          1
+        </span>
+        <div
+          class="container"
+          role="presentation"
+        >
+          <div
+            class="rail"
+          />
+          <div
+            class="track"
+            style="width: 0%;"
+          />
+          <div
+            class="step"
+            style="left: 0%;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      role="button"
+      tabindex="0"
+      title="分解"
+    >
+      <div
+        class="icon "
+        data-selected="true"
+        role="button"
+        style="background-image: url(scatter.png);"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`scatter index should switch scatter mode 4`] = `
+<div>
+  <div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="toolbar popup"
+        style="display: none;"
+      >
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="模型分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(modelScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="楼层分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(floorScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="range"
+        role="presentation"
+        style="display: none;"
+      >
+        <span>
+          离散系数：
+          1
+        </span>
+        <div
+          class="container"
+          role="presentation"
+        >
+          <div
+            class="rail"
+          />
+          <div
+            class="track"
+            style="width: 0%;"
+          />
+          <div
+            class="step"
+            style="left: 0%;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      role="button"
+      tabindex="0"
+      title="分解"
+    >
+      <div
+        class="icon "
+        data-selected="false"
+        role="button"
+        style="background-image: url(scatter.png);"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`scatter index should switch scatter mode 5`] = `
+<div>
+  <div>
+    <div
+      style="position: relative;"
+    >
+      <div
+        class="toolbar popup"
+        style="display: none;"
+      >
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="模型分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(modelScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+        <div
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="rangeContainer"
+            title="楼层分解"
+          >
+            <div
+              class="icon "
+              data-selected="false"
+              role="button"
+              style="background-image: url(floorScatter.png);"
+              tabindex="0"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="range"
+        role="presentation"
+        style=""
+      >
+        <span>
+          离散系数：
+          1
+        </span>
+        <div
+          class="container"
+          role="presentation"
+        >
+          <div
+            class="rail"
+          />
+          <div
+            class="track"
+            style="width: 0%;"
+          />
+          <div
+            class="step"
+            style="left: 0%;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      role="button"
+      tabindex="0"
+      title="分解"
+    >
+      <div
+        class="icon "
+        data-selected="true"
+        role="button"
+        style="background-image: url(scatter.png);"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`scatter index should switch scatter mode 6`] = `
+Array [
+  "该模型不支持楼层分解",
+  "",
+  Object {
+    "target": "#id",
+  },
+]
+`;

@@ -1,0 +1,230 @@
+@import "../../theme/index";
+
+.popup{
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  bottom: 0;
+}
+
+.free-section{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  &>img{
+    cursor: pointer;
+  }
+}
+
+.switch {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.eye, .reset {
+  width: 32px;
+  height: 32px;
+  background-size: 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.eye:hover {
+  background-color: #4dc0ffcc;
+}
+
+.reset:hover {
+  background-color: #4dc0ffcc;
+}
+
+
+
+@padding: 6px;
+.touch-bar {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: @padding;
+  background-color: #000000aa;
+  border-radius: 10px;
+
+  &>* {
+    margin: @padding;
+  }
+
+  @input-len: 130px;
+
+  .range {
+    width: 30px;
+    height: @input-len;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+      width: @input-len;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+@media (max-height: @deviceHeight) {
+  @padding: 3px;
+  .touch-bar {
+    padding: @padding;
+    &>* {
+      margin: @padding;
+    }
+
+    @input-len: 90px;
+    .range {
+      height: @input-len;
+
+      input {
+        width: @input-len;
+      }
+    }
+  }
+}
+
+.section-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.divider{
+  width: 100%;
+  height: 1px;
+  background: rgba(51, 51, 51, 1);
+  margin: 10px 0;
+}
+
+.free-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  @height: 30px;
+  margin: 20px 0 0 0;
+  // .bos3d-select-open,
+  .select{
+    height: @height;
+    width: 276px;
+    background: #2E2F30;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    outline: none;
+    :global{
+      .bos3d-select-selector{
+        background: #2E2F30 !important;
+        border-radius: 2px;
+        // border: 1px solid rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: none !important;
+        &:hover{
+          // border: 1px solid rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.1) !important;
+
+        }
+      }
+      .bos3d-select-arrow{
+        color: #A1A1A2;
+      }
+      .bos3d-select-selection-item{
+        color: #fff;
+      }
+    }
+  }
+  .eye{
+    width: @height;
+    height: @height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2E2F30;
+    border-radius: 2px 0px 0px 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.btn-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  >div{
+    cursor: pointer;
+    width: 152px;
+    height: 28px;
+    background: #2878FF;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 28px;
+    color: #fff;
+  }
+}
+
+.drop-down{
+  background-color: #333333 !important;
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  // opacity: 0.95;
+  border: 1px solid #575758;
+  :global{
+    .bos3d-select-item-option-active,
+    .bos3d-select-item-option-selected{
+      background: #1B1B1B !important;
+      opacity: 0.7;
+      color: #DDDDDD !important;
+    }
+    .bos3d-select-item-option-selected::after{
+      content: "";
+      width: 16px;
+      height: 16px;
+      // background-color: red;
+      background: url('../img/blue/selected.png') no-repeat center center;
+      background-size: 16px 16px;
+      position: absolute;      
+      right: 8px;
+      top: 8px;
+    }
+  }
+}
+
+
+.option{
+  color: #DDDDDD !important;
+  &:hover{
+    background: #1B1B1B;
+    opacity: 0.7;
+  }
+}
+
+.custom-sub-title{
+  display: inline-block;
+  text-indent: 10px;
+}
+
+.custom-input{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 0 10px 0;
+  span{
+    display: inline-block;
+  }
+  .range{
+    width: 70%;
+    >input{
+      width: 100%;
+      color: red;
+      background-color: yellow;
+    }
+  }
+}

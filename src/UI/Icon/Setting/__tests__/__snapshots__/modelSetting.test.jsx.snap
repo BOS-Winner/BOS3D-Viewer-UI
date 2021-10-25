@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`model setting should change model's base point 1`] = `
+Array [
+  Matrix4 {
+    "elements": Array [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1000,
+      -1000,
+      1000,
+      1,
+    ],
+  },
+  "M1145141919810",
+]
+`;
+
+exports[`model setting should change model's base point 2`] = `
+Array [
+  Matrix4 {
+    "elements": Array [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1000,
+      -1000,
+      1000,
+      1,
+    ],
+  },
+  "M1145141919810",
+]
+`;
+
+exports[`model setting should change model's base point 3`] = `
+Array [
+  Matrix4 {
+    "elements": Array [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      -2000,
+      2000,
+      -2000,
+      1,
+    ],
+  },
+  "M1145141919811",
+]
+`;
+
+exports[`model setting should render model's name list 1`] = `
+<div>
+  <div
+    class="settingContainer"
+  >
+    <div
+      class="settingItem"
+    >
+      <span>
+        模型选择：
+      </span>
+      <select>
+        <option
+          value="M1145141919810"
+        >
+          佛祖保佑
+        </option>
+        <option
+          value="M1145141919811"
+        >
+          永无bug
+        </option>
+      </select>
+    </div>
+    <div
+      class="basePosition"
+    >
+      <div>
+        设置模型基点位置：
+      </div>
+      <div
+        class="input"
+      >
+        <span>
+          X:
+        </span>
+        <input
+          step="1"
+          type="number"
+          value="0"
+        />
+        <span>
+          Y:
+        </span>
+        <input
+          step="1"
+          type="number"
+          value="0"
+        />
+        <span>
+          Z:
+        </span>
+        <input
+          step="1"
+          type="number"
+          value="0"
+        />
+        <button
+          class="button"
+          type="button"
+        >
+          确定
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

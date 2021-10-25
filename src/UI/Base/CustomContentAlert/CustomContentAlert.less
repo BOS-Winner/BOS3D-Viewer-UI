@@ -1,0 +1,86 @@
+.container{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.box{
+  background-color: white;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+  cursor: move;
+}
+
+.close {
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: auto;
+}
+
+.content{
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.title-text {
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.button-panel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.button {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: default;
+}
+
+.red-button{
+  background-color: red;
+  color: white;
+}
+
+.red-button:hover{
+  background-color: darkred;
+}
+
+.blue-button{
+  background-color: #4DC0FF;
+  color: white;
+}
+
+.blue-button:hover{
+  background-color: #0080FF;
+}
+
+.button-margin {
+  margin-left: 50px;
+}

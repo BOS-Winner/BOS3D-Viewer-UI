@@ -1,0 +1,188 @@
+.tools{
+    width: 100%;
+    .customIcon{
+        height: 55px;
+    }
+}
+
+.model-seting{
+  position: absolute;
+  left: -23px !important;
+  top: -25px;
+}
+
+.icon {
+    color: rgba(255, 255, 255, 0.8) !important;
+    svg{
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  // 测量设置容器
+.settingAlertContainer{
+    padding:25px 16px;
+   .bottom-buttons {
+     // padding: 0px 0px 25px 16px;
+     display: flex;
+     justify-content: flex-end;
+     .btn{
+       width: 74px;
+       margin-left: 8px;
+     }
+   }
+ }
+
+ // BUTTON boss按钮样式
+:global{
+  @dangerColor:#FF2845;
+  @primaryColor:#2878FF;
+  @defaultColor:#6A6B6E;
+  .bos-btn {
+    cursor: pointer;
+    box-sizing: border-box;
+    color: white;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 12px;
+    border: none;
+    &.bos-btn-block,&[block]{
+      width: 100%;
+    }
+    &.bos-btn-default{
+      background-color: @defaultColor;
+      &:active,&:hover{
+        background-color: #64666D;
+      }
+    }
+    &.bos-btn-danger{
+      background-color: @dangerColor;
+      &:active,&:hover{
+        background-color: #FA0C48;
+      }
+    }
+    &.bos-btn-primary{
+      background-color: @primaryColor;
+      &:active,&:hover{
+        background-color: #26acf9;
+      }
+    }
+    &[disabled]{
+      opacity: 0.8;
+      cursor: not-allowed;
+    }
+   
+  }
+}
+
+// antd select 相关属性重构样式
+:global{
+  @textColor:#CCCCCC;
+  @bgColor:#2E2F30;
+  @borderColor:rgba(255, 255, 255, 0.1);
+  @selectItemBg:#232323;
+
+  // 加上这个类，即可使用
+  .boss3d-theme-one-form-form-antd{
+    box-sizing: border-box;
+
+    // antd select 样式start
+    .bos3d-select{
+      color: @textColor;
+    }
+    .bos3d-form-item{
+      color: @textColor;
+    }
+    .bos3d-form-item-label > label{
+      color: @textColor;
+    }
+    .bos3d-select:not(.bos3d-select-customize-input) .bos3d-select-selector{
+      border-color: @borderColor;
+    }
+    .bos3d-select-focused:not(.bos3d-select-disabled).bos3d-select:not(.bos3d-select-customize-input) .bos3d-select-selector {
+      border-color: #fff;
+    }
+    .bos3d-select:not(.bos3d-select-customize-input) .bos3d-select-selector{
+      background-color: @bgColor;
+      box-sizing: border-box;
+    }
+    .bos3d-select-arrow{
+      color: @textColor;
+    }
+    // antd select 样式end
+
+    // antd input-number 样式start
+    .bos3d-input-number{
+      width: 100%;
+      background: @bgColor;
+      border-radius: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: @textColor;
+    }
+
+    .bos3d-input-number-input{
+      width: 100%;
+      background: @bgColor;
+      font-weight: 400;
+      color: @textColor;
+      box-sizing: border-box;
+      &.bos3d-input-number-input-focused{
+        border-color: #fff;
+      }
+    }
+    .bos3d-input-number:hover {
+      border-color:   #fff;
+      border-right-width: 1px !important;
+    }
+    .bos3d-input-number:focus,
+    .bos3d-input-number-focused {
+      border-color: #fff;
+      box-shadow:none;
+    }
+  
+    // antd input-number 样式end
+
+
+    // 输入框样式 start
+    .bos3d-input{
+      padding: 4px 11px !important;
+      background-color:  @bgColor;
+      color:@textColor ;
+    }
+    // 输入框样式 end
+  }
+
+
+
+  // antd selectdrow 下拉样式样式 START
+  .boss3d-theme-one-form-form-antd-dropdown.bos3d-select-dropdown{
+    background-color: #333333;
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    border: 1px solid #575758;
+  
+
+    .bos3d-select-item-option-content{
+      box-sizing: border-box;
+    }
+
+    .bos3d-select-item-option-selected:not(.bos3d-select-item-option-disabled){
+      background-color: @selectItemBg;
+    }
+
+    .bos3d-select-item-option:hover ,.bos3d-select-item-option-active:not(.bos3d-select-item-option-disabled){
+      background-color: @selectItemBg;
+    }
+
+    .bos3d-select-item{
+      color: @textColor;
+    }
+  }
+ 
+}

@@ -1,0 +1,126 @@
+@import "../theme/index";
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  min-width: 700px;
+  left: 50%;
+  bottom: 16px;
+  transform: translate(-50%, 0);
+  z-index: 9999;
+  .middle-to-top {
+    display: flex;
+    order: -1;
+    margin-bottom: 5px;
+  }
+}
+
+.blank {
+  width: 10px;
+}
+
+@media (max-width: @deviceWidth) {
+  .bottom {
+    min-width: 450px;
+  }
+}
+
+.icon{
+  @size: 21px;
+  color: rgba(255, 255, 255, 0.8);
+  svg{
+    width: @size;
+    height: @size;
+  }
+
+  &:hover{
+    color: #fff;
+  }
+}
+
+.mobile-toolbar-wrap{
+  :global(.mobile-device) &{
+    box-sizing: border-box;
+    background: #323639;
+    position: fixed;
+    right: -72px;
+    bottom: 0px;
+    height: 100%;
+    width: 72px;
+    transition: right 300ms;
+    &.mobile-toolbar-open{
+      right: 0px;
+      .small-icon{
+        :global{
+          .anticon{
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    .mobile-toolbar-list {
+      height: 100%;
+      overflow-y: auto;
+      padding: 8px ;
+      &::-webkit-scrollbar {
+        width: 0px !important;
+      }    
+      .mobile-toolbar-item{
+        [role=button]{
+          margin: 12px 0;
+          outline: none;
+          &[data-selected="true"]{
+            background-color: rgba(40, 120, 255, 0.4) !important;
+            border-radius: 2px;
+            border: 1px solid rgba(40, 120, 255, 0.8) !important;
+          }
+          &:hover{
+            border: none;
+            background-color: transparent;
+          }
+        }
+        .toolbar{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .icon{
+          box-sizing: border-box;
+          height: 56px;
+          width: 56px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg{
+            width: 36px;
+            height: 36px;
+          }
+        }
+        .icon + span{
+          display: none;
+        }
+      }
+    }
+  
+    .small-icon{
+      width: 28px;
+      height: 48px;
+      background: rgba(30, 30, 30, 0.88);
+      border-radius: 8px 0px 0px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: -28px;
+      top:50%;
+      margin-top: -14px;
+      z-index: 8888;
+      svg{
+        color: #ddd;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

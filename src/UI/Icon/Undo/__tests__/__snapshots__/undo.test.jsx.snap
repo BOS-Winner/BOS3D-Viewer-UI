@@ -1,0 +1,361 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`undo list should add item 1`] = `
+<div>
+  <div
+    style="display: block; position: absolute; top: 20%; left: 20px; width: 163px; height: 200px;"
+    title="操作历史"
+  >
+    <div>
+      <span>
+        操作历史
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="list"
+    >
+      <div
+        class="item"
+        role="button"
+        tabindex="0"
+      >
+        撤销列表操作
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件隐藏
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`undo list should show or hide 1`] = `
+<div>
+  <div
+    style="display: block; position: absolute; top: 20%; left: 20px; width: 163px; height: 200px;"
+    title="操作历史"
+  >
+    <div>
+      <span>
+        操作历史
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="list"
+    >
+      <div
+        class="item"
+        role="button"
+        tabindex="0"
+      >
+        撤销列表操作
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`undo list should show or hide 2`] = `
+<div>
+  <div
+    style="display: none; position: absolute; top: 20%; left: 20px; width: 163px; height: 200px;"
+    title="操作历史"
+  >
+    <div>
+      <span>
+        操作历史
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="list"
+    >
+      <div
+        class="item"
+        role="button"
+        tabindex="0"
+      >
+        撤销列表操作
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`undo list should undo or redo action 1`] = `
+<div>
+  <div
+    style="display: block; position: absolute; top: 20%; left: 20px; width: 163px; height: 200px;"
+    title="操作历史"
+  >
+    <div>
+      <span>
+        操作历史
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="list"
+    >
+      <div
+        class="item"
+        role="button"
+        tabindex="0"
+      >
+        撤销列表操作
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件隐藏
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件线框化
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(255, 255, 255, 0.4); color: rgb(235, 235, 235);"
+        tabindex="0"
+      >
+        构件隔离
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(255, 255, 255, 0.4); color: rgb(235, 235, 235);"
+        tabindex="0"
+      >
+        构件变色
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`undo list should undo or redo action 2`] = `
+<div>
+  <div
+    style="display: block; position: absolute; top: 20%; left: 20px; width: 163px; height: 200px;"
+    title="操作历史"
+  >
+    <div>
+      <span>
+        操作历史
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="list"
+    >
+      <div
+        class="item"
+        role="button"
+        tabindex="0"
+      >
+        撤销列表操作
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(255, 255, 255, 0.4); color: rgb(235, 235, 235);"
+        tabindex="0"
+      >
+        构件隐藏
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(255, 255, 255, 0.4); color: rgb(235, 235, 235);"
+        tabindex="0"
+      >
+        构件线框化
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(255, 255, 255, 0.4); color: rgb(235, 235, 235);"
+        tabindex="0"
+      >
+        构件隔离
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(255, 255, 255, 0.4); color: rgb(235, 235, 235);"
+        tabindex="0"
+      >
+        构件变色
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`undo list should undo or redo action 3`] = `
+<div>
+  <div
+    style="display: block; position: absolute; top: 20%; left: 20px; width: 163px; height: 200px;"
+    title="操作历史"
+  >
+    <div>
+      <span>
+        操作历史
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="list"
+    >
+      <div
+        class="item"
+        role="button"
+        tabindex="0"
+      >
+        撤销列表操作
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件隐藏
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件线框化
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件隔离
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(255, 255, 255, 0.4); color: rgb(235, 235, 235);"
+        tabindex="0"
+      >
+        构件变色
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`undo list should undo or redo action 4`] = `
+<div>
+  <div
+    style="display: block; position: absolute; top: 20%; left: 20px; width: 163px; height: 200px;"
+    title="操作历史"
+  >
+    <div>
+      <span>
+        操作历史
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="list"
+    >
+      <div
+        class="item"
+        role="button"
+        tabindex="0"
+      >
+        撤销列表操作
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件隐藏
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件线框化
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件隔离
+      </div>
+      <div
+        class="item"
+        role="button"
+        style="background-color: rgba(133, 210, 255, 0.698); color: rgb(255, 255, 255);"
+        tabindex="0"
+      >
+        构件变色
+      </div>
+    </div>
+  </div>
+</div>
+`;

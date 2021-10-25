@@ -1,0 +1,34 @@
+@import "../../theme/index";
+.container {
+
+}
+
+.button-panel {
+ 
+}
+
+.item-group,.attr-group{
+  margin:0 23px-10px;
+}
+.item-group {
+  display: flex;
+  justify-content: space-between;
+  .item{
+    width: 48px;
+    height: 48px;
+    :global(.mobile-device) &{
+      width: 36px;
+      height: 36px;
+    }
+  }
+}
+
+.line{
+  margin: 8px 0;
+  border-bottom: 1px solid  #333333;
+}
+
+
+@media (max-width: @deviceWidth) {
+
+}

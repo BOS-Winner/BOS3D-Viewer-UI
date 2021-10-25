@@ -1,0 +1,49 @@
+@import "../../Base/styleTemplate.less";
+@import "../../theme/index";
+
+.container{
+  // padding: 10px 0px;
+  height: 100%;
+  // display: flex;
+  // flex-direction: column;
+}
+
+.antdConfirmModalThemeOne{
+  :global {
+    .bos3d-modal-confirm-body > .anticon{
+      svg{
+        font-size: 20px
+      }
+    }
+    .bos3d-modal-confirm-body .bos3d-modal-confirm-title,
+    .bos3d-modal-confirm-content{
+      font-size: 16px;
+      font-family: PingFangSC-Medium, PingFang SC;
+      color: #DDDDDD;
+    }
+    .bos3d-modal-confirm-content{
+      font-size: 14px;
+    }
+    .bos3d-modal-confirm-body .bos3d-modal-confirm-title{
+      font-weight: 600;
+    }
+    .bos3d-modal-content{
+      background: #2E2F30;
+      box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.24);
+      border-radius: 8px;
+      border: 1px solid #575758;
+      
+    }
+    .bos3d-modal-confirm-btns{
+      .bos3d-btn:first-child{
+        color: #fff;
+        background-color: #6A6B6E;
+      }
+    }
+    .bos3d-btn {height: auto;border: none;}
+  }
+}
+
+
+
+

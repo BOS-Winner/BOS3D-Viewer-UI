@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`section should switch mode 1`] = `
+<div>
+  <div
+    class=""
+    role="button"
+    tabindex="0"
+    title="模型剖切"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(modelSection.png);"
+      tabindex="0"
+    />
+    <div>
+      <div
+        class="switch"
+      >
+        <div
+          class="reset"
+          role="presentation"
+          style="background-image: url(hide@2x.png);"
+          title="隐藏剖切盒"
+        />
+        <div
+          class="eye"
+          role="presentation"
+          style="background-image: url(reset2.png);"
+          title="重置剖切状态"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`section should switch mode 2`] = `
+<div>
+  <div
+    class="select"
+    role="button"
+    tabindex="0"
+    title="模型剖切"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(modelSection.png);"
+      tabindex="0"
+    />
+    <div>
+      <div
+        class="switch"
+      >
+        <div
+          class="reset"
+          role="presentation"
+          style="background-image: url(hide@2x.png);"
+          title="隐藏剖切盒"
+        />
+        <div
+          class="eye"
+          role="presentation"
+          style="background-image: url(reset2.png);"
+          title="重置剖切状态"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`section should switch mode 3`] = `
+<div>
+  <div
+    class=""
+    role="button"
+    tabindex="0"
+    title="模型剖切"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(modelSection.png);"
+      tabindex="0"
+    />
+    <div>
+      <div
+        class="switch"
+      >
+        <div
+          class="reset"
+          role="presentation"
+          style="background-image: url(hide@2x.png);"
+          title="隐藏剖切盒"
+        />
+        <div
+          class="eye"
+          role="presentation"
+          style="background-image: url(reset2.png);"
+          title="重置剖切状态"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`section should toggle section box 1`] = `
+<div>
+  <div
+    class="select"
+    role="button"
+    tabindex="0"
+    title="模型剖切"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(modelSection.png);"
+      tabindex="0"
+    />
+    <div>
+      <div
+        class="switch"
+      >
+        <div
+          class="reset"
+          role="presentation"
+          style="background-image: url(show@2x.png);"
+          title="显示剖切盒"
+        />
+        <div
+          class="eye"
+          role="presentation"
+          style="background-image: url(reset2.png);"
+          title="重置剖切状态"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`section should toggle section box 2`] = `
+<div>
+  <div
+    class=""
+    role="button"
+    tabindex="0"
+    title="模型剖切"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(modelSection.png);"
+      tabindex="0"
+    />
+    <div>
+      <div
+        class="switch"
+      >
+        <div
+          class="reset"
+          role="presentation"
+          style="background-image: url(hide@2x.png);"
+          title="隐藏剖切盒"
+        />
+        <div
+          class="eye"
+          role="presentation"
+          style="background-image: url(reset2.png);"
+          title="重置剖切状态"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

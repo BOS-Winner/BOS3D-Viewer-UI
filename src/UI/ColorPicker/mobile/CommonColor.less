@@ -1,0 +1,49 @@
+.container {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // align-items: center;
+}
+
+.top{
+  // height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.top-title {
+  font-size: 16px;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+
+.color-item-wrap{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.color-item {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-bottom: 7px;
+  &:nth-child(2n-1){
+    margin-right: 20px;
+  
+  }
+  &:nth-last-child(1){
+    margin-bottom: 0;
+  }
+  &:nth-last-child(2){
+    margin-bottom: 0;
+  }
+}
+

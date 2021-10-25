@@ -1,0 +1,14 @@
+.hide-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.animate {
+  width: 100%;
+  transition: all .25s cubic-bezier(.9, 0, .3, .7);
+  &.hide {
+    width: 0;
+  }
+}

@@ -1,0 +1,67 @@
+@import "../../theme/index";
+.container {
+  display: flex;
+  // align-items: center;
+  // background-color: #000000cc;
+  // border-radius: 6px;
+  // & > img {
+  //   margin: 2px;
+  //   cursor: pointer;
+  // }
+}
+.group{
+  display: flex;
+  align-items: center;
+  background-color: #000000cc;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 184px;
+  height: 56px;
+  background: #1E1E1E;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+  margin-left: 12px;
+  :global(.mobile-device) &{
+    margin-left: 6px;
+    width: 120px;
+    height: 30px;
+  }
+}
+
+.icon{
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 6px;
+  &:hover{
+    background-color: #ffffff33;
+  }
+}
+
+@media (min-width: @deviceWidth) {
+  @iconSize: 32px;
+  .icon{
+    width: @iconSize;
+    height: @iconSize;
+    padding: calc(@iconSize / 4);
+    background-size: 24px;
+  }
+}
+
+@media (max-width: @deviceWidth) {
+  @iconSize: 22px;
+  .icon{
+    width: @iconSize;
+    height: @iconSize;
+    padding: calc(@iconSize / 4);
+    background-size: @iconSize;
+  }
+}
+
+.icon-selected {
+  background-color: #ffffff33;
+}
+
+

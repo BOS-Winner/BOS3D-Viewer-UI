@@ -1,0 +1,55 @@
+.container {
+  color: white;
+}
+
+.container input[type="text"] {
+  height: 24px;
+  box-sizing: border-box;
+  font-weight: 600;
+  color: #DDDDDD;
+  padding-left: 6px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #BBBBBB;
+}
+
+.hex-container {
+  height: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-all {
+  outline-style: none ;
+  border: 1px solid #575758;
+  border-radius: 2px;
+  background-color: rgba(27, 27, 27, 0.95);
+
+}
+
+@width: 238px;
+.input-hex:extend(.input-all) {
+
+  width: @width;
+}
+
+.input-rgb:extend(.input-all) {
+  width: 70px;
+}
+
+.rgb-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rgb-inputs {
+  display: flex;
+  justify-content: space-between;
+  width:@width;
+}

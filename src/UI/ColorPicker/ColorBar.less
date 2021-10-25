@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-preview {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.color-bar {
+  margin-left: 15px;
+  flex-grow: 1;
+  height: 12px;
+  position: relative;
+}
+
+.color-bar-bg {
+  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
+  33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  pointer-events: none;
+}
+
+.target {
+  position: absolute;
+  // pointer-events: none;
+}
+
+.circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  transform: translate(-8px, -2px);
+  background-color: rgb(248, 248, 248);
+  box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
+  pointer-events: none;
+
+}
+
+.shape {
+  width: 16px;
+  height: 6px;
+  transform: translate(-8px, 10px);
+  background: linear-gradient(180deg, #FFFFFF 0%, #C6C6C6 100%);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  // pointer-events: none;
+  position: relative;
+  &::before{
+    content: " ";
+    width: 100%;
+    position: absolute;
+    top: -16px;
+    left: 0;
+    border-width: 8px;
+    border-style: solid;
+    border-color:transparent transparent rgb(248, 248, 248) transparent;
+  }
+}

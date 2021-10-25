@@ -1,0 +1,46 @@
+.mark{
+  cursor: default;
+  // tabs wrap start
+  padding-top: 10px;
+  padding-left: 6px;
+  padding-right: 6px;
+  flex-shrink: 0;
+  .tabs{
+    display: flex;
+    margin-bottom: 12px;
+    .tab{
+      cursor: pointer;
+      transition: background 300ms;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 32px;
+      background: #2E2F30;
+      color: #DDDDDD;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+      font-weight: 500;
+      &:not(:last-child){
+        border-right: none;
+      }
+      &.active{
+        background: rgba(0, 122, 255, 0.1);
+        color: #3A97FB;
+        border: 1px solid rgba(0, 122, 255, 0.5);
+      }
+      &.active +.tab{
+        border-left: none;
+      }
+      svg {
+        width: 14px;
+        height: 14px;
+        margin-right: 2px;
+      }
+    }
+  }
+  // tabs end
+}
+
+
+

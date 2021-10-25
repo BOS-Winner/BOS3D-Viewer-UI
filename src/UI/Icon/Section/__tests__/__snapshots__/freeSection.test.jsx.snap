@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`freeSection should switch mode 1`] = `
+<div>
+  <div
+    class=""
+    role="button"
+    tabindex="0"
+    title="自由剖切"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(freeSection.png);"
+      tabindex="0"
+    />
+    <div>
+      <div
+        class="freeSection"
+      >
+        <select
+          title="改变轴向"
+        >
+          <option
+            selected=""
+            value="X"
+          >
+            X
+          </option>
+          <option
+            value="Y"
+          >
+            Y
+          </option>
+          <option
+            value="Z"
+          >
+            Z
+          </option>
+          <option
+            value="-X"
+          >
+            -X
+          </option>
+          <option
+            value="-Y"
+          >
+            -Y
+          </option>
+          <option
+            value="-Z"
+          >
+            -Z
+          </option>
+        </select>
+        <img
+          alt="点击隐藏剖切面"
+          class="eye"
+          src="show@2x.png"
+          title="点击隐藏剖切面"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`freeSection should switch mode 2`] = `
+<div>
+  <div
+    class="select"
+    role="button"
+    tabindex="0"
+    title="自由剖切"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(freeSection.png);"
+      tabindex="0"
+    />
+    <div>
+      <div
+        class="freeSection"
+      >
+        <select
+          title="改变轴向"
+        >
+          <option
+            selected=""
+            value="X"
+          >
+            X
+          </option>
+          <option
+            value="Y"
+          >
+            Y
+          </option>
+          <option
+            value="Z"
+          >
+            Z
+          </option>
+          <option
+            value="-X"
+          >
+            -X
+          </option>
+          <option
+            value="-Y"
+          >
+            -Y
+          </option>
+          <option
+            value="-Z"
+          >
+            -Z
+          </option>
+        </select>
+        <img
+          alt="点击隐藏剖切面"
+          class="eye"
+          src="show@2x.png"
+          title="点击隐藏剖切面"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`freeSection should switch mode 3`] = `
+<div>
+  <div
+    class=""
+    role="button"
+    tabindex="0"
+    title="自由剖切"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(freeSection.png);"
+      tabindex="0"
+    />
+    <div>
+      <div
+        class="freeSection"
+      >
+        <select
+          title="改变轴向"
+        >
+          <option
+            selected=""
+            value="X"
+          >
+            X
+          </option>
+          <option
+            value="Y"
+          >
+            Y
+          </option>
+          <option
+            value="Z"
+          >
+            Z
+          </option>
+          <option
+            value="-X"
+          >
+            -X
+          </option>
+          <option
+            value="-Y"
+          >
+            -Y
+          </option>
+          <option
+            value="-Z"
+          >
+            -Z
+          </option>
+        </select>
+        <img
+          alt="点击隐藏剖切面"
+          class="eye"
+          src="show@2x.png"
+          title="点击隐藏剖切面"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

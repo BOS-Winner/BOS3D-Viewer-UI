@@ -1,0 +1,19 @@
+@import "../../theme/index.less";
+
+.title {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 6px;
+
+  span {
+    margin: 6px;
+    padding: 6px;
+    color: white;
+    outline: none;
+    cursor: pointer;
+
+    &.selected {
+      color: @skyblue;
+      border-bottom: 2px solid @skyblue;
+    }
+  }
+}

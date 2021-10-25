@@ -1,0 +1,75 @@
+// 构建上色 移动端适配
+.mobileContainer{
+  :global(.mobile-device) &{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      // height: 80%;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(51, 51, 51, 0.95) 0%, rgba(27, 27, 27, 0.9) 100%);
+      box-shadow: 0px -4px 32px 0px rgba(0, 0, 0, 0.5);
+      border-radius: 12px 12px 0px 0px;
+      display: flex;
+      flex-direction: column;
+      .mobileHeader{
+        height: 40px;
+        padding:0 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #FFFFFF;
+        border-bottom: 1px solid rgba(251, 251, 251, 0.1);
+        flex-shrink: 0;
+        span{
+          font-size: 18px;
+        }
+        svg{
+          width: 20px;
+          height: 20px;
+          color:  #ddd;
+        }
+      }
+
+      .main{
+        display: flex;
+        width: 100%;
+        flex: 1;
+        padding: 2% 3%;
+      }
+      .left{
+        flex-shrink: 0;
+      }
+      .middle,.right{
+        position: relative;
+        // flex: 1;
+        // flex-grow: 1;
+        // flex-shrink: 1;
+        // flex-basis: auto;
+
+      }
+      .middle{
+        // flex-shrink: 0;
+        flex: 1;
+      }
+      .line{
+        width: 1px;
+        opacity: 0.1;
+        border: 1px solid #FFFFFF;
+        margin: 0 2%;
+      }
+
+
+      .right{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 3%;
+        .rightTop{
+          display: flex;
+        }
+      }
+      
+    }
+}

@@ -1,0 +1,119 @@
+@backgroundColor: rgba(51, 51, 51, 1);
+
+.toolbar {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  right: 20px;
+  top: 20px;
+  width: 32px;
+  height: 100px;
+  background: linear-gradient(360deg, #2E2E2E 0%, #474747 100%);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  
+}
+
+.icon-Home{
+  @width: 17.5px;
+  @height: 17.25px;
+  color: rgba(255, 255, 255, 0.8) !important;
+  SVG{
+    width: @width;
+    height: @height;
+  }
+}
+
+.icon{
+  @width: 14px;
+  @height: 14px;
+  color: rgba(255, 255, 255, 0.8) !important;
+  SVG{
+    width: @width;
+    height: @height;
+  }
+}
+
+.icon:hover {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+// .toolbar-main-view,.toolbar-full-screen,.toolbar-drop-down-menu {
+//   cursor: pointer;
+// }
+
+// .toolbar-main-view{
+
+// }
+
+// .toolbar-full-screen {
+
+// }
+
+.toolbar-drop-down-menu {
+  width: 100%;
+}
+
+.custom-drop-down {
+  padding: 20px 0 0 20px !important;
+  :global{
+    .bos3d-dropdown-arrow {
+        top: 16px;
+        border-top-color: @backgroundColor;
+        border-left-color: @backgroundColor;
+    }
+  }
+}
+
+.custom-drop-menu {
+  background: @backgroundColor;
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.5);
+  opacity: 0.95;
+  border-radius: 4px;
+  :global {
+    .bos3d-dropdown-menu-item, .bos3d-dropdown-menu-submenu-title {
+      width: 160px;
+      line-height: 28px;
+      color: rgba(221, 221, 221, 1);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 0 0 0 5px;
+    }
+    .bos3d-dropdown-menu-item:hover, .bos3d-dropdown-menu-submenu-title:hover {
+        background-color: rgba(27, 27, 27, 1);
+    }
+  }
+}
+
+
+
+
+
+@textHeight: 28px;
+.drop-down-menu {
+  position: absolute;
+  width: 144px;
+  height: 84px;
+  right: 0px;
+  bottom: -@textHeight*3;
+}
+
+
+
+.drop-down-menu-item {
+  padding-left: 5px;
+  height: @textHeight;
+  font-size: 14px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-family: "MicrosoftYaHei, sans-serif";
+  line-height: @textHeight;
+}
+
+.drop-down-menu-item:hover {
+  background-color: rgba(38,172,249,0.6);
+}
+

@@ -1,0 +1,197 @@
+@import "../../theme/index";
+
+// .panel-container {
+//   background-color: #000000cc;
+//   border-radius: 6px;
+//   padding: 20px;
+// }
+
+.attribute-container {
+  background-color: #000;
+  border-radius:0 0 2px 2px;
+  padding: 10px;
+}
+
+.attribute {
+  margin-bottom: 20px;
+  :global(.mobile-device) &{
+    display: flex;
+    justify-items: center;
+    margin-bottom: 10px;
+  }
+
+  .attribute-name {
+    font-weight: 400;
+    color: #DDDDDD;
+    font-size: 14px;
+    font-family: "PingFang SC, sans-serif";
+    flex-shrink: 0;
+    user-select:none;
+  }
+
+  .attribute-value {
+    margin: 6px 0;
+    height: 100%;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    :global(.mobile-device) &{
+      margin: 0px 15px;
+    }
+  }
+
+  .range{
+    width: 240px;
+    :global(.mobile-device) &{
+      width: 100%;
+    }
+  
+  }
+}
+
+// 选择宽度
+.stroke-attribute {
+  position: relative;
+  display: flex;
+  .stroke-width {
+    font-size: 14px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #DDDDDD;
+    user-select:none;
+    margin-left: 13px;
+  }
+}
+
+
+
+// 颜色吸取器
+.color-picker-button {
+  .input-group{
+    display: flex;
+  }
+  
+  .input {
+    background: #2E2F30;
+    font-size: 12px;
+    font-weight: 400;
+    color: #BBBBBB;
+    padding: 0 8px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    display: flex;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #444444;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    cursor: pointer;
+    margin-right: 8px;
+    .dropdown{
+      width: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #353535;
+      svg{
+        color: #A1A1A2;
+      }
+    }
+  }
+  input.input-hex{
+      padding: 0 8px;
+      width: 88px;
+      height: 28px;
+  }
+  input.input-alpha {
+    padding: 0 8px;
+    width: 64px;
+    height: 28px;
+    display: inline-block;
+  }
+  
+  .symbol{
+    color: #BBBBBB;
+    margin-left: -28px;
+  }
+
+}
+
+.color-picker-container {
+  position: absolute;
+  top:0;
+  right: 100%;
+  transform: translate(0, -50%);
+}
+
+// 通用类样式，目前只使用当前模块，所以命名比较长
+:global  .annotation-ui-module-popver-wrap{
+   @bgColor:rgba(27, 27, 27, 0.95);
+   @borderColor:#575758;
+
+   .bos3d-popover-arrow{
+     overflow: inherit;
+   }
+
+   .bos3d-popover-inner-content {
+      padding: 0 0;
+   }
+
+  .bos3d-popover-inner{
+    border: 1px solid @borderColor;
+    background-color: @bgColor;
+  }
+
+  .bos3d-popover-arrow-content{
+    background-color:@bgColor;
+    border-color: @borderColor;
+  }
+
+  &.bos3d-popover-placement-bottom{
+    .bos3d-popover-arrow-content{
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-left-width: 1px ;
+      border-left-style: solid;
+      top: 1px;
+    }
+  }
+
+  &.bos3d-popover-placement-top{
+    .bos3d-popover-arrow-content{
+      border-bottom: 1px solid ;
+      border-bottom-style: solid;
+      border-right: 1px solid;
+      border-right-style: solid;
+      top: -1px;
+    }
+  } 
+}
+
+.disabled-div{
+  background-color: #fff;
+  box-sizing:border-box;
+  border:1px solid #333;
+  position: relative;
+}
+
+.disabled-div::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 42px;
+  height: 15px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #333;
+  transform: rotateZ(36deg);
+}
+
+.line {
+  height:1px;
+  background-color: #000000;
+  width: 100%;
+}
+

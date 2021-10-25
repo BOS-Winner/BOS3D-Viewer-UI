@@ -1,0 +1,103 @@
+@import "../../theme/index";
+.common() {
+  margin: 3px 0;
+}
+
+.palette{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  background-color: #000000cc;
+  border-radius: 6px;
+  padding: 10px;
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (max-height: @deviceHeight) {
+    .layout {
+      flex-direction: row;
+    }
+    .small-screen {
+      margin-left: 5px;
+    }
+  }
+}
+
+.row{
+  display: flex;
+}
+
+.color-matrix{
+  .common();
+}
+
+.color-square{
+  width: 15px;
+  height: 15px;
+  border: 1px solid white;
+}
+
+.color-preview{
+  .common();
+  width: 100%;
+  border-radius: 6px;
+  height: 30px;
+}
+
+.color-bar div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &>span {
+    white-space: nowrap;
+  }
+}
+
+.color-bar{
+  .common();
+  &>div:first-child>span{
+    color: red;
+  }
+  &>div:nth-child(2)>span{
+    color: lawngreen;
+  }
+  &>div:nth-child(3)>span{
+    color: skyblue;
+  }
+}
+
+.color-input{
+  .common();
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &>div{
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+    &>input{
+      width: 25px;
+    }
+    &>input[data-num="hex"]{
+      width: 100%;
+      margin-right: 3px;
+    }
+  }
+  @media (max-height: @deviceHeight) {
+    .change-mode {
+      margin-left: 5px;
+    }
+  }
+}
+
+.button-group {
+  .common();
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}

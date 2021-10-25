@@ -1,0 +1,75 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+
+.svg-container{
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+
+.attribute-panel-container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0,-50%);
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-container {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+
+.color-board-container {
+  position: absolute;
+}
+
+.right-top-container {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  width: 96px;
+  height: 48px;
+  background-color: #1E1E1E;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.18);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.confirm-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.image-mover-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.confirm-modal{
+  :global {
+    .bos3d-modal-body {
+      padding: 0;
+    }
+  }
+ 
+}

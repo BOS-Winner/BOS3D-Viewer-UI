@@ -1,0 +1,54 @@
+.tool-setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+  border-bottom: 1px solid #ffffff33;
+  &:last-child{
+    border-bottom: none;
+  }
+  .tool-name:extend(.tool-setting-item) {
+    border: none;
+    padding-bottom: 4px;
+
+    & > span {
+      margin-left: 10px;
+    }
+
+    svg {
+      width: 19px;
+      height: 19px;
+    }
+  }
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.tool-setting-container {
+  .setting-group {
+    padding: 0;
+    border-bottom: none!important;
+  }
+}
+
+.mobileTitleOne{
+  :global(.mobile-device) &{
+    padding: 8px 16px;
+    font-size: 13px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #DDDDDD;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+.settingMobileItem {
+  :global(.mobile-device) &{
+   padding: 0px 12px !important;
+  }
+}

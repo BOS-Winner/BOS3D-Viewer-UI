@@ -1,0 +1,30 @@
+@diameter: 16px;
+.slider {
+  display: inline-block;
+  position: relative;
+  width: 2*@diameter;
+  height: @diameter;
+  border-radius: @diameter;
+  box-shadow: #ccc 0 0 0 1px;
+  background-color: #bdbdbd;
+  transition: background-color .5s;
+  outline: none;
+  &.checked {
+    background-color: #2878FF;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: @diameter;
+    height: @diameter;
+    border-radius: @diameter;
+    background-color: #fff;
+    transition: all 0.5s;
+  }
+
+  &.checked:before {
+    left: @diameter;
+  }
+}

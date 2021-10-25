@@ -1,0 +1,108 @@
+.card-container {
+  width: 150px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #2E2F30;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  margin: 16px 0 0 0;
+  position: relative;
+
+  .rect-top-left,
+  .rect-top-right,
+  .rect-bottom-left,
+  .rect-bottom-right {
+    display: none;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+  }
+
+  .rect-top-left{
+    border-top: 1px solid #11BFFF;
+    border-left: 1px solid #11BFFF;
+    top: 0;
+    left: 0;
+  }
+
+  .rect-top-right{
+    border-top: 1px solid #11BFFF;
+    border-right: 1px solid #11BFFF;
+    top: 0;
+    right: 0;
+  }
+
+  .rect-bottom-left{
+    border-bottom: 1px solid #11BFFF;
+    border-left: 1px solid #11BFFF;
+    bottom: 0;
+    left: 0;
+  }
+
+  .rect-bottom-right{
+    border-bottom: 1px solid #11BFFF;
+    border-right: 1px solid #11BFFF;
+    bottom: 0;
+    right: 0;
+  }
+
+  .icon {
+    @size: 22px;
+    color: rgba(161, 161, 161, 1);
+
+    SVG {
+      width: @size;
+      height: @size;
+    }
+  }
+
+  >span {
+    color: rgba(221, 221, 221, 1);
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  &:not(.not-hover):hover {
+    background: rgba(0, 122, 255, 0.1);
+    border: 1px solid rgba(0, 122, 255, 0.5);
+
+    .rect-top-left,
+    .rect-top-right,
+    .rect-bottom-left,
+    .rect-bottom-right {
+      display: block;
+    }
+
+    .icon {
+      color: rgba(58, 151, 251, 1);
+    }
+
+    >span {
+      color: rgba(58, 152, 255, 1);
+    }
+  }
+}
+
+.active {
+  background: rgba(0, 122, 255, 0.1);
+  border: 1px solid rgba(0, 122, 255, 0.5);
+
+  .rect-top-left,
+  .rect-top-right,
+  .rect-bottom-left,
+  .rect-bottom-right {
+    display: block;
+  }
+
+
+  .icon {
+    color: rgba(58, 151, 251, 1);
+  }
+
+  >span {
+    color: rgba(58, 152, 255, 1);
+  }
+}

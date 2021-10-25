@@ -1,0 +1,24 @@
+.actionWrap {
+  :global(.mobile-device) &{
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    animation: scale 300ms;
+    button:first-child{
+      margin-right: 8px;
+    }
+
+    @keyframes scale {
+      0% {transform: scale(0);}
+      50%{
+        transform: scale(0.8);
+      }
+      80%{
+        transform: scale(1.1);
+      }
+      100%{
+        transform: scale(1);
+      }
+    }
+  }
+}

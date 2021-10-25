@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`coord editor should render dom 1`] = `
+<div>
+  <div
+    class="coordEditor"
+  >
+    <div>
+      X:
+      <input
+        step="10"
+        type="number"
+        value="1"
+      />
+    </div>
+    <div>
+      Y:
+      <input
+        step="10"
+        type="number"
+        value="2"
+      />
+    </div>
+    <div>
+      Z:
+      <input
+        step="10"
+        type="number"
+        value="3"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`coord editor should render dom 2`] = `
+<div>
+  <div
+    class="coordEditor"
+  >
+    <div>
+      X:
+      <input
+        step="10"
+        type="number"
+        value="4"
+      />
+    </div>
+    <div>
+      Y:
+      <input
+        step="10"
+        type="number"
+        value="5"
+      />
+    </div>
+    <div>
+      Z:
+      <input
+        step="10"
+        type="number"
+        value="6"
+      />
+    </div>
+  </div>
+</div>
+`;

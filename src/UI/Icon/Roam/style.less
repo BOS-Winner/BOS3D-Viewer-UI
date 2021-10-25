@@ -1,0 +1,251 @@
+@import "../../Base/styleTemplate.less";
+@import "../../theme/index";
+
+.instruction {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  color: white;
+  background-color: #00000099;
+
+  .title {
+    text-align: right;
+    & > span {
+      cursor: pointer;
+      font-size: 16px;
+      padding-right: 10px;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 24px;
+
+    .row1 {
+      margin-bottom: 7px;
+
+      & > div {
+        display: inline-block;
+
+        &:first-child {
+          margin-left: 60px;
+        }
+
+        &:last-child {
+          margin-left: 95px;
+        }
+      }
+    }
+
+    .row3 {
+      text-align: center;
+      margin: 7px 0 15px 0;
+    }
+  }
+}
+
+.mode-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 17px 0 0 0;
+}
+
+.roam-setting {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  color: white;
+  padding: 0px 0 0;
+  .customNumberInputWrap{
+    width: 84px;
+    position: relative;
+    .customNumberInputUnit{
+      position: absolute;
+      right: -10px;
+      top: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .custom-number-input {
+    width: 80px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    border: 1px solid #515454;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    &:hover{
+      border: 1px solid #515454;
+    }
+    :global{
+      .bos3d-input-number-input{
+        height: 24px;
+        // background-color: rgba(27, 27, 27, 0.95);
+      }
+      .bos3d-input-number-handler-wrap{
+        background-color: rgba(81, 84, 84, 1);
+        border-left: 0;
+        .bos3d-input-number-handler-down {
+          border-top: 1px solid rgba(81, 84, 84, 1);
+        }
+        span[role="img"] {
+          color: rgba(161, 161, 161, 1);
+          &:hover{
+            color: #fff;
+          }
+        }
+      }
+      
+    }
+  }
+}
+.roam-setting-item{
+  width: 84px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  :global{
+    .bos3d-switch-checked{
+      background-color: rgba(23, 75, 159, 1) !important;
+    }
+    .bos3d-switch-checked .bos3d-switch-handle{
+      left: calc(100% - 18px);
+    }
+  }
+  .custom-switch{
+    width: 28px;
+    height: 16px;
+    line-height: 16px;
+    background: rgba(85, 85, 85, 1);
+    min-width: 28px;
+    :global{
+      .bos3d-switch-handle{
+        width: 16px;
+        height: 16px;
+        top: 0;
+      }
+      
+    }
+  }
+}
+
+.tip-container{
+
+  .sub-title{
+    margin: 8px 0;
+    display: inline-block;
+    color: #DDDDDD;
+    line-height: 17px;
+  }
+
+  .direction-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .item{
+      width: 152px;
+      height: 72px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #2E2F30;
+      border-radius: 2px;
+      & >img {
+        width: 72px;
+      }
+    }
+  }
+
+  .more-tip-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .more-tip-item{
+      width: 96px;
+      & > span {
+        color: #DDDDDD;
+        line-height: 17px;
+        display: inline-block;
+        // margin: ;
+      }
+      & > div {
+        width: 96px;
+        height: 76px;
+        background: #2E2F30;
+        border-radius: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 8px 0 0;
+      }
+    }
+  }
+
+  .tip-text{
+    width: 100%;
+    height: 28px;
+    background: #444444;
+    border-radius: 2px;
+    opacity: 0.6;
+    line-height: 28px;
+    text-align: center;
+    margin: 16px 0;
+    span {
+      display: inline-block;
+    }
+  }
+}
+
+.man-height-container {
+  position: relative;
+
+  .man-height {
+    position: absolute;
+    bottom: 165%;
+    right: -10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 176px;
+    height: 96px;
+    padding-right: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    input {
+      width: 74px;
+      height: 20px;
+    }
+
+    .free-roam-btn {
+      margin-top: 15px;
+
+      & > button {
+        .button();
+        width: 45px;
+        height: 21px;
+        padding: 0;
+        border: 1.28px solid @skyblue;
+
+        &.cancel-btn {
+          background: none;
+          border: 1.28px solid white;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

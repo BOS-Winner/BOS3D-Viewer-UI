@@ -1,0 +1,27 @@
+.point-helper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+
+  & > * {
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+
+  .circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    line-height: 32px;
+    font-size: 20px;
+  }
+
+  .rect {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+}

@@ -1,0 +1,2988 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component info should show loading state 1`] = `
+<div>
+  <div
+    style="display: block; position: absolute; width: 260px; height: 70%;"
+    title="构件信息"
+  >
+    <div>
+      <span>
+        构件信息
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="table"
+    >
+      <p>
+        加载中...
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component info should show or hide component info 1`] = `
+<div>
+  <div
+    style="display: block; position: absolute; width: 260px; height: 70%;"
+    title="构件信息"
+  >
+    <div>
+      <span>
+        构件信息
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="table"
+    >
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          基本信息
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="名称"
+            >
+              名称
+            </div>
+            <div
+              title="结构墙200mm"
+            >
+              结构墙200mm
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="类型"
+            >
+              类型
+            </div>
+            <div
+              title="墙"
+            >
+              墙
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="key"
+            >
+              key
+            </div>
+            <div
+              title="M1584073315322_305908"
+            >
+              M1584073315322_305908
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          构造
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-功能"
+            >
+              FamilyPara-功能
+            </div>
+            <div
+              title="外部"
+            >
+              外部
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-厚度"
+            >
+              FamilyPara-厚度
+            </div>
+            <div
+              title="200"
+            >
+              200
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-在插入点包络"
+            >
+              FamilyPara-在插入点包络
+            </div>
+            <div
+              title="不包络"
+            >
+              不包络
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-在端点包络"
+            >
+              FamilyPara-在端点包络
+            </div>
+            <div
+              title="无"
+            >
+              无
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          CompoundStructure
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="IsVerticallyCompound"
+            >
+              IsVerticallyCompound
+            </div>
+            <div
+              title="true"
+            />
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="EndCapCondition"
+            >
+              EndCapCondition
+            </div>
+            <div
+              title="None"
+            >
+              None
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FirstCoreLayer"
+            >
+              FirstCoreLayer
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            style="margin-left: 22px;"
+          >
+            <div
+              class="title collapse"
+              role="tree"
+              tabindex="0"
+            >
+              CompoundStructureLayer
+            </div>
+            <div
+              style="display: block;"
+            >
+              <div
+                style="margin-left: 22px;"
+              >
+                <div
+                  class="title collapse"
+                  role="tree"
+                  tabindex="0"
+                >
+                  0
+                </div>
+                <div
+                  style="display: block;"
+                >
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Function"
+                    >
+                      Function
+                    </div>
+                    <div
+                      title="Structure"
+                    >
+                      Structure
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="StruceMaterial"
+                    >
+                      StruceMaterial
+                    </div>
+                    <div
+                      title="Invalid"
+                    >
+                      Invalid
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="MaterialId"
+                    >
+                      MaterialId
+                    </div>
+                    <div
+                      title="267891"
+                    >
+                      267891
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="MaterialName"
+                    >
+                      MaterialName
+                    </div>
+                    <div
+                      title="混凝土，现场浇注，灰色"
+                    >
+                      混凝土，现场浇注，灰色
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Width"
+                    >
+                      Width
+                    </div>
+                    <div
+                      title="200"
+                    >
+                      200
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Wrapping"
+                    >
+                      Wrapping
+                    </div>
+                    <div
+                      title="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="LastCoreLayer"
+            >
+              LastCoreLayer
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="OpeningWrappingCondition"
+            >
+              OpeningWrappingCondition
+            </div>
+            <div
+              title="None"
+            >
+              None
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          约束
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部约束"
+            >
+              底部约束
+            </div>
+            <div
+              title="标高 1"
+            >
+              标高 1
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部延伸距离"
+            >
+              底部延伸距离
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="房间边界"
+            >
+              房间边界
+            </div>
+            <div
+              title="是"
+            >
+              是
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部约束"
+            >
+              顶部约束
+            </div>
+            <div
+              title="直到标高: 室内净标高"
+            >
+              直到标高: 室内净标高
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部偏移"
+            >
+              顶部偏移
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部偏移"
+            >
+              底部偏移
+            </div>
+            <div
+              title="-100"
+            >
+              -100
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="已附着底部"
+            >
+              已附着底部
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="与体量相关"
+            >
+              与体量相关
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="无连接高度"
+            >
+              无连接高度
+            </div>
+            <div
+              title="2680"
+            >
+              2680
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="定位线"
+            >
+              定位线
+            </div>
+            <div
+              title="面层面: 外部"
+            >
+              面层面: 外部
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="已附着顶部"
+            >
+              已附着顶部
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部延伸距离"
+            >
+              顶部延伸距离
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          阶段化
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="拆除的阶段"
+            >
+              拆除的阶段
+            </div>
+            <div
+              title="无"
+            >
+              无
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="创建的阶段"
+            >
+              创建的阶段
+            </div>
+            <div
+              title="新构造"
+            >
+              新构造
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          材质和装饰
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-结构材质"
+            >
+              FamilyPara-结构材质
+            </div>
+            <div
+              title="混凝土，现场浇注，灰色"
+            >
+              混凝土，现场浇注，灰色
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          其他
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-幕墙"
+            >
+              FamilyPara-幕墙
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          分析属性
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-热阻(R)"
+            >
+              FamilyPara-热阻(R)
+            </div>
+            <div
+              title="0.1912 (m²·K)/W"
+            >
+              0.1912 (m²·K)/W
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-吸收率"
+            >
+              FamilyPara-吸收率
+            </div>
+            <div
+              title="0.7"
+            >
+              0.7
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-粗糙度"
+            >
+              FamilyPara-粗糙度
+            </div>
+            <div
+              title="3"
+            >
+              3
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-热质量"
+            >
+              FamilyPara-热质量
+            </div>
+            <div
+              title="28.08 kJ/K"
+            >
+              28.08 kJ/K
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-传热系数(U)"
+            >
+              FamilyPara-传热系数(U)
+            </div>
+            <div
+              title="5.2300 W/(m²·K)"
+            >
+              5.2300 W/(m²·K)
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          尺寸标注
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-壁厚"
+            >
+              FamilyPara-壁厚
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="长度"
+            >
+              长度
+            </div>
+            <div
+              title="3770"
+            >
+              3770
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="体积"
+            >
+              体积
+            </div>
+            <div
+              title="1.97"
+            >
+              1.97
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="面积"
+            >
+              面积
+            </div>
+            <div
+              title="9.84"
+            >
+              9.84
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          结构
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="结构用途"
+            >
+              结构用途
+            </div>
+            <div
+              title="非承重"
+            >
+              非承重
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="启用分析模型"
+            >
+              启用分析模型
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="结构"
+            >
+              结构
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          标识数据
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-类型标记"
+            >
+              FamilyPara-类型标记
+            </div>
+            <div
+              title="111"
+            >
+              111
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="图像"
+            >
+              图像
+            </div>
+            <div
+              title="<无>"
+            >
+              &lt;无&gt;
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-成本"
+            >
+              FamilyPara-成本
+            </div>
+            <div
+              title="0.00"
+            >
+              0.00
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-类型图像"
+            >
+              FamilyPara-类型图像
+            </div>
+            <div
+              title="<无>"
+            >
+              &lt;无&gt;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component info should show or hide component info 2`] = `
+<div>
+  <div
+    style="display: block; position: absolute; width: 260px; height: 70%;"
+    title="构件信息"
+  >
+    <div>
+      <span>
+        构件信息
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="table"
+    >
+      <div>
+        <p>
+          未选择构件
+        </p>
+        <p>
+          请选择一个构件，以查看属性
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component info should show or hide component info 3`] = `
+<div>
+  <div
+    style="display: block; position: absolute; width: 260px; height: 70%;"
+    title="构件信息"
+  >
+    <div>
+      <span>
+        构件信息
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="table"
+    >
+      <p>
+        未获取到对应属性
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component info should toggle expand 1`] = `
+<div>
+  <div
+    style="display: block; position: absolute; width: 260px; height: 70%;"
+    title="构件信息"
+  >
+    <div>
+      <span>
+        构件信息
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="table"
+    >
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title "
+          role="tree"
+          tabindex="0"
+        >
+          基本信息
+        </div>
+        <div
+          style="display: none;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="名称"
+            >
+              名称
+            </div>
+            <div
+              title="结构墙200mm"
+            >
+              结构墙200mm
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="类型"
+            >
+              类型
+            </div>
+            <div
+              title="墙"
+            >
+              墙
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="key"
+            >
+              key
+            </div>
+            <div
+              title="M1584073315322_305908"
+            >
+              M1584073315322_305908
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          构造
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-功能"
+            >
+              FamilyPara-功能
+            </div>
+            <div
+              title="外部"
+            >
+              外部
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-厚度"
+            >
+              FamilyPara-厚度
+            </div>
+            <div
+              title="200"
+            >
+              200
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-在插入点包络"
+            >
+              FamilyPara-在插入点包络
+            </div>
+            <div
+              title="不包络"
+            >
+              不包络
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-在端点包络"
+            >
+              FamilyPara-在端点包络
+            </div>
+            <div
+              title="无"
+            >
+              无
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          CompoundStructure
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="IsVerticallyCompound"
+            >
+              IsVerticallyCompound
+            </div>
+            <div
+              title="true"
+            />
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="EndCapCondition"
+            >
+              EndCapCondition
+            </div>
+            <div
+              title="None"
+            >
+              None
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FirstCoreLayer"
+            >
+              FirstCoreLayer
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            style="margin-left: 22px;"
+          >
+            <div
+              class="title collapse"
+              role="tree"
+              tabindex="0"
+            >
+              CompoundStructureLayer
+            </div>
+            <div
+              style="display: block;"
+            >
+              <div
+                style="margin-left: 22px;"
+              >
+                <div
+                  class="title collapse"
+                  role="tree"
+                  tabindex="0"
+                >
+                  0
+                </div>
+                <div
+                  style="display: block;"
+                >
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Function"
+                    >
+                      Function
+                    </div>
+                    <div
+                      title="Structure"
+                    >
+                      Structure
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="StruceMaterial"
+                    >
+                      StruceMaterial
+                    </div>
+                    <div
+                      title="Invalid"
+                    >
+                      Invalid
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="MaterialId"
+                    >
+                      MaterialId
+                    </div>
+                    <div
+                      title="267891"
+                    >
+                      267891
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="MaterialName"
+                    >
+                      MaterialName
+                    </div>
+                    <div
+                      title="混凝土，现场浇注，灰色"
+                    >
+                      混凝土，现场浇注，灰色
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Width"
+                    >
+                      Width
+                    </div>
+                    <div
+                      title="200"
+                    >
+                      200
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Wrapping"
+                    >
+                      Wrapping
+                    </div>
+                    <div
+                      title="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="LastCoreLayer"
+            >
+              LastCoreLayer
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="OpeningWrappingCondition"
+            >
+              OpeningWrappingCondition
+            </div>
+            <div
+              title="None"
+            >
+              None
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          约束
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部约束"
+            >
+              底部约束
+            </div>
+            <div
+              title="标高 1"
+            >
+              标高 1
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部延伸距离"
+            >
+              底部延伸距离
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="房间边界"
+            >
+              房间边界
+            </div>
+            <div
+              title="是"
+            >
+              是
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部约束"
+            >
+              顶部约束
+            </div>
+            <div
+              title="直到标高: 室内净标高"
+            >
+              直到标高: 室内净标高
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部偏移"
+            >
+              顶部偏移
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部偏移"
+            >
+              底部偏移
+            </div>
+            <div
+              title="-100"
+            >
+              -100
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="已附着底部"
+            >
+              已附着底部
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="与体量相关"
+            >
+              与体量相关
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="无连接高度"
+            >
+              无连接高度
+            </div>
+            <div
+              title="2680"
+            >
+              2680
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="定位线"
+            >
+              定位线
+            </div>
+            <div
+              title="面层面: 外部"
+            >
+              面层面: 外部
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="已附着顶部"
+            >
+              已附着顶部
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部延伸距离"
+            >
+              顶部延伸距离
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          阶段化
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="拆除的阶段"
+            >
+              拆除的阶段
+            </div>
+            <div
+              title="无"
+            >
+              无
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="创建的阶段"
+            >
+              创建的阶段
+            </div>
+            <div
+              title="新构造"
+            >
+              新构造
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          材质和装饰
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-结构材质"
+            >
+              FamilyPara-结构材质
+            </div>
+            <div
+              title="混凝土，现场浇注，灰色"
+            >
+              混凝土，现场浇注，灰色
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          其他
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-幕墙"
+            >
+              FamilyPara-幕墙
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          分析属性
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-热阻(R)"
+            >
+              FamilyPara-热阻(R)
+            </div>
+            <div
+              title="0.1912 (m²·K)/W"
+            >
+              0.1912 (m²·K)/W
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-吸收率"
+            >
+              FamilyPara-吸收率
+            </div>
+            <div
+              title="0.7"
+            >
+              0.7
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-粗糙度"
+            >
+              FamilyPara-粗糙度
+            </div>
+            <div
+              title="3"
+            >
+              3
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-热质量"
+            >
+              FamilyPara-热质量
+            </div>
+            <div
+              title="28.08 kJ/K"
+            >
+              28.08 kJ/K
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-传热系数(U)"
+            >
+              FamilyPara-传热系数(U)
+            </div>
+            <div
+              title="5.2300 W/(m²·K)"
+            >
+              5.2300 W/(m²·K)
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          尺寸标注
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-壁厚"
+            >
+              FamilyPara-壁厚
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="长度"
+            >
+              长度
+            </div>
+            <div
+              title="3770"
+            >
+              3770
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="体积"
+            >
+              体积
+            </div>
+            <div
+              title="1.97"
+            >
+              1.97
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="面积"
+            >
+              面积
+            </div>
+            <div
+              title="9.84"
+            >
+              9.84
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          结构
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="结构用途"
+            >
+              结构用途
+            </div>
+            <div
+              title="非承重"
+            >
+              非承重
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="启用分析模型"
+            >
+              启用分析模型
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="结构"
+            >
+              结构
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          标识数据
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-类型标记"
+            >
+              FamilyPara-类型标记
+            </div>
+            <div
+              title="111"
+            >
+              111
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="图像"
+            >
+              图像
+            </div>
+            <div
+              title="<无>"
+            >
+              &lt;无&gt;
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-成本"
+            >
+              FamilyPara-成本
+            </div>
+            <div
+              title="0.00"
+            >
+              0.00
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-类型图像"
+            >
+              FamilyPara-类型图像
+            </div>
+            <div
+              title="<无>"
+            >
+              &lt;无&gt;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component info should toggle expand 2`] = `
+<div>
+  <div
+    style="display: block; position: absolute; width: 260px; height: 70%;"
+    title="构件信息"
+  >
+    <div>
+      <span>
+        构件信息
+      </span>
+      <button
+        data-testid="close-mock-modal"
+        type="button"
+      >
+        close mock modal
+      </button>
+    </div>
+    <div
+      class="table"
+    >
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          基本信息
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="名称"
+            >
+              名称
+            </div>
+            <div
+              title="结构墙200mm"
+            >
+              结构墙200mm
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="类型"
+            >
+              类型
+            </div>
+            <div
+              title="墙"
+            >
+              墙
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="key"
+            >
+              key
+            </div>
+            <div
+              title="M1584073315322_305908"
+            >
+              M1584073315322_305908
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          构造
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-功能"
+            >
+              FamilyPara-功能
+            </div>
+            <div
+              title="外部"
+            >
+              外部
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-厚度"
+            >
+              FamilyPara-厚度
+            </div>
+            <div
+              title="200"
+            >
+              200
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-在插入点包络"
+            >
+              FamilyPara-在插入点包络
+            </div>
+            <div
+              title="不包络"
+            >
+              不包络
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-在端点包络"
+            >
+              FamilyPara-在端点包络
+            </div>
+            <div
+              title="无"
+            >
+              无
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          CompoundStructure
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="IsVerticallyCompound"
+            >
+              IsVerticallyCompound
+            </div>
+            <div
+              title="true"
+            />
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="EndCapCondition"
+            >
+              EndCapCondition
+            </div>
+            <div
+              title="None"
+            >
+              None
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FirstCoreLayer"
+            >
+              FirstCoreLayer
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            style="margin-left: 22px;"
+          >
+            <div
+              class="title collapse"
+              role="tree"
+              tabindex="0"
+            >
+              CompoundStructureLayer
+            </div>
+            <div
+              style="display: block;"
+            >
+              <div
+                style="margin-left: 22px;"
+              >
+                <div
+                  class="title collapse"
+                  role="tree"
+                  tabindex="0"
+                >
+                  0
+                </div>
+                <div
+                  style="display: block;"
+                >
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Function"
+                    >
+                      Function
+                    </div>
+                    <div
+                      title="Structure"
+                    >
+                      Structure
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="StruceMaterial"
+                    >
+                      StruceMaterial
+                    </div>
+                    <div
+                      title="Invalid"
+                    >
+                      Invalid
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="MaterialId"
+                    >
+                      MaterialId
+                    </div>
+                    <div
+                      title="267891"
+                    >
+                      267891
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="MaterialName"
+                    >
+                      MaterialName
+                    </div>
+                    <div
+                      title="混凝土，现场浇注，灰色"
+                    >
+                      混凝土，现场浇注，灰色
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Width"
+                    >
+                      Width
+                    </div>
+                    <div
+                      title="200"
+                    >
+                      200
+                    </div>
+                  </div>
+                  <div
+                    class="item"
+                    style="margin-left: 22px;"
+                  >
+                    <div
+                      title="Wrapping"
+                    >
+                      Wrapping
+                    </div>
+                    <div
+                      title="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="LastCoreLayer"
+            >
+              LastCoreLayer
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="OpeningWrappingCondition"
+            >
+              OpeningWrappingCondition
+            </div>
+            <div
+              title="None"
+            >
+              None
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          约束
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部约束"
+            >
+              底部约束
+            </div>
+            <div
+              title="标高 1"
+            >
+              标高 1
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部延伸距离"
+            >
+              底部延伸距离
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="房间边界"
+            >
+              房间边界
+            </div>
+            <div
+              title="是"
+            >
+              是
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部约束"
+            >
+              顶部约束
+            </div>
+            <div
+              title="直到标高: 室内净标高"
+            >
+              直到标高: 室内净标高
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部偏移"
+            >
+              顶部偏移
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="底部偏移"
+            >
+              底部偏移
+            </div>
+            <div
+              title="-100"
+            >
+              -100
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="已附着底部"
+            >
+              已附着底部
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="与体量相关"
+            >
+              与体量相关
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="无连接高度"
+            >
+              无连接高度
+            </div>
+            <div
+              title="2680"
+            >
+              2680
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="定位线"
+            >
+              定位线
+            </div>
+            <div
+              title="面层面: 外部"
+            >
+              面层面: 外部
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="已附着顶部"
+            >
+              已附着顶部
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="顶部延伸距离"
+            >
+              顶部延伸距离
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          阶段化
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="拆除的阶段"
+            >
+              拆除的阶段
+            </div>
+            <div
+              title="无"
+            >
+              无
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="创建的阶段"
+            >
+              创建的阶段
+            </div>
+            <div
+              title="新构造"
+            >
+              新构造
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          材质和装饰
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-结构材质"
+            >
+              FamilyPara-结构材质
+            </div>
+            <div
+              title="混凝土，现场浇注，灰色"
+            >
+              混凝土，现场浇注，灰色
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          其他
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-幕墙"
+            >
+              FamilyPara-幕墙
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          分析属性
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-热阻(R)"
+            >
+              FamilyPara-热阻(R)
+            </div>
+            <div
+              title="0.1912 (m²·K)/W"
+            >
+              0.1912 (m²·K)/W
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-吸收率"
+            >
+              FamilyPara-吸收率
+            </div>
+            <div
+              title="0.7"
+            >
+              0.7
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-粗糙度"
+            >
+              FamilyPara-粗糙度
+            </div>
+            <div
+              title="3"
+            >
+              3
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-热质量"
+            >
+              FamilyPara-热质量
+            </div>
+            <div
+              title="28.08 kJ/K"
+            >
+              28.08 kJ/K
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-传热系数(U)"
+            >
+              FamilyPara-传热系数(U)
+            </div>
+            <div
+              title="5.2300 W/(m²·K)"
+            >
+              5.2300 W/(m²·K)
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          尺寸标注
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-壁厚"
+            >
+              FamilyPara-壁厚
+            </div>
+            <div
+              title="0"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="长度"
+            >
+              长度
+            </div>
+            <div
+              title="3770"
+            >
+              3770
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="体积"
+            >
+              体积
+            </div>
+            <div
+              title="1.97"
+            >
+              1.97
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="面积"
+            >
+              面积
+            </div>
+            <div
+              title="9.84"
+            >
+              9.84
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          结构
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="结构用途"
+            >
+              结构用途
+            </div>
+            <div
+              title="非承重"
+            >
+              非承重
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="启用分析模型"
+            >
+              启用分析模型
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="结构"
+            >
+              结构
+            </div>
+            <div
+              title="否"
+            >
+              否
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-left: 0px;"
+      >
+        <div
+          class="title collapse"
+          role="tree"
+          tabindex="0"
+        >
+          标识数据
+        </div>
+        <div
+          style="display: block;"
+        >
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-类型标记"
+            >
+              FamilyPara-类型标记
+            </div>
+            <div
+              title="111"
+            >
+              111
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="图像"
+            >
+              图像
+            </div>
+            <div
+              title="<无>"
+            >
+              &lt;无&gt;
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-成本"
+            >
+              FamilyPara-成本
+            </div>
+            <div
+              title="0.00"
+            >
+              0.00
+            </div>
+          </div>
+          <div
+            class="item"
+            style="margin-left: 22px;"
+          >
+            <div
+              title="FamilyPara-类型图像"
+            >
+              FamilyPara-类型图像
+            </div>
+            <div
+              title="<无>"
+            >
+              &lt;无&gt;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

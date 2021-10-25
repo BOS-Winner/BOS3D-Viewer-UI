@@ -1,0 +1,270 @@
+.container {
+  :global(.mobile-device) &{
+          :global{
+            @borderColor:#393B3C;
+            .bos3d-input-affix-wrapper > input.bos3d-input {
+                padding: 0;
+                border: none;
+                outline: none;
+                height: auto;
+            }
+            .bos3d-select-selection-overflow-item {
+              -webkit-box-flex: 0;
+              -ms-flex: none;
+              flex: none;
+              -ms-flex-item-align: center;
+              -ms-grid-row-align: center;
+              align-self: center;
+              max-width: 1000%;
+              margin: 0 1px;
+            }
+            .bos3d-select-selection-overflow {
+              position: relative;
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-flex: 1;
+              -ms-flex: auto;
+              flex: auto;
+              -ms-flex-wrap: wrap;
+              flex-wrap: nowrap;
+              max-width: 100%;
+              overflow-x: auto;
+          }
+
+          // 重构antd table 组件 关于 border 样式 start
+          .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-content > table > thead > tr > th, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-header > table > thead > tr > th, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-body > table > thead > tr > th, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-summary > table > thead > tr > th, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-content > table > tbody > tr > td, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-header > table > tbody > tr > td, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-body > table > tbody > tr > td, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-summary > table > tbody > tr > td, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-content > table > tfoot > tr > th, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-header > table > tfoot > tr > th, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-body > table > tfoot > tr > th, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-summary > table > tfoot > tr > th, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-content > table > tfoot > tr > td, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-header > table > tfoot > tr > td, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-body > table > tfoot > tr > td, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-summary > table > tfoot > tr > td{
+            border-color: @borderColor;
+          }
+          .bos3d-table.bos3d-table-bordered > .bos3d-table-container{
+            border-left: 1px solid @borderColor;
+          }
+          .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-content > table, .bos3d-table.bos3d-table-bordered > .bos3d-table-container > .bos3d-table-header > table{
+            border-top: 1px solid @borderColor;
+          }
+          .bos3d-table table{
+            border-radius: 0px;
+          }
+          .bos3d-table-container table > thead > tr:first-child th:first-child{
+            border-top-left-radius: 0px;
+          }
+          // 重构antd table 组件 关于 border 样式  end
+
+       
+          .bos3d-table-tbody > tr.bos3d-table-row-selected > td {
+            background: #2B4C82 ;
+            border-color: 1px solid #f0f0f0 ;
+          }
+
+        }
+        
+        .general{
+            .optionContainer{
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                .search{
+                    flex: auto;
+                    display: flex;
+                    justify-content: flex-end;
+                }
+                :global{
+                    .bos3d-btn:first-child {
+                        color: rgba(255, 255, 255, 1);
+                        background: #6A6B6E;
+                        margin-right: 15px;
+                        border-color: transparent;
+                        -webkit-box-shadow: none;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+      }
+
+
+
+      .result {
+        position: relative;
+        
+        .customTable {
+          // height: 350px;
+          *::-webkit-scrollbar,
+          *::-webkit-scrollbar {
+            width: 0px !important;
+            background-color: #202020 !important;
+            height: 5px;
+          }      
+        }
+
+        .table-info{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+          font-size: 14px;
+          font-weight: 400;
+          color: #DDDDDD;
+          .totalNumber {
+            font-size: 15px;
+            color: #2878ff;
+            margin: 0 2px;
+            font-weight: 600;
+          }
+          .location {
+              color: #2878FF;
+              display: flex;
+              align-items: center;
+              svg{
+                width: 15px;
+                height: 15px;
+              }
+              .locationText{
+                margin-left: 2px;
+              }
+          }
+        }
+
+        :global {
+          // 分页省略号导航
+          .bos3d-pagination-item-ellipsis {
+            color: #ffffffba !important;
+            transform: scale(0.5);
+          }
+          //修改表头文字、背景颜色
+          .bos3d-table-thead > tr > th {
+            color: rgba(255, 255, 255, 0.85);
+            background: #1E1E1E;
+            border-bottom: 0px solid #f0f0f0;
+          }
+
+          //修改列表文字、背景颜色
+          .bos3d-table-tbody > tr > td {
+            color: rgba(255, 255, 255, 0.65);
+            background: #2D2F2F ;
+            border-bottom: 1px solid rgba(51, 51, 51, 1);
+          };
+
+          .bos3d-table-cell-scrollbar {
+            -webkit-box-shadow: 0 1px 0 1px transparent;
+            box-shadow: 0 1px 0 1px transparent;
+          }
+
+          .bos3d-spin-blur::after {
+            opacity: 0;
+            pointer-events: auto;
+          }
+          .bos3d-pagination {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0;
+            color: rgba(0, 0, 0, 0.85);
+            font-size: 14px;
+            font-variant: tabular-nums;
+            line-height: 1.5715;
+            list-style: none;
+            -webkit-font-feature-settings: "tnum", "tnum";
+            font-feature-settings: "tnum", "tnum";
+            display: flex;
+          }
+          .bos3d-pagination.mini .bos3d-pagination-item {
+            min-width: 24px;
+            height: 24px;
+            margin: 0;
+            line-height: 22px;
+            background: rgba(56, 56, 56, 1);
+            margin: 0 4px;
+          }
+
+          .bos3d-pagination-item a {
+            display: block;
+            padding: 0 6px;
+            color: #fff;
+            -webkit-transition: none;
+            transition: none;
+          }
+
+          .bos3d-pagination-item-active {
+            font-weight: 500;
+            background: #fff;
+            border-color: #2878ff;
+            // color: ;
+          }
+
+          .bos3d-pagination-item-active a {
+            color: #fff;
+            background: #2878ff;
+          }
+
+          .bos3d-pagination-prev button,
+          .bos3d-pagination-next button {
+            color: #fff;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+          }
+          .bos3d-pagination-total-text {
+            display: inline-block;
+            height: 32px;
+            margin-right: 8px;
+            line-height: 30px;
+            vertical-align: middle;
+            color: rgba(153, 153, 153, 1);
+            order: -2;
+          }
+          .bos3d-pagination-options {
+            display: inline-block;
+            margin-left: 16px;
+            vertical-align: middle;
+            order: -1;
+            .bos3d-select:not(.bos3d-select-customize-input)
+              .bos3d-select-selector {
+              position: relative;
+              color: #fff;
+              background: transparent;
+              border: 0;
+              padding-top: 1px;
+              /* border-radius: 2px; */
+              /* -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); */
+              /* transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); */
+            }
+            .bos3d-select-arrow {
+              display: inline-block;
+              color: inherit;
+              font-style: normal;
+              line-height: 0;
+              text-transform: none;
+              vertical-align: -0.125em;
+              text-rendering: optimizeLegibility;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+              position: absolute;
+              top: 53%;
+              right: 11px;
+              width: 10px;
+              height: 10px;
+              margin-top: -7px;
+              color: #fff;
+              font-size: 12px;
+              line-height: 1;
+              text-align: center;
+              pointer-events: none;
+            }
+          }
+        }
+
+  }
+
+    
+  .cell {
+    // width: 100%;
+    min-width: 200px;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+}
+

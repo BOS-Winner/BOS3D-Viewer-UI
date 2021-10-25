@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit" />
+    <!--主要是强制让文档的宽度与设备宽度保持1:1，最大宽度1.0，禁止屏幕缩放。-->
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <!--这个也是iphone私有标签，允许全屏浏览。-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!--iphone的私有标签，iphone顶端状态条的样式。-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <!--禁止数字自动识别为电话号码，这个比较有用，因为一串数字在iphone上会显示成蓝色，样式加成别的颜色也是不生效的。-->
+    <meta content="telephone=no" name="format-detection">
+    <!--禁止email识别-->
+    <meta content="email=no" name="format-detection">
+    <title>Bos3d viewer UI example</title>
+    <link rel="stylesheet" type="text/css" href="modelDiff.css">
+    <link rel="stylesheet" type="text/css" href="lobibox.css">
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.files.css[css] %>"><% } %>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        position: fixed;
+      }
+      .viewport {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="viewport" class="viewport"></div>
+    <!--script src="BIMWINNER.BOS3D.min.js"></script-->
+    <script type="module">
+      var BIMWINNER = {};
+      import * as BOS3D from "http://localhost:8899/vizbim/src/index.js";
+      BIMWINNER.BOS3D = BOS3D;
+      window.BIMWINNER = BIMWINNER;
+    </script>
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script defer="defer" type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script><% } %>
+    <script>
+      document.body.onload = function () {
+        const BIMWINNER = window.BIMWINNER;
+        /*
+        const option = {
+          host: "http://192.168.1.16:8889",
+          viewport: "viewport",
+        };
+        const projectKey = "test";
+        const compareKey = "C1571385860491";
+         */
+        const option = {
+          host: "//bos3d-alpha.bimwinner.com",
+          viewport: "viewport",
+        };
+        const projectKey = 'bos3dalpha';
+        const compareKey = 'C1559722691492';
+        const compare=new BIMWINNER.BOS3D.Plugins.ModelCompares(option,BIMWINNER.BOS3D.Plugins.DISPLAYMODEL.MULTIWINDOW);
+        compare.addView(compareKey,projectKey);
+        window.compare = compare;
+      }
+    </script>
+  </body>
+</html>

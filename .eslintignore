@@ -1,0 +1,9 @@
+node_modules
+**/*.css
+**/*.html
+build
+public
+src/Libs/annotation
+offLine
+tmp
+*.d.ts

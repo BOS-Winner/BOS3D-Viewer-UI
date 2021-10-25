@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body, html {
+      width:100%;
+      height:100%;
+    }
+  </style>
+</head>
+<body>
+<div id="svgdiv" style="width:500px;height:500px;">
+</div>
+
+<div>
+  <input type="button" value="撤销" onclick="editor.undo()">
+  <input type="button" value="重做" onclick="editor.redo()">
+  <input type="button" value="保存" onclick="saveImage()">
+</div>
+
+<img id="result-image" />
+
+
+
+<script type="module">
+    import { AnnotationEditor } from "./AnnotationEditor.js";
+    let parent = document.getElementById("svgdiv");
+    let editor = new AnnotationEditor(500, 500);
+    parent.appendChild(editor.svg);
+    window.editor = editor;
+</script>
+<script>
+let image = document.getElementById("result-image");
+
+function saveImage() {
+  let img = editor.makeSnapshot(function (src) {
+    image.src = src;
+  });
+  // image.src = img;
+}
+</script>
+
+
+</body>
+</html>

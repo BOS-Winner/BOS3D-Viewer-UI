@@ -1,0 +1,54 @@
+@import "../theme/index";
+
+.icon {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  margin: 4px 4px;
+  // min-width: 45px;
+  > span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    white-space: nowrap;
+    &:hover {
+      color: #fff;
+    }
+  }
+  &[data-selected="true"],
+  &:hover {
+    background-color: rgba(40, 120, 255, 0.4);;
+    border-radius: 2px;
+    border: 1px solid rgba(40, 120, 255, 0.8);
+  }
+}
+
+.icon-media-css(@iconSize) {
+  .icon {
+    // min-width: @iconSize + 10px;
+    // width: auto;
+    // height: @iconSize;
+    // padding: calc(@iconSize / 3.8);
+    padding: 0 5px;
+    // background-size: @iconSize;
+
+    &:hover{
+      display: flex;
+    }
+  }
+}
+
+@media (min-width: @deviceWidth) {
+  .icon-media-css(32px);
+}
+
+@media (max-width: @deviceWidth) {
+  // .icon-media-css(22px);
+  // span {
+  //   display: none;
+  // }
+}

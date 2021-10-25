@@ -1,0 +1,29 @@
+@import "../../theme/index.less";
+
+.select-container {
+  :global(.MuiSelect-outlined.MuiSelect-outlined) {
+    &.select {
+      color: white;
+      background-color: #444;
+      padding: 0;
+      font-size: @font-size;
+    }
+  }
+
+  fieldset {
+    display: none;
+  }
+
+  :global(.MuiSelect-iconOutlined) {
+    right: 6px;
+  }
+}
+
+.select-list {
+  background-color: #333333FF;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.5);
+}
+
+.popper {
+  z-index: 1;
+}

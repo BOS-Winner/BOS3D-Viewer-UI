@@ -1,0 +1,39 @@
+.item-container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    .relation {
+        width: 110px;
+        :global{
+            .bos3d-radio-wrapper {
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                color: #fff;
+                font-size: 14px;
+                font-variant: tabular-nums;
+                line-height: 1.5715;
+                list-style: none;
+                -webkit-font-feature-settings: 'tnum';
+                font-feature-settings: 'tnum';
+                position: relative;
+                display: inline-block;
+                margin-right: 8px;
+                white-space: nowrap;
+                cursor: pointer;
+            }
+        }
+    }
+    .operators{
+        display: flex;
+        align-items: center;
+        width: 44px;
+        margin-right: 10px;
+    }
+}
+
+input[type="text"] {
+    height: auto !important;
+    // padding: 0 !important;
+}

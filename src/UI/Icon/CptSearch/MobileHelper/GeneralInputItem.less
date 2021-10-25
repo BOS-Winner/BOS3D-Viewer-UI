@@ -1,0 +1,33 @@
+.input-item {
+  :global(.mobile-device) &{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+    .label{
+        width: 65px;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 14px;
+        min-width: 60px;
+    }
+    .input{
+      flex: 1;
+    }
+    :global{
+        .bos3d-input {
+            padding: 4px 11px !important;
+            color: #ddd;
+            background-color: #1B1C1C;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            &:focus{
+              border-color: #40a9ff;
+              outline: 0;
+              box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+            }
+        }        
+         .bos3d-input::placeholder{
+            color: #999999;
+        }
+    }
+  }
+}

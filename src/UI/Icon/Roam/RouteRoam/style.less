@@ -1,0 +1,576 @@
+@import "../../../Base/styleTemplate.less";
+
+.roam-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80px;
+  font-size: 14px;
+  img {
+    cursor: help;
+  }
+}
+
+.route-roam {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  & > button {
+    .button();
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .name-input {
+    display: flex;
+    flex-direction: column;
+    > span {
+      height: 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #cccccc !important;
+      line-height: 14px;
+      margin: 16px 0 20px;
+    }
+    input {
+      height: 32px;
+      font-size: 14px;
+      text-indent: 10px;
+      background: #ffffff;
+      border-radius: 4px;
+      outline: none;
+    }
+    input::placeholder {
+      font-size: 14px;
+      font-weight: 400;
+      color: #999999;
+      text-indent: 10px;
+    }
+  }
+
+  .name-display {
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .persp-item {
+    background-color: #00000033;
+    height: auto;
+    width: 100%;
+    position: relative;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    .persp-tools {
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      padding: 0 8px 0 0;
+      & > div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: inherit;
+        .persp-name{
+          display: inline-block;
+          max-width: 60px;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
+        }
+        .persp-tool-icon {
+          font-size: 14px;
+          display: block;
+          line-height: 20px;
+          width: 20px;
+          height: 20px;
+          visibility: hidden;
+          cursor: pointer;
+        }
+        .persp-tool-icon-drag:hover {
+          background-color: #26acf93d;
+          cursor: move;
+        }
+        .persp-tool-icon-drag-forbiden {
+          cursor: not-allowed;
+        }
+        img {
+          cursor: pointer;
+          margin: 0 5px;
+        }
+        .persp-tool-func-icon {
+          @iconSize: 16px;
+          font-size: @iconSize;
+          margin: 0 2px;
+          outline: none;
+          svg {
+            width: @iconSize;
+            height: @iconSize;
+          }
+        }
+      }
+      .disabled {
+        @iconSize: 16px;
+        font-size: @iconSize;
+        margin: 0 2px;
+        outline: none;
+        svg {
+          width: @iconSize;
+          height: @iconSize;
+        }
+        cursor: not-allowed;
+      }
+    }
+    & > .persp-tools:hover .persp-tool-icon {
+      visibility: unset;
+    }
+  }
+
+  .before {
+    height: 39px;
+    border-top: 1px solid skyblue;
+  }
+  .after {
+    height: 39px;
+    border-bottom: 1px solid skyblue;
+  }
+
+  .persp-item:hover {
+    background: rgba(40, 120, 255, 0.1);
+    border: 1px solid rgba(40, 120, 255, 0.5);
+  }
+
+  .persp-item-active {
+    background: rgba(40, 120, 255, 0.1);
+    border: 1px solid rgba(40, 120, 255, 0.5);
+  }
+
+  .save {
+    margin: 16px 0;
+    height: 28px;
+    display: flex;
+    justify-content: space-between;
+    & > button {
+      flex-basis: 48%;
+      padding: 0;
+      color: white;
+    }
+    & > button:last-child {
+      background-color: #666;
+      outline: none;
+    }
+  }
+
+  .route-list {
+    width: 100%;
+    overflow: auto;
+    background: #2E2F30;
+    border-radius: 2px;
+    box-sizing: border-box;
+    max-height: 250px;
+    .route-item {
+      padding: 10px;
+      margin: 0 0 2px 0;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid transparent;
+      .row2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .row2 span {
+        margin-right: 5px;
+      }
+
+      .row1 {
+        .row2();
+        padding-bottom: 10px;
+
+        & > div {
+          display: flex;
+          align-items: center;
+
+          .name-text{
+            width: 120px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+          }
+
+          input {
+            width: 80px;
+          }
+        }
+
+        & > span {
+          .omit-text();
+          cursor: default;
+        }
+
+        img {
+          margin: 0 10px;
+          cursor: pointer;
+        }
+      }
+
+      .view-manage {
+        margin: 5px 0 0 0;
+      }
+    }
+
+    .route-item-active,
+    .route-item:hover {
+      background: rgba(40, 120, 255, 0.1);
+      border-radius: 2px;
+      border: 1px solid rgba(40, 120, 255, 0.5);
+    }
+
+  }
+
+  .success-tip {
+    height: 32px;
+    width: 100px;
+    border-radius: 4px;
+    border: 1px solid #3ed3a3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    color: #000;
+    background: #c9ebe0;
+    z-index: 999;
+    display: flex;
+    line-height: 32px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.route-list-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  div:first-child {
+    color: #999999ff;
+    font-size: 14px;
+    line-height: 14px;
+  }
+  .import-btn {
+    // .button();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 24px;
+    line-height: 24px;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+
+    .antd-icon {
+      margin-right: 5px;
+      font-size: 16px;
+    }
+  }
+}
+
+.coord-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.coord-editor {
+  & > div {
+    margin: 0 5px 5px 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    > span{
+      font-size: 14px;
+      display: inline-block;
+      margin: 0 16px;
+    }
+    > input{
+      width: 250px;
+      height: 24px;
+      color: #ddd;
+      box-shadow: none;
+      background-color: transparent;
+      border-radius: 2px;
+      border: 1px solid #515454;
+      outline-style: none;
+    }
+  }
+}
+
+.persp-preview-btn[type="button"] {
+  .button();
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #666666ff;
+  width: 64px;
+  height: 24px;
+  margin: 12px 0 20px;
+  border-radius: 4px;
+  outline: none;
+  .preview-icon {
+    @iconSize: 16px;
+    font-size: @iconSize;
+    margin: 0 2px;
+    outline: none;
+    svg {
+      width: @iconSize;
+      height: @iconSize;
+    }
+  }
+}
+
+.persp-reset-btn {
+  height: 24px !important;
+  margin: 12px 0 20px !important;
+  background-color: transparent !important;
+  color: #999 !important;
+  font-size: 12px !important;
+}
+
+.persp-point-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// 5.0.0 版本UI修改
+.perspective-manager {
+  position: relative;
+  // 添加视角操作
+  .operation-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0 0;
+    .input {
+      width: 156px;
+      height: 28px !important;
+      background: #2e2f30;
+      border-radius: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #DDDDDD;
+      font-size: 12px;
+      text-indent: 8px;
+      outline: none;
+    }
+    .btn{
+      width: 74px;
+      height: 28px;
+      background: #2878FF;
+      border-radius: 4px;
+    }
+  }
+
+  // 视角容器
+  .persp-container {
+    margin: 16px 0 0;
+    width: 100%;
+    background: #2E2F30;
+    border-radius: 2px;
+    padding: 8px;
+    box-sizing: border-box;
+    .persp-list-container{
+      max-height: 170px;
+      overflow-y: auto;
+    }
+  }
+
+  .persp-opera-group{
+    margin: 8px 0;
+    box-sizing: border-box;
+    .btn{
+      width: 76px;
+      height: 28px;
+      font-size: 12px;
+      background: #666666;
+      border-radius: 4px;
+      border: 0;
+      color: #ccc;
+      line-height: 28px;
+      padding: 0;
+    }
+    .reset{
+      font-size: 12px;
+      color: #ddd;
+      &:hover{
+        color: #ddd;
+      }
+    }
+  }
+}
+
+.name {
+  width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.antd-icon {
+  @iconSize: 16px;
+  font-size: @iconSize;
+  margin: 0 2px;
+  outline: none;
+  svg {
+    width: @iconSize;
+    height: @iconSize;
+  }
+}
+.antd-icon:hover {
+  color: #26acf9;
+}
+.antd-icon-active {
+  @iconSize: 16px;
+  font-size: @iconSize;
+  margin: 0 2px;
+  outline: none;
+  svg {
+    width: @iconSize;
+    height: @iconSize;
+  }
+  color: #26acf9 !important;
+  cursor: not-allowed !important;
+}
+.antd-icon-forbiden {
+  @iconSize: 16px;
+  font-size: @iconSize;
+  margin: 0 2px;
+  outline: none;
+  svg {
+    width: @iconSize;
+    height: @iconSize;
+  }
+  color: #ccc;
+  cursor: not-allowed !important;
+}
+
+.option {
+  display: flex;
+  height: 28px;
+  margin: 5px 0 0 0;
+  > div {
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    width: 68px;
+    border-radius: 4px;
+    margin: 0 10px 0 0;
+    color: #fff;
+    cursor: pointer;
+  }
+  div:first-child {
+    background: #26acf9;
+  }
+  div:last-child {
+    background: #666;
+  }
+}
+
+.rename-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 40px);
+  padding: 10px 20px;
+  .input-item {
+    .label {
+      height: 28px;
+      line-height: 28px;
+      color: #bbbbbbff;
+      font-size: 13px;
+    }
+    > input {
+      width: calc(100% - 50px);
+      height: 28px;
+      line-height: 28px;
+      outline: none;
+      font-size: 13px;
+      background: #2e2f30;
+      border-radius: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-indent: 5px;
+      color: #fff;
+    }
+    .tip {
+      font-size: 12px;
+      color: red;
+      margin-left: 40px;
+    }
+  }
+
+  .option-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 35px;
+    > div {
+      width: 72px;
+      height: 28px;
+      background: #666666;
+      border-radius: 4px;
+      color: #fff;
+      line-height: 28px;
+      text-align: center;
+      cursor: pointer;
+      margin-right: 10px;
+      outline: none;
+    }
+    > div:last-child {
+      background-color: #26acf9;
+    }
+  }
+
+  .custom-confirm {
+    color: red !important;
+    .button-group {
+      & > button {
+        border-radius: 4px;
+        padding: 8px 14px;
+        background-color: red;
+      }
+    }
+  }
+}
+
+.insert-container {
+  :global {
+    .bos3d-dropdown-menu {
+      position: relative;
+      margin: 0;
+      padding: 4px 0;
+      text-align: left;
+      list-style-type: none;
+      background-color: #1b1b1b;
+      background-clip: padding-box;
+      border-radius: 2px;
+      outline: none;
+      -webkit-box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+        0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+        0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    }
+    .bos3d-dropdown-menu-item {
+      color: white;
+      background-color: #1b1b1b;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .bos3d-dropdown-menu-item:hover {
+      background: rgba(38, 172, 249, 0.24);
+    }
+  }
+}

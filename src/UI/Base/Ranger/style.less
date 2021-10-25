@@ -1,0 +1,40 @@
+@import "../../theme/index.less";
+
+.container {
+  position: relative;
+  width: calc(100% - 12px);
+  height: 12px;
+  margin: 3px 6px;
+}
+
+.rail {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 4px;
+  border-radius: 2px;
+  width: 100%;
+  background-color: #ffffff66;
+}
+
+.track {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 4px;
+  border-radius: 2px;
+  background-color: @skyblue;
+}
+
+.step {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  transform: translateX(-50%);
+  background-image: linear-gradient(-180deg, #FFFFFF 55%, #C6C6C6 93%);
+  background: #FFFFFF;
+  border: 1px solid #26ACF9;
+  box-shadow: 0 0px 4px 0 #26ACF9;
+  border-radius: 6px;
+}

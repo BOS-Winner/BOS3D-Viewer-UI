@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`route item should rename item 1`] = `
+<div>
+  <div
+    class="routeItem"
+  >
+    <div
+      class="row1"
+    >
+      <div
+        class="name"
+        role="presentation"
+      >
+        <input
+          maxlength="50"
+          placeholder="test"
+          type="text"
+        />
+        <button
+          type="button"
+        >
+          确定
+        </button>
+        <button
+          type="button"
+        >
+          取消
+        </button>
+      </div>
+      <div>
+        <img
+          alt="播放"
+          src="play.png"
+          title="播放"
+        />
+        <img
+          alt="删除"
+          src="remove.png"
+          title="删除"
+        />
+        <img
+          alt="导出"
+          src="export.png"
+          title="导出"
+        />
+      </div>
+    </div>
+    <div
+      class="row2"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="minButton "
+          role="button"
+          tabindex="0"
+        >
+          -
+        </div>
+        <div
+          class="number"
+        >
+          1
+        </div>
+        <div
+          class="maxButton "
+          role="button"
+          tabindex="0"
+        >
+          +
+        </div>
+      </div>
+      <span>
+        00:00:00
+      </span>
+      <div
+        class="container"
+        role="presentation"
+      >
+        <div
+          class="rail"
+        />
+        <div
+          class="track"
+          style="width: 0%;"
+        />
+        <div
+          class="step"
+          style="left: 0%;"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

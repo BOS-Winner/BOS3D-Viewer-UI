@@ -1,0 +1,42 @@
+
+.text {
+  flex-grow: 1;
+  max-width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.editor {
+  display: flex;
+  flex-grow: 1;
+
+  & > input[type="text"] {
+    flex-grow: 1;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #979797;
+    &::placeholder{
+      color: #BBBBBB;  
+    }
+  }
+  svg{
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.mobileInputContainer{
+  padding: 16px;
+  .bottom-buttons{
+    display: flex;
+    justify-content: flex-end;
+    .btn{
+      width: 80px;
+      margin-left: 15px;
+    }
+  }
+
+}

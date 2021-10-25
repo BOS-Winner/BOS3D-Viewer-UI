@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`model scatter should render dom 1`] = `
+<div>
+  <div
+    class="rangeContainer"
+    title="模型分解"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(modelScatter.png);"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`model scatter should scatter model 1`] = `
+Array [
+  Object {
+    "coefficientX": 1.5,
+    "coefficientY": 1.5,
+    "coefficientZ": 1.5,
+    "modelKey": Array [
+      "M1145141919810",
+      "M1145141919811",
+    ],
+  },
+]
+`;
+
+exports[`model scatter should scatter model 2`] = `
+Array [
+  Array [
+    "M1145141919810",
+    "M1145141919811",
+  ],
+]
+`;

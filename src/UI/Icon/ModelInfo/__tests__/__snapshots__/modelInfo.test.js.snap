@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`modelInfo should refresh model info 1`] = `
+<div>
+  <div
+    role="button"
+    tabindex="0"
+    title="模型信息"
+  >
+    <div
+      class="icon "
+      data-selected="true"
+      role="button"
+      style="background-image: url(modelInfo.png);"
+      tabindex="0"
+    />
+    <div
+      style="display: block; position: absolute; top: 40%; width: 300px; height: 140px;"
+      title="模型信息"
+    >
+      <div>
+        <span>
+          模型信息
+        </span>
+        <button
+          data-testid="close-mock-modal"
+          type="button"
+        >
+          close mock modal
+        </button>
+      </div>
+      <div
+        class="modelInfo"
+      >
+        <div
+          class="item"
+        >
+          <div
+            class="name"
+          >
+            三角面数：
+          </div>
+          200
+        </div>
+        <div
+          class="item"
+        >
+          <div
+            class="name"
+          >
+            构件数：
+          </div>
+          100
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`modelInfo should render dom 1`] = `
+<div>
+  <div
+    role="button"
+    tabindex="0"
+    title="模型信息"
+  >
+    <div
+      class="icon "
+      data-selected="false"
+      role="button"
+      style="background-image: url(modelInfo.png);"
+      tabindex="0"
+    />
+    <div
+      style="display: none; position: absolute; top: 40%; width: 300px; height: 140px;"
+      title="模型信息"
+    >
+      <div>
+        <span>
+          模型信息
+        </span>
+        <button
+          data-testid="close-mock-modal"
+          type="button"
+        >
+          close mock modal
+        </button>
+      </div>
+      <div
+        class="modelInfo"
+      >
+        <div
+          class="item"
+        >
+          <div
+            class="name"
+          >
+            三角面数：
+          </div>
+          0
+        </div>
+        <div
+          class="item"
+        >
+          <div
+            class="name"
+          >
+            构件数：
+          </div>
+          0
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`modelInfo should show model info 1`] = `
+<div>
+  <div
+    role="button"
+    tabindex="0"
+    title="模型信息"
+  >
+    <div
+      class="icon "
+      data-selected="true"
+      role="button"
+      style="background-image: url(modelInfo.png);"
+      tabindex="0"
+    />
+    <div
+      style="display: block; position: absolute; top: 40%; width: 300px; height: 140px;"
+      title="模型信息"
+    >
+      <div>
+        <span>
+          模型信息
+        </span>
+        <button
+          data-testid="close-mock-modal"
+          type="button"
+        >
+          close mock modal
+        </button>
+      </div>
+      <div
+        class="modelInfo"
+      >
+        <div
+          class="item"
+        >
+          <div
+            class="name"
+          >
+            三角面数：
+          </div>
+          1919810
+        </div>
+        <div
+          class="item"
+        >
+          <div
+            class="name"
+          >
+            构件数：
+          </div>
+          114514
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
