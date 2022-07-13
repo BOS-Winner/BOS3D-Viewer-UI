@@ -134,3 +134,112 @@ export function roadnetLn(eventEmitter) {
     },
   };
 }
+
+export function roamRecord(eventEmitter) {
+  return {
+    /**
+     * 控制开启关闭漫游模式
+     * @param {boolean} [status=false] 漫游开启状态，默认是关闭漫游模式
+     */
+    handleRoamRecordStatus: (status = false) => {
+      eventEmitter.emit(EVENT.handleRoamRecordStatus, status);
+    },
+
+    /**
+     * 漫游开始录制
+     * @param {function} callback 漫游开始录制后的回调函数
+     */
+    handleStartRecord: (callback) => {
+      eventEmitter.emit(EVENT.handleStartRecord, callback);
+    },
+
+    /**
+     * 漫游录制暂停
+     * @param {function} callback 漫游录制暂停的回调函数
+     */
+    handlePauseRecord: (callback) => {
+      eventEmitter.emit(EVENT.handlePauseRecord, callback);
+    },
+
+    /**
+     * 结束漫游录制
+     * @param {function} callback 漫游结束录制的回调函数
+     */
+    handleStopRecord: (callback) => {
+      eventEmitter.emit(EVENT.handleStopRecord, callback);
+    },
+
+    /**
+     * 通过弹窗导入漫游录制的文件
+     * @param {function} callback 导入漫游录制成功后
+     */
+    handleImportRaomRecord: (callback) => {
+      eventEmitter.emit(EVENT.handleImportRoamRecord, callback);
+    },
+
+    /**
+     * 批量导入漫游录制数据
+     * @param {string | string[]} roamRecordData
+     */
+    handleImportRoamRecordByStringData: (roamRecordData) => {
+      const data = !Array.isArray(roamRecordData) ? [roamRecordData] : roamRecordData;
+      eventEmitter.emit(EVENT.handleImportRoamRecordByData, data);
+    },
+
+    /**
+     * 通过id导出漫游录制的数据
+     * @param {string} id 需要导出的漫游录制的ID
+     */
+    handleExportRoamRecordById: (id) => {
+      eventEmitter.emit(EVENT.handleExportRecord, id);
+    },
+
+    /**
+     * 通过id导出漫游录制的字符串数据
+     * @param {string} id 需要导出的漫游录制的ID
+     * @param {function} callback 用来获取漫游录制字符串数据的回调函数
+     */
+    handleExportRoamRecordStringDataById: (id, callback) => {
+      eventEmitter.emit(EVENT.handleExportRecordString, id, callback);
+    },
+
+    /**
+     * 获取所有漫游的数据
+     * @param {function} 获取漫游数据的回调函数
+     */
+    getAllRoamRecordData: (callback) => {
+      eventEmitter.emit(EVENT.getAllRoamRecordData, callback);
+    },
+
+    /**
+     * 播放该漫游录制
+     * @param {string} id 需要播放的漫游录制的ID
+     */
+    handleRoamRecordPlayById: (id) => {
+      eventEmitter.emit(EVENT.handleRoamRecordPlay, id);
+    },
+
+    /**
+     * 暂停该漫游录制的播放
+     * @param {string} id 需要暂停的漫游录制的ID
+     */
+    handleRoamRecordPauseById: (id) => {
+      eventEmitter.emit(EVENT.handleRoamRecordPause, id);
+    },
+
+    /**
+     * 删除该漫游录制
+     * @param {string} id 需要删除的漫游录制的ID
+     */
+    deleteRoamRecordById: (id) => {
+      eventEmitter.emit(EVENT.deleteRoamRecordById, id);
+    },
+
+    /**
+     * 删除所有的漫游数据
+     */
+    deleteAllRoamRecord: () => {
+      eventEmitter.emit(EVENT.deleteAllRoamRecord);
+    }
+  };
+}

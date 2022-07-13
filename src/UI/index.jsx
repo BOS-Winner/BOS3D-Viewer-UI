@@ -7,7 +7,9 @@ import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import reducer from "./reducer";
 import Viewer3DUI from './Viewer3DUI';
-import { snapshotLn, markLn, roadnetLn } from "./generateListener";
+import {
+  snapshotLn, markLn, roadnetLn, roamRecord
+} from "./generateListener";
 import AnnotationStore from "./AnnotationUI/AnnotationStore";
 import uaFactory from "./userActionFactory";
 import { setToolbarState, changeDisplaySetting, setCustomToolbarState } from "./userRedux/userSetting/action";
@@ -72,6 +74,7 @@ class BOS3DUI {
     this.annotionStore = AnnotationStore.getSharedInstance();
     this.mark = markLn(ee);
     this.roadnet = roadnetLn(ee);
+    this.roamRecord = roamRecord(ee);
     this.plugin = uaFactory(ee);
     const viewport = viewer3D.viewportDiv;
     viewport.style.position = "relative";
