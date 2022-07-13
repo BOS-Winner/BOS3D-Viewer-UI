@@ -6,6 +6,7 @@ import { yjbos3dRecord2json } from "../fileParser";
 import { EXT } from "../fileParser/constant.js";
 import generateUUID from "../../../utils/generateUUID";
 import { AntdIcon } from "../../../utils/utils";
+import { EVENT } from "../../../constant";
 import style from "./style.less";
 
 const INTERVAL_TIMEOUT = 250;
@@ -15,10 +16,87 @@ class Recorder extends React.Component {
     super(props);
     this.data = [];
     this.time = 0;
-    this.timerId = 0;
+    this.timerId = undefined;
     this.state = {
       recordStatus: 'stop',
     };
+  }
+
+  componentDidMount() {
+    // 开始录制的监听函数
+    this.props.eventEmitter.on(EVENT.handleStartRecord, (callback) => {
+      if (this.timerId !== undefined) {
+        const result = {
+          message: "正在录制，请结束后再从新开始录制。",
+          data: null,
+        };
+        if (callback && typeof callback === 'function') {
+          callback(result);
+          return;
+        }
+      }
+      this.props.eventEmitter.emit(EVENT.handleRoamRecordStatus, true);
+      this.onStart(new Event("build"));
+      if (callback && typeof callback === 'function') {
+        callback({
+          message: "漫游开始录制",
+          data: null,
+        });
+      }
+    });
+    // 停止录制
+    this.props.eventEmitter.on(EVENT.handleStopRecord, (callback) => {
+      if (this.timerId === undefined) {
+        const result = {
+          message: "没有开始录制，请开始录制",
+          data: null,
+        };
+        if (callback && typeof callback === 'function') {
+          callback(result);
+          return;
+        }
+      }
+      this.onStop(new Event("build"));
+      // 退出漫游模式
+      this.props.eventEmitter.emit(EVENT.handleRoamRecordStatus);
+      if (callback && typeof callback === 'function') {
+        callback({
+          message: "漫游录制结束，退出漫游录制模式",
+          data: null,
+        });
+      }
+    });
+    // 暂停录制
+    this.props.eventEmitter.on(EVENT.handlePauseRecord, (callback) => {
+      if (this.timerId === undefined) {
+        const result = {
+          message: "没有开始录制，请开始录制",
+          data: null,
+        };
+        if (callback && typeof callback === 'function') {
+          callback(result);
+          return;
+        }
+      }
+      this.onPause(new Event("build"));
+      if (callback && typeof callback === 'function') {
+        callback({
+          message: "漫游录制暂停",
+          data: null,
+        });
+      }
+    });
+    // 导入漫游录制
+    this.props.eventEmitter.on(EVENT.handleImportRoamRecord, (callback) => {
+      this.onImport(new Event("build"), callback);
+    });
+
+    // 批量导入漫游录制的数据
+    this.props.eventEmitter.on(EVENT.handleImportRoamRecordByData, (data = []) => {
+      data.forEach(roamRecord => {
+        this.importRecord(roamRecord);
+      });
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -26,7 +104,7 @@ class Recorder extends React.Component {
       clearInterval(this.timerId);
       this.data = [];
       this.time = 0;
-      this.timerId = 0;
+      // this.timerId = 0;
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         recordStatus: 'stop',
@@ -65,7 +143,7 @@ class Recorder extends React.Component {
       this.props.onOk(this.data, time);
       this.data = [];
       this.time = 0;
-      this.timerId = 0;
+      // this.timerId = 0;
       this.setState({
         recordStatus: 'stop',
       });
@@ -86,7 +164,7 @@ class Recorder extends React.Component {
     });
   }
 
-  onImport(ev) {
+  onImport(ev, callback = () => {}) {
     ev.preventDefault();
     ev.stopPropagation();
     const input = document.createElement('input');
@@ -97,6 +175,9 @@ class Recorder extends React.Component {
         const reader = new FileReader();
         reader.onload = () => {
           this.importRecord(reader.result);
+          if (callback && typeof callback === 'function') {
+            callback();
+          }
         };
         reader.readAsText(e.target.files[0]);
       }
@@ -151,6 +232,7 @@ Recorder.propTypes = {
   viewer: PropTypes.object.isRequired,
   onImport: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  eventEmitter: PropTypes.object.isRequired,
 };
 
 Recorder.defaultProps = {
