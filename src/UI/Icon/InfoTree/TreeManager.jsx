@@ -34,6 +34,7 @@ const CustomModelType = [
   "STP",
   "STEP",
   "NWD",
+  "SKP"
 ];
 const CATALOG_TREE = "目录树";
 

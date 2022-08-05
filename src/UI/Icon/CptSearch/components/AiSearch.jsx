@@ -18,6 +18,8 @@ const columns = [
       showTitle: true,
     },
     className: style.cell,
+    render: (text, record) => `${record?.familyName ? `${record.familyName}: ` : ""}${text}${record?.originalId ? `[${record.originalId}]` : ''}`
+
   },
   {
     title: '类型',

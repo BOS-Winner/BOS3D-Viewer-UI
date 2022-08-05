@@ -9,8 +9,9 @@ import { isLandscape } from "../../utils/device";
 import { resetHistory } from "../../Icon/action";
 import { AntdIcon } from "../../utils/utils";
 import AxisController from "./AxisController.js";
-import MobileHelper from './MobileHelper/index';
+import MobileHelper from "./MobileHelper/index";
 import { Server } from "../../server/server";
+import { SHOW_ALL_CPT } from "../../Icon/eventType";
 
 function fuckFSC(dom) {
   if (dom.requestFullscreen) {
@@ -78,7 +79,7 @@ class ViewControlToolbar extends React.Component {
 
   static defaultProps = {
     linkage: {},
-    isMobile: false
+    isMobile: false,
   };
 
   componentDidMount() {
@@ -125,7 +126,10 @@ class ViewControlToolbar extends React.Component {
     if (!allModelKeys.length) {
       const scope = this;
       clearTimeout(this.customGetBestViewStatusTimer);
-      this.customGetBestViewStatusTimer = setTimeout(() => scope.getBestViewStatus(), 3000);
+      this.customGetBestViewStatusTimer = setTimeout(
+        () => scope.getBestViewStatus(),
+        3000
+      );
       return;
     }
     const server = new Server({ viewer: this.props.viewer });
@@ -137,18 +141,20 @@ class ViewControlToolbar extends React.Component {
       }
       // 如果默认关闭则退出
       if (!result.data.switch || result.data.switch === "false") return;
-      const { data: { viewport } } = result;
+      const {
+        data: { viewport },
+      } = result;
       const { position: viewportJson } = JSON.parse(viewport);
       const cameraInfo = {
         position: {
           x: viewportJson.camera[0],
           y: viewportJson.camera[1],
-          z: viewportJson.camera[2]
+          z: viewportJson.camera[2],
         },
         target: {
           x: viewportJson.target[0],
           y: viewportJson.target[1],
-          z: viewportJson.target[2]
+          z: viewportJson.target[2],
         },
         up: { x: 0, y: 0, z: 1 },
       };
@@ -173,6 +179,10 @@ class ViewControlToolbar extends React.Component {
    */
   mainView = () => {
     this.props.viewer.resetScene();
+    // 与模型树联动
+    this.props.ee.emit(SHOW_ALL_CPT, {
+      sender: "topRightTool",
+    });
   };
 
   /**
@@ -265,13 +275,13 @@ class ViewControlToolbar extends React.Component {
       const center = box.getCenter(new THREE.Vector3());
       // 2个点之间的角度获取
       let c1 = (Math.atan2(tempInitVector.y - center.y, tempInitVector.x - center.x)
-        * 180)
+          * 180)
         / Math.PI;
       let c2 = (Math.atan2(
         currentPosition.y - center.y,
         currentPosition.x - center.x
       )
-        * 180)
+          * 180)
         / Math.PI;
 
       let angle;
@@ -334,7 +344,11 @@ class ViewControlToolbar extends React.Component {
     const server = new Server({ viewer: this.props.viewer });
 
     // 如果当前状态是关闭的，则开启最佳视角
-    if (bestViewStatus === BestViewStatus.Close || bestViewStatus === BestViewStatus.Pending || BestViewStatus === BestViewStatus.Error) {
+    if (
+      bestViewStatus === BestViewStatus.Close
+      || bestViewStatus === BestViewStatus.Pending
+      || BestViewStatus === BestViewStatus.Error
+    ) {
       this.setState({
         bestViewStatus: BestViewStatus.Pending,
       });
@@ -354,18 +368,20 @@ class ViewControlToolbar extends React.Component {
           bestViewRedo: false,
           bestViewExisted: true,
         });
-        const { data: { viewport } } = bestResult;
+        const {
+          data: { viewport },
+        } = bestResult;
         const { position: viewportJson } = JSON.parse(viewport);
         const cameraInfo = {
           position: {
             x: viewportJson.camera[0],
             y: viewportJson.camera[1],
-            z: viewportJson.camera[2]
+            z: viewportJson.camera[2],
           },
           target: {
             x: viewportJson.target[0],
             y: viewportJson.target[1],
-            z: viewportJson.target[2]
+            z: viewportJson.target[2],
           },
           up: { x: 0, y: 0, z: 1 },
         };
@@ -404,7 +420,7 @@ class ViewControlToolbar extends React.Component {
         toastr.error(result.message);
       }
     }
-  }
+  };
 
   /**
    * 重置主视图
@@ -416,7 +432,7 @@ class ViewControlToolbar extends React.Component {
       this.handleBestView();
     }
     this.mainView();
-  }
+  };
 
   /**
    * 设置当前为主视图
@@ -438,7 +454,7 @@ class ViewControlToolbar extends React.Component {
     }
 
     this.setMainView();
-  }
+  };
 
   render() {
     const { isMobile } = this.props;
@@ -479,7 +495,7 @@ class ViewControlToolbar extends React.Component {
       },
     ];
     // 菜单
-    const MenuItem = (text = "", func = () => { }) => (
+    const MenuItem = (text = "", func = () => {}) => (
       <Menu.Item
         title={text}
         key={text}
@@ -503,28 +519,28 @@ class ViewControlToolbar extends React.Component {
                 className={style.bestViewStatus}
                 style={{
                   background: this.state.bestViewStatus,
-                  display: this.state.bestViewExisted || this.state.bestViewStatus === BestViewStatus.Pending || this.state.bestViewStatus === BestViewStatus.Error ? "block" : "none",
+                  display:
+                    this.state.bestViewExisted
+                    || this.state.bestViewStatus === BestViewStatus.Pending
+                    || this.state.bestViewStatus === BestViewStatus.Error
+                      ? "block"
+                      : "none",
                 }}
               />
-              {
-                this.state.bestViewStatus === BestViewStatus.Pending
-                  ? (
-                    <Tooltip
-                      title="最佳视角模式启用中，请等待一段时间！"
-                      color="#444444"
-                    >
-                      <span>
-                        启用最佳视角模式
-                      </span>
-                    </Tooltip>
-                  ) : (
-                    <span>
-                      {this.state.bestViewStatus === BestViewStatus.Close
-                        ? "启用最佳视角模式"
-                        : "关闭最佳视角模式"}
-                    </span>
-                  )
-              }
+              {this.state.bestViewStatus === BestViewStatus.Pending ? (
+                <Tooltip
+                  title="最佳视角模式启用中，请等待一段时间！"
+                  color="#444444"
+                >
+                  <span>启用最佳视角模式</span>
+                </Tooltip>
+              ) : (
+                <span>
+                  {this.state.bestViewStatus === BestViewStatus.Close
+                    ? "启用最佳视角模式"
+                    : "关闭最佳视角模式"}
+                </span>
+              )}
               <Tooltip
                 title="“启用后，系统会自动计算出最适合观察模型位置的视角;计算完成后，点击初始化或主视图按钮即可查看。”"
                 color="#444444"
@@ -533,8 +549,8 @@ class ViewControlToolbar extends React.Component {
                   width: "192px",
                   height: "117px",
                   borderRadius: "4px",
-                  fontSize: '13px',
-                  lineHeight: "24px"
+                  fontSize: "13px",
+                  lineHeight: "24px",
                 }}
               >
                 <AntdIcon type="icontips_kehover" className={style.itemIcon} />
@@ -542,7 +558,6 @@ class ViewControlToolbar extends React.Component {
             </div>
           </Menu.Item>
         )}
-
       </Menu>
     );
 
@@ -600,13 +615,13 @@ class ViewControlToolbar extends React.Component {
     if (
       !(
         document.fullscreenElement
-          || document.webkitIsFullScreen
-          || document.mozFullScreen
-          || document.msFullscreenElement
+        || document.webkitIsFullScreen
+        || document.mozFullScreen
+        || document.msFullscreenElement
       )
     ) {
       viewer3D.resize(this.width, this.height);
-      console.log('hahah');
+      console.log("hahah");
       this.setState({
         isFullScreen: false,
       });
@@ -614,7 +629,9 @@ class ViewControlToolbar extends React.Component {
     } else {
       this.saveCanvasSize();
       setTimeout(() => {
-        const bodyStyle = getComputedStyle(document.querySelector("#viewport") || document.querySelector("body"));
+        const bodyStyle = getComputedStyle(
+          document.querySelector("#viewport") || document.querySelector("body")
+        );
         let width = parseFloat(bodyStyle.width);
         let height = parseFloat(bodyStyle.height);
         // iOS safari竖屏要交换宽高
@@ -698,10 +715,12 @@ ViewControlToolbar.propTypes = {
   resetHistory: PropTypes.func.isRequired,
   linkage: PropTypes.object,
   isMobile: PropTypes.bool,
+  ee: PropTypes.object.isRequired,
   bestView: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  ee: state.system.eventEmitter,
   viewer: state.system.viewer3D,
   BIMWINNER: state.system.BIMWINNER,
   linkage: state.system.linkage,

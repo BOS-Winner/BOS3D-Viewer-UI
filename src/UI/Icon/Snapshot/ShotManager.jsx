@@ -27,6 +27,9 @@ function getShot(viewer) {
     componentState: scene.state,
     highlightComponentsKeys: scene.selection,
     highlightModelsKeys: scene.modelSelection,
+    modelsState: scene.models,
+    sectionBoxState: scene.sectionBoxState,
+    sectionPlaneState: scene.sectionPlaneState,
   };
 }
 
@@ -37,7 +40,10 @@ function restoreToShot(viewer, code, shotList) {
     camera: item.cameraState,
     state: item.componentState,
     selection: item.highlightComponentsKeys,
-    modelSelection: item.highlightModelsKeys
+    modelSelection: item.highlightModelsKeys,
+    models: item.modelsState,
+    sectionBoxState: item.sectionBoxState,
+    sectionPlaneState: item.sectionPlaneState,
   });
   // 如果当前场景中没有高亮构件，就取消高亮
   if (!item.highlightComponentsKeys.length) {
@@ -261,6 +267,7 @@ ShotManager.propTypes = {
   clear: PropTypes.func.isRequired,
   viewer: PropTypes.object.isRequired,
   eventEmitter: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
