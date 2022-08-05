@@ -137,6 +137,7 @@ class SectionPopup extends React.Component {
       if (this.sectionPlane) {
         this.sectionPlane.exit();
         this.sectionPlane = null;
+        this.props.viewer.render();
       }
       this.setState((state) => ({
         ...state,

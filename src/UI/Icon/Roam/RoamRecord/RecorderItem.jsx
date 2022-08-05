@@ -13,6 +13,7 @@ import toastr from "../../../toastr";
 import { EXT } from "../fileParser/constant.js";
 import { AntdIcon } from "../../../utils/utils";
 import style from "./style.less";
+import { EVENT } from "../../../constant";
 
 class RecorderItem extends React.Component {
   constructor(props) {
@@ -38,10 +39,36 @@ class RecorderItem extends React.Component {
       });
     });
     this.roamPlayer.addStopPlayCallback(() => {
-      this.props.onStop();
-      this.setState({
-        time: 0,
-      });
+      this.stopCB();
+    });
+
+    // 监听录制播放
+    this.props.eventEmitter.on(EVENT.handleRoamRecordPlay, (id) => {
+      if (id === this.props.roam.getId()) {
+        this.play(new Event('build'));
+      }
+    });
+    // 监听录制暂停
+    this.props.eventEmitter.on(EVENT.handleRoamRecordPause, (id) => {
+      if (id === this.props.roam.getId()) {
+        this.pause(new Event('build'));
+      }
+    });
+    // 监听导出漫游录制
+    this.props.eventEmitter.on(EVENT.handleExportRecord, (id) => {
+      if (id === this.props.roam.getId()) {
+        this.export(new Event('build'));
+      }
+    });
+
+    // 监听导出漫游录制的字符串数据
+    this.props.eventEmitter.on(EVENT.handleExportRecordString, (id, callback) => {
+      if (id === this.props.roam.getId() && callback && typeof callback === 'function') {
+        callback({
+          fileName: `${this.props.roam.name}${EXT}`,
+          data: json2yjbos3dRecord(this.props.roam.export())
+        });
+      }
     });
   }
 
@@ -99,6 +126,7 @@ class RecorderItem extends React.Component {
   stopCB() {
     this.setState({
       playState: 'stop',
+      time: 0,
     });
     this.props.onStop();
   }
@@ -132,7 +160,8 @@ class RecorderItem extends React.Component {
     const idx = Math.round(
       time * (this.props.roam.keyFrameList?.length - 1) / this.props.roam.roamTime);
     this.roamPlayer.startFromByIndex(idx);
-    const tempIndex = idx > this.props.roam.keyFrameList.length - 1 ? this.props.roam.keyFrameList.length - 1 : idx;
+    const tempIndex = idx > this.props.roam.keyFrameList.length - 1
+      ? this.props.roam.keyFrameList.length - 1 : idx;
     this.props.viewer.linearFlyTo(this.props.roam.keyFrameList[tempIndex]);
     this.setState({
       time,
@@ -268,6 +297,7 @@ RecorderItem.propTypes = {
   forceStop: PropTypes.bool,
   activeKey: PropTypes.string.isRequired,
   handleActiveKey: PropTypes.func.isRequired,
+  eventEmitter: PropTypes.object.isRequired,
 };
 
 RecorderItem.defaultProps = {

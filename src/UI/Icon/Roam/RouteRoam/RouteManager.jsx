@@ -63,6 +63,10 @@ class RouteManager extends React.Component {
       // 更新路径列表
       const tempRouteList = this.state.route;
       this.updateRouteList([...tempRouteList, routeItem]);
+      this.setState({
+        playingId: "",
+        pausingId: "",
+      });
     }
   }
 

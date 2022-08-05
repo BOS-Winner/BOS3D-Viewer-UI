@@ -50,6 +50,12 @@ class Linkage {
       //   width: parseFloat(css.width),
       //   height: parseFloat(css.height),
       // };
+      // 图纸数据加载为空的监听事件
+      myContext.viewer2D.registerDrawEventListener(
+        myContext.BOS2D.DRAW_EVENTS.DRAW_EMPTY,
+        (data) => {
+          console.log(data);
+        });
     });
     // 获取需要挂载的dom元素
     const container = document.querySelector(props.selector);

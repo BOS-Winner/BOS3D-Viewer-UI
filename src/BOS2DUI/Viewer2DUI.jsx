@@ -31,9 +31,20 @@ function Viewer2DUI(props) {
       });
     });
 
+    // 图纸数据加载为空的监听事件
+    viewer.registerDrawEventListener(BOS2D.DRAW_EVENTS.DRAW_EMPTY, (data) => {
+      toastr.error("此布局不包含任何可见图元。", "", {
+        target: viewer.getViewerImpl().domElement,
+      });
+      console.log(data);
+    });
+
     // 添加图片加载进度条
     viewer.registerDrawEventListener(BOS2D.DRAW_EVENTS.ONE_DRAW_LOAD_COMPLETE, (e) => {
       console.log("当前图纸加载完成", e);
+      setTimeout(() => {
+        viewer.enablePick = true;
+      }, 20);
       setPersent(0);
     });
     viewer.registerDrawEventListener(BOS2D.DRAW_EVENTS.ONE_DRAW_LOAD_PROGRESS, (obj) => {

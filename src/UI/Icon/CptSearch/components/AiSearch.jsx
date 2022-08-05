@@ -42,7 +42,7 @@ const columns = [
 
 export default function AiSearch(props) {
   const {
-    viewer, ee, handleModalHeight, tabKeys
+    viewer, ee, handleModalHeight, tabKeys, BOS3D
   } = props;
 
   // 智能搜索框输入
@@ -383,6 +383,13 @@ export default function AiSearch(props) {
         target: `#${viewer.viewport}`
       });
     }
+    if (selectedRowItems.length > 0
+      && selectedRowItems.every(item => item.type in BOS3D.BOS3D.DefaultInvisibleComponentType)) {
+      toastr.info("该构件未显示，无法进行定位！", "", {
+        target: `#${viewer.viewport}`
+      });
+      return;
+    }
     if (selectedRowKeys.length > 0) {
       viewer.highlightComponentsByKey(selectedRowKeys);
       viewer.adaptiveSizeByKey(selectedRowKeys);
@@ -492,6 +499,7 @@ AiSearch.defaultProps = {
 
 AiSearch.propTypes = {
   viewer: PropTypes.object.isRequired,
+  BOS3D: PropTypes.object.isRequired,
   ee: PropTypes.object.isRequired,
   handleModalHeight: PropTypes.func.isRequired,
   tabKeys: PropTypes.string.isRequired,

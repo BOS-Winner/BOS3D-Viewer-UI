@@ -18,6 +18,7 @@ class Dialog extends React.Component {
     ee: PropTypes.object.isRequired,
     offline: PropTypes.bool.isRequired,
     isMobile: PropTypes.bool.isRequired,
+    BOS3D: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -69,6 +70,7 @@ class Dialog extends React.Component {
       offline,
       tabKey
     } = this.state; // 搜索数据的长度；
+    console.log(this.props);
 
     if (isMobile) {
       const modalInfo = {
@@ -126,6 +128,7 @@ class Dialog extends React.Component {
               viewer={props.viewer}
               ee={this.props.ee}
               handleModalHeight={this.handleModalHeight}
+              BOS3D={this.props.BOS3D}
             />
           </TabPane>
           <TabPane tab="常规搜索" key="2">
@@ -135,6 +138,7 @@ class Dialog extends React.Component {
               ee={this.props.ee}
               handleModalHeight={this.handleModalHeight}
               offline={offline}
+              BOS3D={this.props.BOS3D}
             />
           </TabPane>
         </Tabs>
@@ -148,6 +152,7 @@ const mapStateToProps = (state) => ({
   ee: state.system.eventEmitter,
   offline: state.system.offline,
   isMobile: state.system.isMobile,
+  BOS3D: state.system.BIMWINNER,
 });
 const mapDispatchToProps = () => ({});
 const WrappedContainer = connect(

@@ -107,6 +107,29 @@ class MiniMap extends React.Component {
       this.props.BIMWINNER.BOS3D.EVENTS.ON_CAMERA_CHANGE,
       this.onViewerCameraChange
     );
+    const scope = this;
+    this.props.viewer.registerModelEventListener(
+      this.props.BIMWINNER.BOS3D.EVENTS.ON_UNLOAD_COMPLETE,
+      () => {
+        // 卸载模型后小地图置空
+        scope.maps = undefined;
+        // 如果小地图开启，则关闭小地图
+        scope.close();
+        // 重置其他参数
+        this.setState({
+          mapListVisible: false,
+          viewAreaVisible: true, // 小人视角
+          cameraPositionInScene: {
+            x: 0,
+            y: 0,
+            z: 0,
+            angle: 0
+          },
+          currentMap: undefined,
+          currentMapIndex: 0,
+        });
+      }
+    );
   }
 
   close() {

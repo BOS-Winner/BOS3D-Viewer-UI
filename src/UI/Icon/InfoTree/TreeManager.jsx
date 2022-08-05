@@ -14,6 +14,8 @@ import { setComponentInfoVisible } from "../action";
 import * as api from "./api";
 import style from "./style.less";
 import { DEFAULT_MODAL_PLACE } from "../../constant.js";
+import { getComponentsByAttribute } from "../CptSearch/api";
+import { getAllModelkeys } from "../../utils/utils";
 
 const TIPS = {
   pending: 1,
@@ -368,7 +370,7 @@ class TreeManager extends React.Component {
   switchTreeType(type) {
     if (!this.data[type]) {
       this.getTreeData(type);
-    } else {
+    } else if (type !== this.state.treeType) {
       const viewer = this.props.viewer;
       switch (type) {
         case "空间树":
@@ -432,7 +434,7 @@ class TreeManager extends React.Component {
     }
   };
 
-  onSearch(query) {
+  async onSearch(query) {
     const info = this.treeInfo[this.state.treeType];
     if (info) {
       const sum = info.queryFn(query);
@@ -441,6 +443,40 @@ class TreeManager extends React.Component {
       info.canQueryPrev = false;
 
       if (query && sum <= 0) {
+        if (!this.props.isOffline) {
+          // 判断当前构件是不是模型中隐藏的构件
+          const queryBody = {
+            "name": {
+              "operator": "like",
+              "value": `${query}`,
+              "logic": "and"
+            }
+          };
+          const currentModelKeys = getAllModelkeys(this.props.viewer);
+
+          const { status, data } = await getComponentsByAttribute(
+            this.props.viewer,
+            currentModelKeys,
+            queryBody,
+            0,
+            100
+          );
+
+          try {
+            if (status === 200 && data.data.totalElements) {
+              if (data?.data?.content.some(cpt => cpt.primitives > 0)) {
+                toastr.info("该构件未显示~", "", {
+                  target: `#${this.props.viewer.viewport}`,
+                });
+                return;
+              }
+              return;
+            }
+          } catch (error) {
+            console.warn("请求构件信息发生错误：", error);
+          }
+        }
+
         toastr.error("查找的内容不存在哦~", "", {
           target: `#${this.props.viewer.viewport}`,
         });
@@ -637,8 +673,8 @@ class TreeManager extends React.Component {
         >
           <div className={style.tree}>
             <Query
-              onSearch={(q) => {
-                this.onSearch(q);
+              onSearch={async (q) => {
+                await this.onSearch(q);
               }}
               upValid={canQueryPrev}
               downValid={canQueryNext}

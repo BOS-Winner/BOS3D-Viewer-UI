@@ -21,7 +21,7 @@ import direction02 from './img/directionItem2.png';
 import speedtip from './img/speedtip.png';
 import updowntip from './img/updowntip.png';
 import mousetip from './img/mousetip.png';
-import { DEFAULT_MODAL_PLACE } from "../../constant";
+import { DEFAULT_MODAL_PLACE, EVENT } from "../../constant";
 
 class Roam extends React.Component {
   constructor(props) {
@@ -45,6 +45,24 @@ class Roam extends React.Component {
       ShowRouteRoamPanel: true,
       ShowRouteRecordPanel: true,
     };
+  }
+
+  componentDidMount() {
+    this.props.eventEmitter.on(EVENT.handleRoamRecordStatus, (status = false) => {
+      const {
+        BIMWINNER: { BOS3D },
+        viewer,
+      } = this.props;
+      if (status) {
+        // 每次开始漫游前先取消下漫游模式
+        BOS3D.Plugins.Roam.Roam.cancelRoam(viewer);
+
+        // 开启自由漫游
+        BOS3D.Plugins.Roam.FreeRoam.startFreeRoam(viewer);
+      } else {
+        BOS3D.Plugins.Roam.Roam.cancelRoam(viewer);
+      }
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -426,6 +444,7 @@ class Roam extends React.Component {
                   viewer={this.props.viewer}
                   BIMWINNER={this.props.BIMWINNER}
                   active={currentMode === "漫游记录"}
+                  eventEmitter={this.props.eventEmitter}
                 />
               </div>
             </div>
@@ -445,16 +464,19 @@ Roam.propTypes = {
   viewer: PropTypes.object.isRequired,
   BIMWINNER: PropTypes.object.isRequired,
   modelDetail: PropTypes.object,
+  eventEmitter: PropTypes.object,
 };
 
 Roam.defaultProps = {
-  modelDetail: {}
+  modelDetail: {},
+  eventEmitter: {}
 };
 
 const mapStateToProps = (state) => ({
   mode: state.button.mode,
   viewer: state.system.viewer3D,
   BIMWINNER: state.system.BIMWINNER,
+  eventEmitter: state.system.eventEmitter,
   modelDetail: state.system.model,
 });
 const mapDispatchToProps = (dispatch) => ({

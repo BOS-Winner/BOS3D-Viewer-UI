@@ -30,6 +30,20 @@ export const EVENT = {
   addContextMenu: 'addContextMenu',
   // 剖切
   handleSectionStatus: "handleSectionStatus",
+  // 漫游
+  handleRoamRecordStatus: "handleRoamRecordStatus",
+  handleStartRecord: "handleStartRecord",
+  handleStopRecord: "handleStopRecord",
+  handlePauseRecord: "handlePauseRecord",
+  handleExportRecord: "handleExportRecord",
+  handleExportRecordString: "hadnleExportRoamRecordString",
+  handleImportRoamRecord: "handleImportRoamRecord",
+  handleImportRoamRecordByData: "handleImportRoamRecordByData",
+  handleRoamRecordPlay: "handleRoamRecordPlay",
+  handleRoamRecordPause: "handleRoamRecordPause",
+  getAllRoamRecordData: "getAllRoamRecordData",
+  deleteRoamRecordById: "deleteRoamRecordById",
+  deleteAllRoamRecord: "deleteAllRoamRecord",
 };
 
 export const DEFAULT_CAMERA = {

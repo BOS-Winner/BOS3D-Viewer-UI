@@ -370,7 +370,7 @@ class PerspectiveManager extends React.Component {
           draggable={len > 1} // 设置视角能否拖动（大于1个视角才可以拖动）
           index={index}
           data={perspective} // 当前所有视角
-          perspectiveItemActive={this.state.perspectiveItemActive}
+          perspectiveItemActive={this.state.perspectiveItemActive.toString()}
           handleCurrentPersp={key => this.handleCurrentPersp(key)}
           id={item.id}
           perspective={item}

@@ -1,4 +1,4 @@
-import THREE from "THREE";
+import * as THREE from 'THREE';
 import _ from "lodash-es";
 
 class RoamPlayer {
@@ -23,17 +23,49 @@ class RoamPlayer {
 
     this.camera = this.viewer.cameraControl.camera;
 
-    this.pausePlayCallback = null;
-    this.stopPlayCallback = null;
+    this.pausePlayCallback = [];
+    this.stopPlayCallback = [];
+    this.keyFrameCallback = [];
 
     this.timeRecorder = {
       last: 0,
       pause: 0,
       deltaTime: 0
     };
-    this.keyFrameCallback = null;
 
     this.setRoam(props.roamData);
+
+    console.log('THREE:', THREE);
+  }
+
+  addKeyFrameCallback(callback) {
+    this.keyFrameCallback.push(callback);
+  }
+
+  addPausePlayCallback(callback) {
+    this.pausePlayCallback.push(callback);
+  }
+
+  addStopPlayCallback(callback) {
+    this.stopPlayCallback.push(callback);
+  }
+
+  triggerKeyFrameCallback(idx) {
+    this.keyFrameCallback.forEach((callback) => {
+      callback(idx);
+    });
+  }
+
+  triggerPausePlayCallback() {
+    this.pausePlayCallback.forEach((callback) => {
+      callback();
+    });
+  }
+
+  triggerStopPlayCallback() {
+    this.stopPlayCallback.forEach((callback) => {
+      callback();
+    });
   }
 
   /**
@@ -77,9 +109,10 @@ class RoamPlayer {
       this.timeRecorder.pause = performance.now();
       console.log(`Roam pause now,key frame index is ${this.keyFrameIdx}`);
       cancelAnimationFrame(this.reqid);
-      if (typeof this.pausePlayCallback === 'function') {
-        this.pausePlayCallback();
-      }
+      // if (typeof this.pausePlayCallback === 'function') {
+      //   this.pausePlayCallback();
+      // }
+      this.triggerPausePlayCallback();
       this.bPause = false;
       this.bContinue = false;
       return;
@@ -144,24 +177,22 @@ class RoamPlayer {
     this.count = -1;
     console.log(`Time cost ${performance.now() - this.timeStart}ms.`);
     cancelAnimationFrame(this.reqid);
-    if (typeof this.stopPlayCallback === 'function') {
-      this.stopPlayCallback();
-    }
+    this.triggerStopPlayCallback();
   }
 
-  triggerKeyFrameCallback(idx) {
-    if (typeof this.keyFrameCallback === 'function') {
-      this.keyFrameCallback(idx);
-    }
-  }
+  // triggerKeyFrameCallback(idx) {
+  //   if (typeof this.keyFrameCallback === 'function') {
+  //     this.keyFrameCallback(idx);
+  //   }
+  // }
 
-  addPausePlayCallback(callback) {
-    this.pausePlayCallback = callback;
-  }
+  // addPausePlayCallback(callback) {
+  //   this.pausePlayCallback = callback;
+  // }
 
-  addStopPlayCallback(callback) {
-    this.stopPlayCallback = callback;
-  }
+  // addStopPlayCallback(callback) {
+  //   this.stopPlayCallback = callback;
+  // }
 }
 
 export default RoamPlayer;

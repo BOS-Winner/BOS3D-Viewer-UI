@@ -24,7 +24,7 @@ function AnnotationEditor(props) {
             cloneSelectInfo.componentPartKey = selectedParts[0].componentPartKey;
           }
           // UseWebGL 模式下需要先渲染一遍再截图
-          props.viewer.viewerImpl.scene.render();
+          props.viewer.viewerImpl.scene.render(true);
         } else {
           cloneSelectInfo = _.cloneDeep(selectedParts);
         }

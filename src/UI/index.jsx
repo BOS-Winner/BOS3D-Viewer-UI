@@ -7,7 +7,9 @@ import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import reducer from "./reducer";
 import Viewer3DUI from './Viewer3DUI';
-import { snapshotLn, markLn, roadnetLn } from "./generateListener";
+import {
+  snapshotLn, markLn, roadnetLn, roamRecord
+} from "./generateListener";
 import AnnotationStore from "./AnnotationUI/AnnotationStore";
 import uaFactory from "./userActionFactory";
 import {
@@ -74,6 +76,7 @@ class BOS3DUI {
     this.annotionStore = AnnotationStore.getSharedInstance();
     this.mark = markLn(ee);
     this.roadnet = roadnetLn(ee);
+    this.roamRecord = roamRecord(ee);
     this.plugin = uaFactory(ee);
     this.changeBestViewVisible = (visible) => {
       store.dispatch(changeBestView(visible));
@@ -86,6 +89,11 @@ class BOS3DUI {
     const noneDisplay = document.createElement("div");
     noneDisplay.setAttribute("style", "display: none;");
     viewport.appendChild(noneDisplay);
+
+    // destory function
+    this.destory = () => {
+      ReactDOM.unmountComponentAtNode(noneDisplay);
+    };
     // 添加全局的提示
     ReactDOM.render(
       ReactDOM.createPortal(

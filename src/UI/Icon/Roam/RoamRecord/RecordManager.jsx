@@ -5,7 +5,9 @@ import Recorder from "./Recorder";
 import RecorderItem from "./RecorderItem";
 import CustomConfirm from '../../../Base/CustomConfirm';
 import generateUUID from "../../../utils/generateUUID";
+import RoamPlayer from "./RoamPlayer";
 import style from "./style.less";
+import { EVENT } from "../../../constant";
 
 class RecordManager extends React.Component {
   constructor(props) {
@@ -16,6 +18,33 @@ class RecordManager extends React.Component {
     this.state = {
       activeKey: ''
     };
+  }
+
+  componentDidMount() {
+    // 获取所有漫游录制的数据
+    this.props.eventEmitter.on(EVENT.getAllRoamRecordData, (callback) => {
+      if (callback && typeof callback === 'function') {
+        callback(this.roamData);
+      } else {
+        console.warn("需要传入回调函数获取漫游录制的数据！");
+      }
+    });
+
+    // 监听删除漫游录制
+    this.props.eventEmitter.on(EVENT.deleteRoamRecordById, (id) => {
+      Object.keys(this.roamData).forEach(roamRecordKey => {
+        if (roamRecordKey === id) {
+          delete this.roamData[id];
+        }
+      });
+      this.forceUpdate();
+    });
+
+    // 监听删除所有的漫游录制数据
+    this.props.eventEmitter.on(EVENT.deleteAllRoamRecord, () => {
+      this.roamData = {};
+      this.forceUpdate();
+    });
   }
 
   addRecord(data, info = {}) {
@@ -38,7 +67,7 @@ class RecordManager extends React.Component {
     tempData.initRoamTimeLen = tempData.roamTime;
     this.roamData[tempData.getId()] = {
       data: tempData,
-      player: new this.props.BIMWINNER.BOS3D.RoamPlayer({
+      player: new RoamPlayer({
         viewer: this.props.viewer.getViewerImpl(),
         roamData: tempData,
       })
@@ -107,6 +136,8 @@ class RecordManager extends React.Component {
             this.addRecord(json.keyFrameList, json.info);
           }}
           disabled={!this.props.active}
+          eventEmitter={this.props.eventEmitter}
+          BIMWINNER={this.props.BIMWINNER}
         />
         {
           Object.values(this.roamData).length ? (
@@ -126,6 +157,7 @@ class RecordManager extends React.Component {
                   forceStop={!this.props.visible}
                   activeKey={this.state.activeKey}
                   handleActiveKey={() => this.handleActive(item.data.getId())}
+                  eventEmitter={this.props.eventEmitter}
                 />
               ))}
             </div>
@@ -141,6 +173,7 @@ RecordManager.propTypes = {
   BIMWINNER: PropTypes.object.isRequired,
   visible: PropTypes.bool.isRequired,
   active: PropTypes.bool.isRequired,
+  eventEmitter: PropTypes.object.isRequired,
 };
 
 export default RecordManager;

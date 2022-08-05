@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from "./style.less";
 import ToolbarItem from "../ToolbarItem/ToolbarItem";
-import { ButtonAction, BUTTON_ICONS } from '../resource'
+import { ButtonAction, BUTTON_ICONS } from '../resource';
 
 class ImageMover extends React.Component {
   static propTypes = {
@@ -20,12 +20,11 @@ class ImageMover extends React.Component {
     this.props.buttonAction(tag);
   }
 
-  isActionDisable (action) {
+  isActionDisable(action) {
     return this.props.disableActions.indexOf(action) !== -1;
   }
 
-  render () {
-
+  render() {
     return (
       <div
         role="presentation"
@@ -55,7 +54,7 @@ class ImageMover extends React.Component {
           />
         </div>
 
-        <div className={style.group} >
+        <div className={style.group}>
           <ToolbarItem
             title="移动"
             tag={ButtonAction.Drag}

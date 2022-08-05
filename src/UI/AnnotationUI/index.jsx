@@ -154,6 +154,7 @@ class Annotation extends React.Component {
         this.editor.setCurrentMode(AnnotationEditor.EditMode.Drag);
         break;
       case ButtonAction.ZoomIn:
+        this.editor._removeAllSelector();
         this.editor.zoomIn();
         if (!this.editor.canZoomIn()) {
           this.disableAction(ButtonAction.ZoomIn);
@@ -162,6 +163,7 @@ class Annotation extends React.Component {
         this.enableAction(ButtonAction.Drag);
         break;
       case ButtonAction.ZoomOut:
+        this.editor._removeAllSelector();
         this.editor.zoomOut();
         if (!this.editor.canZoomOut()) {
           this.disableAction(ButtonAction.ZoomOut);

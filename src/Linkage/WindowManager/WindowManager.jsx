@@ -113,6 +113,9 @@ function WindowManager(props) {
       setMode(CONSTANTS.LINKAGE_MODE.ONLY3D);
     });
     myContext.emitter.on(EVENTS.ON_SWITCH_MAIN3D, () => {
+      setTimeout(() => {
+        myContext.viewer2D.enablePick = true;
+      }, 20);
       if (
         myContext.viewer3D.getViewerImpl()
           .modelManager.models[myContext.modelKey].configLoader.config.hasDrawing
@@ -181,7 +184,7 @@ function WindowManager(props) {
             resultKeys = resultKeys.concat(rr);
           }
         }
-        if (resultKeys.length) {
+        if (resultKeys.length || myContext.BOS2D.GlobalData.UseWebGL && myContext.viewer2D.viewPortPackage.hasRelationship) {
           myContext.viewer3D.highlightComponentsByKey(resultKeys);
           myContext.viewer3D.adaptiveSizeByKey(resultKeys);
         } else {
@@ -204,7 +207,7 @@ function WindowManager(props) {
             resultKeys = resultKeys.concat(rr);
           }
         }
-        if (resultKeys.length) {
+        if (resultKeys.length && myContext.BOS2D.GlobalData.UseWebGL && myContext.viewer2D.viewPortPackage.hasRelationship) {
           myContext.viewer2D.highlightComponentPartsByKeys(resultKeys);
           myContext.viewer2D.focusOnComponentPartsByKeys(resultKeys);
         } else {

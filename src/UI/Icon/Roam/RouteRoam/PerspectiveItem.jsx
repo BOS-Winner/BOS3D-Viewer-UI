@@ -158,7 +158,7 @@ class PerspectiveItem extends React.Component {
     } = this.props;
 
     // 判断当前视角和下一个视角是否存在帧编辑数据
-    const exist = perspList.existEditFrameData(index);
+    const exist = perspList.existEditFrameData(index, order);
 
     if (exist) {
       CustomConfirm({

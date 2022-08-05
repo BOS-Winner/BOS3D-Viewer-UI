@@ -89,7 +89,7 @@ const columns = [
 ];
 export default function GeneralSearch(props) {
   const {
-    viewer3D, offline, handleModalHeight, ee, tabKeys
+    viewer3D, offline, handleModalHeight, ee, tabKeys, BOS3D
   } = props;
   const [cptName, setCptName] = useState('');
   const [cptType, setCptType] = useState('');
@@ -264,6 +264,15 @@ export default function GeneralSearch(props) {
         target: `#${viewer3D.viewport}`
       });
     }
+
+    if (selectedRowItems.length > 0
+      && selectedRowItems.every(item => item.type in BOS3D.BOS3D.DefaultInvisibleComponentType)) {
+      toastr.info("该构件未显示，无法进行定位！", "", {
+        target: `#${viewer3D.viewport}`
+      });
+      return;
+    }
+
     if (selectedRowKeys.length > 0) {
       viewer3D.highlightComponentsByKey(selectedRowKeys);
       viewer3D.adaptiveSizeByKey(selectedRowKeys);
@@ -862,6 +871,7 @@ GeneralSearch.defaultProps = {
 
 GeneralSearch.propTypes = {
   viewer3D: PropTypes.object.isRequired,
+  BOS3D: PropTypes.object.isRequired,
   ee: PropTypes.object.isRequired,
   offline: PropTypes.bool,
   handleModalHeight: PropTypes.func.isRequired,

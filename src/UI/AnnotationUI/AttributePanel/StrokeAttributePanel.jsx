@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./style.less";
 import ColorPickButton from "./ColorPickButton";
-import { DEF_COLOR } from '../resource'
+import { DEF_COLOR } from '../resource';
 
 class StrokeAttributePanel extends React.Component {
   constructor(props) {
@@ -25,17 +25,17 @@ class StrokeAttributePanel extends React.Component {
 
   render() {
     const { seletedBtnCanFill, isMobile } = this.props;
-    let borderColorTitle = seletedBtnCanFill ? '边框色' : '颜色';
-    let borderWidthTitle = seletedBtnCanFill ? '边框宽度' : '宽度';
+    const borderColorTitle = seletedBtnCanFill ? '边框色' : '颜色';
+    const borderWidthTitle = seletedBtnCanFill ? '边框宽度' : '宽度';
 
     return (
-      <React.Fragment >
-        <div className={style.attribute} >
+      <>
+        <div className={style.attribute}>
           <span className={style["attribute-name"]}>{borderColorTitle}</span>
           <div className={style["attribute-value"]}>
             <ColorPickButton setColor={this.props.setStrokeColor} color={this.props.strokeColor} restoreColor={DEF_COLOR} isMobile={isMobile} />
           </div>
-        </div >
+        </div>
         <div className={style.attribute}>
           <span className={style["attribute-name"]}>{borderWidthTitle}</span>
           <div className={style["attribute-value"]}>
@@ -45,7 +45,7 @@ class StrokeAttributePanel extends React.Component {
             </div>
           </div>
         </div>
-      </React.Fragment >
+      </>
     );
   }
 }

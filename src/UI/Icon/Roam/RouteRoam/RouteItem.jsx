@@ -45,6 +45,23 @@ class RouteItem extends React.Component {
         time: nextState.perspIndex * nextProps.recTimeLen / (nextProps.routeLen - 1)
       });
     }
+    if (!this.props.roamPlayer.keyFrameCallback.length) {
+      this.props.roamPlayer.addKeyFrameCallback(index => {
+        this.setState({
+          perspIndex: index,
+          time: index * this.props.recTimeLen / (this.props.routeLen - 1)
+        });
+      });
+    }
+    if (!this.props.roamPlayer.stopPlayCallback.length) {
+      this.props.roamPlayer.addStopPlayCallback(() => {
+        this.props.onPlay('stop');
+        this.setState({
+          time: 0,
+          perspIndex: 0,
+        });
+      });
+    }
     return true;
   }
 

@@ -35,15 +35,16 @@ const LOCK_GROUP_NAME = '嘛嘛说所有的都不需要锁定了呢^_^'; // 不�
 const TREE_ITEM_HEIGHT = 40; // 改变树节点高度样式时要记得改变这个值，单位px
 
 function handleDirectotyTreeData(_tree) {
-  const tree = _tree[0];
-  const treeRootKey = Object.keys(tree)[0];
-  const treeData = tree[treeRootKey];
-  const resultTree = {
-    name: treeRootKey,
-    key: null,
-    child: treeData[treeRootKey]
-  };
-  return resultTree;
+  const tree = _tree.map(item => {
+    const treeRootKey = Object.keys(item)[0];
+    const treeData = item[treeRootKey];
+    return {
+      name: treeRootKey,
+      key: null,
+      child: treeData[treeRootKey]
+    };
+  });
+  return tree;
 }
 
 class Tree extends React.Component {
@@ -53,6 +54,7 @@ class Tree extends React.Component {
     this.maxLayer = 0;
     this.throttleScroll = _.throttle(e => { this.onScroll(e) }, 16);
     this.treeRef = React.createRef();
+    console.log(props.data);
     this.renderData = props.type === "目录树" ? this.transDataToRenderByDirectoryTree(handleDirectotyTreeData(_.cloneDeep(props.data)))[0]
       : this.transDataToRender(_.cloneDeep(props.data))[0];
     // 必须保证data的根是模型的名称，否则没有意义

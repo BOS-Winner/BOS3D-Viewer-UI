@@ -44,9 +44,10 @@ class MyContext {
   }
 
   loadComponentRelationship(callback) {
-    const currentDraw = this.viewer2D.getViewerImpl()
-      .drawManager
-      .getCurrentDraw();
+    // const currentDraw = this.viewer2D.getViewerImpl()
+    //   .drawManager
+    //   .getCurrentDraw();
+    const currentDraw = this.viewer2D.getCurrentDraw();
     if (this.relationship[currentDraw.drawKey]) {
       if (callback) {
         callback(this.relationship[currentDraw.drawKey]);
@@ -56,7 +57,7 @@ class MyContext {
 
     const url = `${this.host}/api/${currentDraw.dbName}/relations?drawingKey=${currentDraw.drawKey}&modelKey=${this.modelKey}${this.share ? `&share={this.share}` : ''}`;
     axios({
-      headers:{
+      headers: {
         Authorization: this.token
       }
     })
@@ -79,9 +80,10 @@ class MyContext {
 
   query3DComponentBy2DComponent(key) {
     const spl = key.split("/");
-    const currentDraw = this.viewer2D.getViewerImpl()
-      .drawManager
-      .getCurrentDraw();
+    // const currentDraw = this.viewer2D.getViewerImpl()
+    //   .drawManager
+    //   .getCurrentDraw();
+    const currentDraw = this.viewer2D.getCurrentDraw();
     const reKey = `${spl[1]}_${spl[3]}`;
     if (currentDraw) {
       if (this.relationship[currentDraw.drawKey]) {
@@ -102,11 +104,18 @@ class MyContext {
     return undefined;
   }
 
-  query2DComponentBy3DComponent(key) {
+    query2DComponentBy3DComponent (key) {
+        const currentDraw = this.viewer2D.getCurrentDraw();
+
     const spl = key.split("_");
-    const currentDraw = this.viewer2D.getViewerImpl()
-      .drawManager
-      .getCurrentDraw();
+
+        //如果没有自定义关联
+    if (this.BOS2D.GlobalData.UseWebGL && !this.viewer2D.viewPortPackage.hasRelationship) {
+        // const currentLayout = this.viewer2D.viewPortPackage.highlightComponentsByKeys(key);
+        return [key];
+      }
+  
+    
     if (currentDraw) {
       if (this.relationship[currentDraw.drawKey]) {
         const relation = this.relationship[currentDraw.drawKey]["3Dto2D"];
