@@ -7,6 +7,18 @@ export function changeMode(mode) {
   };
 }
 
+/**
+ * 修改鼠标图标
+ * @param mouseIcon
+ * @return {{mouseIcon: *, type: string}}
+ */
+export function changeMouseIcon(mouseIcon) {
+  return {
+    type: actionType.CHANGE_MOUSE_ICON,
+    mouseIcon,
+  };
+}
+
 export function showSetting(show) {
   return {
     type: actionType.SHOW_SETTING,
@@ -58,5 +70,26 @@ export function showAnnotationEditor(show, data) {
     type: actionType.SHOW_ANNOTATION_EDITOR,
     show,
     data,
+  };
+}
+
+export function updateDrawlist(data) {
+  return {
+    type: actionType.UPDATE_LAYER_LIST,
+    data,
+  };
+}
+
+export function updateDrawKey(key) {
+  return {
+    type: actionType.UPDATA_DRAW_KEY,
+    key,
+  };
+}
+
+export function updateViewKey(key) {
+  return {
+    type: actionType.UPDATE_VIEW_KEY,
+    key,
   };
 }

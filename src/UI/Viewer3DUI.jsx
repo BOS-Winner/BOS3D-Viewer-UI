@@ -347,6 +347,7 @@ class Viewer3DUI extends React.Component {
           <Provider store={this.props.store}>
             {!isMobile && <ViewControlToolbar />}
             <Bottom
+              showAnnotationUI={this.state.showAnnotationUI}
               openAnnotationUI={this.openAnnotationUI}
               modelLoad={this.state.modelLoad}
             />

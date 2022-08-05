@@ -32,12 +32,15 @@ function ModalContent(props) {
 
   const listJSX = [];
   let allHide = true;
+
   props.layerList.forEach((layer, index) => {
     let title = "点击显示图层";
     if (layer.isVisible) {
       title = "点击隐藏图层";
       allHide = false;
     }
+    const tagColor = layer.Color || layer.layerColor;
+    console.log('图层颜色：', layer, "图层颜色：", tagColor);
     listJSX.push(
       <div
         key={
@@ -58,12 +61,12 @@ function ModalContent(props) {
           className={style.icon}
           style={{ color: layer.isVisible ? "#fff" : "#999" }}
         />
-        {/* <div className={style.rect} style={{ background: layer.clayerColor || "#ccc" }} /> */}
+        <div className={style.rect} style={{ background: tagColor ? `rgb(${tagColor.split(',')[0]} ${tagColor.split(',')[1]} ${tagColor.split(',')[2]})` : "#ccc" }} />
         <span>{layer.name}</span>
       </div>
     );
   });
-
+  console.log(props);
   return (
     <div className={style.viewer2DLayer}>
       <div className={style.layerContainer}>

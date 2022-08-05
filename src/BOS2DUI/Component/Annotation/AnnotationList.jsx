@@ -8,8 +8,9 @@ import AnnotationStore from "AnnotationUI/AnnotationStore";
 import style from "AnnotationUI/AnnotationList/AnnotationList.less";
 import { AnnotationEditor } from "Libs/annotation/AnnotationEditor";
 import Empty from "../../../UI/Base/Empty";
-import { showAnnotationEditor, showAnnotationList } from "../../redux/bottomRedux/action";
+import { showAnnotationEditor, showAnnotationList, changeMode } from "../../redux/bottomRedux/action";
 import { AntdIcon, mobileCheck } from '../../../UI/utils/utils';
+// import * as MODE from "../../redux/bottomRedux/mode";
 
 class AnnotationList extends React.Component {
   constructor(props) {
@@ -42,16 +43,28 @@ class AnnotationList extends React.Component {
     }
   }
 
+  // componentDidUpdate() {
+  //   this.props.changeMode(MODE.annotation);
+  // }
+
   updateAnnotationBgImage(annotation, checked) {
     const viewer = this.props.viewer;
     const canvas = viewer.getViewerImpl().canvas;
+    const selectedParts = this.props.viewer.getSelectedComponentPartKeys();
+    let cloneSelectInfo = {};
+    const { GlobalData: { UseWebGL } } = this.props.BOS2D;
+    if (selectedParts[0] && UseWebGL) {
+      cloneSelectInfo.componentPartKey = selectedParts[0].componentPartKey;
+    } else {
+      cloneSelectInfo = _.cloneDeep(selectedParts);
+    }
     const snapshot = {
       code: new Date().getTime().toString(),
       name: '批注',
       description: '',
       drawState: {
         camera: _.cloneDeep(viewer.getCameraStatus()),
-        selected: _.cloneDeep(viewer.getSelectedComponentPartKeys()),
+        selected: cloneSelectInfo,
       }
     };
     if (snapshot) {
@@ -142,15 +155,21 @@ AnnotationList.propTypes = {
   editAnnotation: PropTypes.func.isRequired,
   viewer: PropTypes.object.isRequired,
   visible: PropTypes.bool.isRequired,
+  changeMode: PropTypes.func.isRequired,
+  BOS2D: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   viewer: state.system.viewer2D,
+  BOS2D: state.system.BOS2D,
   visible: state.bottom.showAnnotationList,
 });
 const mapDispatchToProps = (dispatch) => ({
   editAnnotation: data => dispatch(showAnnotationEditor(true, data)),
   close: () => dispatch(showAnnotationList(false)),
+  changeMode: mode => {
+    dispatch(changeMode(mode));
+  },
 });
 
 export default connect(

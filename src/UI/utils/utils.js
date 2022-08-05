@@ -90,7 +90,13 @@ export const AntdIcon = createFromIconfontCN({
 // 获取modelKey
 export function getModelKey(viewer) {
   const { models } = viewer ? viewer.viewerImpl.modelManager : null;
-  const modelKeys = Object.keys(models);
+  const modelKeys = [];
+  // 需要获取加载好的modelKey
+  Object.values(models).forEach(item => {
+    if (item?.loaded) {
+      modelKeys.push(item.modelKey);
+    }
+  });
   return modelKeys.length ? modelKeys : null;
 }
 

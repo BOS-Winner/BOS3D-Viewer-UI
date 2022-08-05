@@ -45,7 +45,9 @@ function MiniWindow(props, ref) {
 
   // PC端工具条
   const PCTool = (
-    <Toolbar className={style.toolbar}>
+    <Toolbar
+      className={style.toolbar}
+    >
       {props.icon === '2D' && (
         <div title="框选">
           <Icon

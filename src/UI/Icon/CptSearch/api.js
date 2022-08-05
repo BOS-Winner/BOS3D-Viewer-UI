@@ -34,7 +34,10 @@ export function getComponentsList(
   keywords,
   attributes
 ) {
-  const model = viewer3D.getViewerImpl().getModel(modelKey);
+  let model = null;
+  if (Array.isArray(modelKey) && modelKey.length) {
+    model = viewer3D.getViewerImpl().getModel(modelKey[0]);
+  }
   const url = _.get(model, 'loader.url.serverUrl') || viewer3D.host;
   const projectKey = model.projectKey;
   const auth = model.accessToken;

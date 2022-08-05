@@ -18,7 +18,7 @@
 
 .draw {
   position: absolute;
-  bottom: 10px;
+  bottom: 60px;
   left: 10px;
   // opacity: 0.8;
 
@@ -95,26 +95,26 @@
       background: #2E2F30;
       box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.4);
       border: 1px solid #575758;
+      z-index: 99999;
       .draw-item {
         flex-shrink: 0;
         display: flex;
         align-items: center;
         padding: 5px 0;
-        // height: 83px;
+        height: 83px;
         background: #555;
         display: flex;
         align-items: center;
-        width: 90%;
-        height: 25px;
-        border-radius: 5px;
-        // padding: 0 0 0 5px;
+        width: 115px;
+        border-radius: 4px;
         border: 1px solid transparent;
         margin: 5px 0;
         position: relative;
-        // &:hover {
-        //   background-color: gray;
-        //   border: 1px solid hsla(218, 100%, 58%, 1);
-        // }
+        justify-content: center;
+        &:hover {
+          background-color: gray;
+          border: 1px solid hsla(218, 100%, 58%, 1);
+        }
         &.draw-loading:before {
           content: "\00a0\00a0\00a0";
           width: 12px;
@@ -123,6 +123,8 @@
           background-size: 12px;
           background-repeat: no-repeat;
           margin-right: 5px;
+          position: absolute;
+          bottom: 4px
         }
       }
     }
@@ -133,15 +135,15 @@
     flex-shrink: 0;
     cursor: pointer;
     width: calc(100% + 2px);
-    height: 32px;
-    line-height: 32px;
-    font-size: 16px;
+    // height: 32px;
+    // line-height: 32px;
+    font-size: 14px;
     display: inline-block;
     position: absolute;
     bottom: -1px;
     left: -1px;
-    text-indent: 8px;
-    // background: hsla(0, 0%, 11%, 0.6);
-    // border-radius: 0 0 5px 5px;
+    text-indent: 16px;
+    background: hsla(0, 0%, 11%, 0.6);
+    border-radius: 0 0 4px 4px;
   }
 }

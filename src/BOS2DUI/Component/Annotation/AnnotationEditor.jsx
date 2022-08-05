@@ -12,25 +12,33 @@ function AnnotationEditor(props) {
       if (props.editorData) {
         _d.editorData = props.editorData;
       } else {
-        const drawCanvas = props.viewer.getViewerImpl().canvas;
-        const canvas = document.createElement('canvas');
-        canvas.width = drawCanvas.width;
-        canvas.height = drawCanvas.height;
-        const ctx = canvas.getContext("2d");
-        props.viewer.getViewerImpl().getViewerDiv().querySelectorAll('canvas').forEach(c => {
-          ctx.drawImage(c, 0, 0, canvas.width, canvas.height);
+        const { GlobalData: { UseWebGL } } = props.BOS2D;
+        let screenShotCanvas = document.createElement("canvas");
+        const selectedParts = props.viewer.getSelectedComponentPartKeys();
+        let cloneSelectInfo = {};
+        props.viewer.screenShot((_canvas) => {
+          screenShotCanvas = _canvas;
         });
+        if (UseWebGL) {
+          if (selectedParts[0]) {
+            cloneSelectInfo.componentPartKey = selectedParts[0].componentPartKey;
+          }
+          // UseWebGL 模式下需要先渲染一遍再截图
+          props.viewer.viewerImpl.scene.render();
+        } else {
+          cloneSelectInfo = _.cloneDeep(selectedParts);
+        }
         _d.snapshot = {
           code: new Date().getTime()
             .toString(),
           name: '批注',
           description: '',
-          imageURL: canvas.toDataURL(),
-          imageWidth: canvas.width,
-          imageHeight: canvas.height,
+          imageURL: screenShotCanvas.toDataURL(),
+          imageWidth: screenShotCanvas.width,
+          imageHeight: screenShotCanvas.height,
           drawState: {
             camera: _.cloneDeep(props.viewer.getCameraStatus()),
-            selectedParts: _.cloneDeep(props.viewer.getSelectedComponentPartKeys()),
+            selectedParts: cloneSelectInfo,
           }
         };
       }
@@ -38,7 +46,6 @@ function AnnotationEditor(props) {
     return _d;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.show]);
-
   return (
     props.show ? (
       <Annotation
@@ -56,6 +63,7 @@ AnnotationEditor.propTypes = {
   editorData: PropTypes.object,
   viewer: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
+  BOS2D: PropTypes.object.isRequired
 };
 
 AnnotationEditor.defaultProps = {
@@ -66,6 +74,7 @@ const mapStateToProps = (state) => ({
   show: state.bottom.annotationEditor.show,
   editorData: state.bottom.annotationEditor.data,
   viewer: state.system.viewer2D,
+  BOS2D: state.system.BOS2D,
 });
 const mapDispatchToProps = (dispatch) => ({
   onClose: () => dispatch(showAnnotationEditor(false)),

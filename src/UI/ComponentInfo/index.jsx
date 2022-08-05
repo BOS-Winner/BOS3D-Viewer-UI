@@ -166,8 +166,8 @@ class ComponentInfo extends React.Component {
 
         // 处理族类型字段
         const tempData = _.cloneDeep(_d);
-        delete tempData.familyName;
-        delete tempData.familySymbol;
+        delete tempData?.familyName;
+        delete tempData?.familySymbol;
 
         this.setState({
           data: _.assign(basicInfo, tempData),

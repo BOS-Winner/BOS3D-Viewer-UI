@@ -79,6 +79,7 @@ class ComponentInfo extends React.Component {
   }
 
   fetchData(key) {
+    const { viewer } = this.props;
     // 避免重复访问
     if (this._currentComponentKey === key && this.state.data) {
       return;
@@ -88,16 +89,29 @@ class ComponentInfo extends React.Component {
     this.setState({
       tip: TIPS.pending,
     });
-    const viewer2D = this.props.viewer;
-    const draw = viewer2D.getViewerImpl().drawManager.getCurrentDraw();
-    const modelKey = draw.modelKey;
-    const drawPackage = viewer2D.getViewerImpl().drawManager.drawPackages[modelKey];
-    const serverUrl = drawPackage.serverUrl;
-    const dbName = drawPackage.dbName;
-    const share = drawPackage.shareToken;
-    const accessToken = drawPackage.accessToken;
+
+    let splitKey; let serverUrl; let dbName; let share; let
+      accessToken;
+
+    if (this.props.BOS2D.GlobalData.UseWebGL) {
+      splitKey = key.componentPartKey.split('/');
+      serverUrl = key.serverUrl;
+      dbName = key.projectKey;
+      share = key.share;
+      accessToken = key.token;
+    } else {
+      splitKey = key.split('/');
+      const draw = viewer.getViewerImpl().drawManager.getCurrentDraw();
+      const modelKey = draw.modelKey;
+      const drawPackage = viewer.getViewerImpl().drawManager.drawPackages[modelKey];
+      serverUrl = drawPackage.serverUrl;
+      dbName = drawPackage.dbName;
+      share = drawPackage.shareToken;
+      accessToken = drawPackage.accessToken;
+    }
+
     const url = `${serverUrl}/api/${dbName}`;
-    const splitKey = key.split('/');
+
     getCptInfo(url, `${splitKey[2]}_${splitKey[1]}_${splitKey[3]}`, accessToken, share)
       .then(rsp => {
         const data = _.get(rsp, 'data.data.Property', undefined);
@@ -109,7 +123,7 @@ class ComponentInfo extends React.Component {
           this._currentComponentKey = key;
         } else {
           toastr.error("请求失败", '', {
-            target: `#${viewer2D.viewport}`
+            target: `#${viewer.viewport}`
           });
           this.setState({
             tip: TIPS.error,

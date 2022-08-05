@@ -141,6 +141,7 @@ class Annotation extends React.Component {
         this.editor.setCurrentMode(AnnotationEditor.EditMode.DrawText);
         break;
       case ButtonAction.Undo:
+        this.editor._removeAllSelector();
         this.editor.undo();
         break;
       case ButtonAction.Redo:
@@ -434,13 +435,15 @@ Annotation.propTypes = {
   onClose: PropTypes.func,
   onSave: PropTypes.func,
   viewer: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool,
 };
 
 Annotation.defaultProps = {
   snapshot: undefined,
   editorData: undefined,
   onClose: () => { },
-  onSave: () => { }
+  onSave: () => { },
+  isMobile: false,
 };
 
 const mapStateToProps = (state) => ({

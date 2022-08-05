@@ -33,13 +33,15 @@
   .layer-item {
     display: flex;
     align-items: center;
+    // justify-content: flex-start;
     height: @fontSize;
     cursor: pointer;
     font-size: @fontSize;
-    width: 100%;
+    // width: 100%;
     box-sizing: border-box;
     margin: 0 0 16px 0;
     .icon {
+      flex: 1;
       @size: 16px;
       svg {
         width: @size;
@@ -47,6 +49,7 @@
       }
     }
     .rect {
+      // flex: 1;
       @size: 16px;
       width: @size;
       height: @size;
@@ -54,6 +57,14 @@
     }
     > span {
       color: #ddd;
+      flex: 10;
+      // display: inline-block;
+      // width: 100%;
+      overflow: hidden;
+      /*文本不会换行*/
+      white-space: nowrap;
+      /*当文本溢出包含元素时，以省略号表示超出的文本*/
+      text-overflow: ellipsis;
     }
   }
 

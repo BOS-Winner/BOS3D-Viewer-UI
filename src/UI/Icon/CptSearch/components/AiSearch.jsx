@@ -391,6 +391,7 @@ export default function AiSearch(props) {
         handleModalHeight(180);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleModalHeight, tableData, tabKeys]);
 
   // // 加载 and 卸载
@@ -398,8 +399,8 @@ export default function AiSearch(props) {
     // 重置选中构件
     onSelectComponent([], []);
   },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  []);
 
   return (
     <div className={`${style.container}  boss3d-theme-one-form-form-antd`}>

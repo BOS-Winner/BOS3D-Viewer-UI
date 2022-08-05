@@ -178,11 +178,29 @@ class ContextMenu extends React.Component {
     }
   };
 
+  checkPosition() {
+    let _left = 0;
+    let _top = 0;
+    const { position: { x, y } } = this.props;
+    const { width, height } = this.props.viewer.viewportDiv.getBoundingClientRect();
+    const elWidth = 130;
+    const elHeight = this.props.viewer.getHighlightComponentsKey().length > 0 ? 160 : 50;
+    _left = x + 2;
+    _top = y + 2;
+    if (y + elHeight > height) {
+      _top = y - elHeight;
+    }
+    if (x + elWidth > width) {
+      _left = x - elWidth;
+    }
+    return { left: _left, top: _top };
+  }
+
   render() {
     const {
       highLightCpt, modelHighLightCpt, topFamliyKey, visible
     } = this.state;
-    const { customMenu, modelDetail } = this.props;
+    const { customMenu } = this.props;
     const { default: userDefault, more: userMore } = this.props.userMenu;
     const highLightCptKey = highLightCpt.map(item => item.key);
     const modelHighLightCptKey = modelHighLightCpt.map(item => item.key);
@@ -294,7 +312,7 @@ class ContextMenu extends React.Component {
       });
       return content;
     };
-
+    const { left, top } = this.checkPosition();
     return (
       <div
         role="presentation"
@@ -302,8 +320,8 @@ class ContextMenu extends React.Component {
         ref={this.rootRef}
         className={style.container}
         style={{
-          left: this.props.position.x + 2,
-          top: this.props.position.y + 2,
+          left,
+          top,
           width: '115px'
         }}
       >

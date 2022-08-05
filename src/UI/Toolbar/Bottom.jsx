@@ -41,7 +41,8 @@ class Bottom extends React.Component {
     linkage: PropTypes.object,
     isMobile: PropTypes.bool,
     modelLoad: PropTypes.bool.isRequired,
-    modelDetail: PropTypes.object,
+    showAnnotationUI: PropTypes.bool.isRequired,
+    // modelDetail: PropTypes.object,
     // HorizontalorVerticalScreen: PropTypes.number
   };
 
@@ -49,7 +50,7 @@ class Bottom extends React.Component {
     openAnnotationUI: () => { },
     linkage: {},
     isMobile: false,
-    modelDetail: {}
+    // modelDetail: {}
     // HorizontalorVerticalScreen: 0
   };
 
@@ -120,7 +121,7 @@ class Bottom extends React.Component {
   }
 
   render() {
-    const { isMobile, funcOption, modelDetail } = this.props;
+    const { isMobile, funcOption } = this.props;
     if (isMobile) {
       return this.renderMobileToolbar();
     }
@@ -221,7 +222,7 @@ class Bottom extends React.Component {
       <div
         className={`${style.bottom} bos3dui-bottom`}
         style={{
-          display: mode === 'main2D' ? 'none' : '',
+          display: mode === 'main2D' ? 'none' : this.props.showAnnotationUI ? "none" : "",
           flexWrap: isWideScreen ? 'nowrap' : 'wrap',
         }}
       >
@@ -257,7 +258,7 @@ class Bottom extends React.Component {
 
   renderMobileToolbar() {
     const { mobileToolbarIsExpand } = this.state;
-    const { funcOption, modelDetail } = this.props;
+    const { funcOption } = this.props;
     const isPicker = false; // 是否是新数据，是就隐藏
     return (
       <div id="mobileToolbar" className={`${style.mobileToolbarWrap} ${mobileToolbarIsExpand ? style.mobileToolbarOpen : ''} `}>

@@ -1,6 +1,6 @@
 {
   "name": "bos3d-viewer-ui",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "src/index.jsx",
   "homepage": "http://bos.boswinner.com",
   "repository": {

@@ -6,7 +6,7 @@ import SettingAlert from "../../../UI/Icon/Measure/SettingAlert";
 import MobileHelper from "../../../UI/Icon/Measure/MobileHelper";
 // import AdjustAlert from "../../../UI/Icon/Measure/AdjustAlert";
 import MeasureToolbar from "./MeasureToolbar";
-import { changeMode } from "../../redux/bottomRedux/action";
+import { changeMode, changeMouseIcon } from "../../redux/bottomRedux/action";
 import * as MODE from "../../redux/bottomRedux/mode";
 import "./index.less";
 
@@ -70,14 +70,18 @@ class Measure extends React.Component {
     if (index === 0) {
       // 距离
       this.measure.setCurrentMode("Distance");
+      this.props.changeMouseIcon("测量距离模式");
     } else if (index === 1) {
       // 角度
       this.measure.setCurrentMode("Angle");
+      this.props.changeMouseIcon("测量角度模式");
     } else if (index === 2) {
       // 面积
       this.measure.setCurrentMode("Area");
+      this.props.changeMouseIcon("测量面积模式");
     } else if (index === 5) {
       // 设置校准
+      this.props.changeMouseIcon("测量距离模式");
       this.measure.setCurrentMode("Adjust");
     } else if (index === 6) {
       // 设置测量
@@ -101,6 +105,10 @@ class Measure extends React.Component {
       console.log("最小距离");
       // 测量最小距离
       this.measure.setCurrentMode("MinDistance");
+    } else {
+      // 点击取消选择
+      this.measure.setCurrentMode("");
+      this.props.changeMouseIcon("");
     }
   }
 
@@ -193,7 +201,7 @@ class Measure extends React.Component {
 }
 
 Measure.propTypes = {
-  // changeMouseIcon: PropTypes.func.isRequired,
+  changeMouseIcon: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
   viewer: PropTypes.object.isRequired,
   BOS2D: PropTypes.object.isRequired,
@@ -213,9 +221,9 @@ const mapDispatchToProps = (dispatch) => ({
   changeMode: mode => {
     dispatch(changeMode(mode));
   },
-  // changeMouseIcon: mode => {
-  //   dispatch(changeMouseIcon(mode));
-  // },
+  changeMouseIcon: mode => {
+    dispatch(changeMouseIcon(mode));
+  },
 });
 const WrappedContainer = connect(
   mapStateToProps,

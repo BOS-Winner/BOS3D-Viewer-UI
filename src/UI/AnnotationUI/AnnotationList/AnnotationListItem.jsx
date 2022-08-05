@@ -143,7 +143,9 @@ class AnnotationListItem extends React.Component {
   }
 
   downloadImage() {
-    saveSvgAsPng(this.svg, `${this.props.itemData.name || DEFAULT_NAME}.png`);
+    saveSvgAsPng(this.svg, `${this.props.itemData.name || DEFAULT_NAME}.png`, {
+      fonts: []
+    });
   }
 
   onPreview() {

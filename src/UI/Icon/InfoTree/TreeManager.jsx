@@ -58,6 +58,7 @@ class TreeManager extends React.Component {
       spaceTreeStatus: [],
       modelTreeStatus: [],
       professionalTreeStatus: [],
+      directoryTreeStatus: [],
       // 半透明模式， 默认关闭
       translucentMode: false,
       // 获取模型树当前状态
@@ -69,10 +70,20 @@ class TreeManager extends React.Component {
     const _info = [];
     const { apiVersion, isOffline } = this.props;
     _.values(this.props.viewer.viewerImpl.modelManager.models).forEach(model => {
-      _info.push({
-        key: model.modelConfig.key,
-        name: model.modelConfig.modelName,
-      });
+      const modelConfig = model.getConfig();
+      if (
+        modelConfig
+      ) {
+        _info.push({
+          key: modelConfig.key,
+          name: modelConfig.modelName,
+          type: modelConfig.type,
+        });
+        // Show directory tree if RVM model is available
+        if (modelConfig.type === "RVM" && !DEFAULT_TYPES.includes("目录树")) {
+          DEFAULT_TYPES.push("目录树");
+        }
+      }
     });
     const modelInfo = {};
     const { tips } = this.state;
@@ -270,6 +281,14 @@ class TreeManager extends React.Component {
         case '专业树':
           if (this.state.professionalTreeStatus.length > 0) {
             viewer.highlightComponentsByKey(this.state.professionalTreeStatus);
+            viewer.adaptiveSize();
+          } else {
+            viewer.clearHighlightList();
+          }
+          break;
+        case '目录树':
+          if (this.state.directoryTreeStatus.length > 0) {
+            viewer.highlightComponentsByKey(this.state.directoryTreeStatus);
             viewer.adaptiveSize();
           } else {
             viewer.clearHighlightList();

@@ -6,11 +6,15 @@ export default function (state = {
   showCptInfo: false,
   showLayerSwitcher: false,
   showAnnotationList: false,
+  mouseIcon: '', // 鼠标图标，一个模式下有不同小模式用这个调（直接传入模式名）
   annotationEditor: {
     show: false,
     data: undefined,
   },
   layerList: [],
+  drawList: [],
+  drawKey: '',
+  viewKey: '',
 }, action) {
   switch (action.type) {
     case actionType.CHANGE_MODE:
@@ -18,6 +22,12 @@ export default function (state = {
         ...state,
         mode: action.mode,
       };
+    case actionType.CHANGE_MOUSE_ICON: {
+      return {
+        ...state,
+        mouseIcon: action.mouseIcon,
+      };
+    }
     case actionType.SHOW_SETTING:
       return {
         ...state,
@@ -50,6 +60,21 @@ export default function (state = {
           show: action.show,
           data: action.data,
         }
+      };
+    case actionType.UPDATE_DRAW_LIST:
+      return {
+        ...state,
+        drawList: action.data
+      };
+    case actionType.UPDATA_DRAW_KEY:
+      return {
+        ...state,
+        drawKey: action.key,
+      };
+    case actionType.UPDATE_VIEW_KEY:
+      return {
+        ...state,
+        viewKey: action.key,
       };
     default:
       return state;

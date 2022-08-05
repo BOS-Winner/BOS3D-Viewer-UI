@@ -60,6 +60,7 @@ class Reset extends React.Component {
       colorfully: colorful,
       view: perspective
     });
+    this.props.clearUndoList();
   }
 
   render() {

@@ -25,6 +25,7 @@ const DEFAULT_TYPES = [
   "专业树",
 ];
 
+const ROOTNODEID = 0; // root node
 const STEP = 20; // 每次刷新的条数
 const DEFAULT_CHECKED = true;
 const DEFAULT_COLLAPSE = -1; // 1展开，-1收起，0代表没有这个状态
@@ -33,6 +34,18 @@ const DELIMITER = '#'; // 路径分隔符
 const LOCK_GROUP_NAME = '嘛嘛说所有的都不需要锁定了呢^_^'; // 不能操作的构件组，需要锁定并不参与勾选、半选等逻辑运算
 const TREE_ITEM_HEIGHT = 40; // 改变树节点高度样式时要记得改变这个值，单位px
 
+function handleDirectotyTreeData(_tree) {
+  const tree = _tree[0];
+  const treeRootKey = Object.keys(tree)[0];
+  const treeData = tree[treeRootKey];
+  const resultTree = {
+    name: treeRootKey,
+    key: null,
+    child: treeData[treeRootKey]
+  };
+  return resultTree;
+}
+
 class Tree extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +53,8 @@ class Tree extends React.Component {
     this.maxLayer = 0;
     this.throttleScroll = _.throttle(e => { this.onScroll(e) }, 16);
     this.treeRef = React.createRef();
-    this.renderData = this.transDataToRender(_.cloneDeep(props.data))[0];
+    this.renderData = props.type === "目录树" ? this.transDataToRenderByDirectoryTree(handleDirectotyTreeData(_.cloneDeep(props.data)))[0]
+      : this.transDataToRender(_.cloneDeep(props.data))[0];
     // 必须保证data的根是模型的名称，否则没有意义
     // getRootKey依赖renderData，必须先生成renderData再计算
     this.rootIndex = this.getRootKey(props.data);
@@ -922,6 +936,162 @@ class Tree extends React.Component {
     return [result, initReverseOrder + 1];
   }
 
+  transDataToRenderByDirectoryTree(data, indent = 0, pRoute = '', locked = false, modelKey = '', isFamily = false) {
+    let result = [];
+    if (this.maxLayer < indent) {
+      this.maxLayer = indent;
+    }
+    let initReverseOrder = 0;
+    if (data.length && _.isArray(data)) {
+      data.forEach(_d => {
+        const route = pRoute === '' ? this.totalNode.toString() : `${pRoute}${DELIMITER}${this.totalNode}`;
+        // 处理叶节点是空的情况, 其实这个应该不用处理
+        if (_.keys(_d).length === 0) {
+          result.push({
+            name: '',
+            key: this.totalNode, // 用于react的key
+            modelKey,
+            collapse: DEFAULT_COLLAPSE, // 是否展开
+            indent: indent + 1, // 缩进次数，用于样式渲染
+            reverseOrder: initReverseOrder,
+            children: 0, // 子代数
+            allChildren: 0, // 全部子代数（包括子代的子代）
+            show: DEFAULT_COLLAPSE === 1, // 是否要显示这个节点,
+            checked: !locked && DEFAULT_CHECKED, // 不选中被锁定的节点
+            route,
+            querySelected: false, // is selected by query string or not
+            locked,
+            translucent: false, // 叶子节点半透明状态，默认为false,
+            translucentIndeterminate: false, // 复选框是否为不确定状态。注意如果为true，必须保证checked为false
+            cptKey: _d.key,
+          });
+          this.totalNode += 1;
+          // 叶节点包含name，否则是中间节点为{}[]的情况
+        } else if (!_.keys(_d).includes("child")) { // 处理叶子节点
+          let name = _d.name;
+          const { originalId, familyName, familySymbol } = _d;
+          if (originalId === 0 || originalId) {
+            if (!familyName && !familySymbol) {
+              name = `${name}[${originalId}]`;
+            } else {
+              name = `${familyName || ""}: ${familySymbol || ""}[${originalId}]`;
+            }
+          }
+          result.push({
+            name,
+            key: this.totalNode, // 用于react的key
+            cptKey: _d.key, // 构件key
+            modelKey,
+            familyKey: isFamily ? _d.key : undefined,
+            collapse: DEFAULT_COLLAPSE,
+            indent: indent + 1, // 缩进次数，用于样式渲染
+            reverseOrder: initReverseOrder,
+            children: 0, // 子代数
+            allChildren: 0, // 全部子代数（包括子代的子代）
+            show: DEFAULT_COLLAPSE === 1, // 是否要显示这个节点,
+            checked: !locked && DEFAULT_CHECKED, // 不选中被锁定的节点
+            route,
+            querySelected: false, // is selected by query string or not
+            locked,
+            translucent: false, // 叶子节点半透明状态，默认为false,
+            translucentIndeterminate: false, // 复选框是否为不确定状态。注意如果为true，必须保证checked为false
+
+          });
+          this.totalNode += 1;
+        } else { // 处理中间节点
+          const familyKey = _d.key;
+          // const cptInfo = this.props.viewer.getComponentsByKey(_d.familyKey);
+          const originalId = familyKey?.split('_')?.[1];
+          delete _d.key;
+          // _.keys(_d).forEach(_k => {
+          const _key = this.totalNode;
+          this.totalNode += 1;
+          const _locked = (_d.name === LOCK_GROUP_NAME) || locked;
+          let _modelKey = modelKey;
+          // 如果是根节点，说明它代表模型名字，此时提取模型key
+          if (pRoute === '') {
+            const info = this.props.modelInfo.find(_info => _info.name === _d.name);
+            _modelKey = info?.modelKey || modelKey;
+          }
+          const [childNodes, reverseOrder] = this.transDataToRenderByDirectoryTree(
+            _d.child, indent + 1, route, _locked, _modelKey, !!familyKey,
+          );
+          initReverseOrder = reverseOrder;
+          const allChildren = childNodes.length;
+          result.push({
+            name: `${_d.name}${originalId ? `[${originalId}]` : ''}`,
+            // cptKey: _k,
+            key: _key,
+            modelKey: _modelKey,
+            familyKey,
+            // 默认展开第0级节点
+            collapse: indent === 0 ? 1 : DEFAULT_COLLAPSE,
+            children: _d.child.length,
+            allChildren,
+            indent,
+            reverseOrder: initReverseOrder,
+            // 默认显示根节点和其直接子代
+            show: (DEFAULT_COLLAPSE === 1) || (indent <= 1),
+            checked: !_locked && DEFAULT_CHECKED,
+            indeterminate: false, // 复选框是否为不确定状态。注意如果为true，必须保证checked为false
+            route,
+            querySelected: false,
+            locked: _locked,
+            translucent: false, // 叶子节点半透明状态，默认为false,
+            translucentIndeterminate: false, // 复选框是否为不确定状态。注意如果为true，必须保证checked为false
+            cptKey: _d.key,
+
+          });
+          result = result.concat(childNodes);
+          // });
+        }
+      });
+    } else if (typeof data !== 'string') {
+      // 本身就是{}类型，说明是中间节点
+      const familyKey = data.key;
+      const originalId = familyKey?.split('_')?.[1];
+      delete data.key;
+
+      const _key = this.totalNode;
+      const route = pRoute === '' ? _key.toString() : `${pRoute}${DELIMITER}${_key}`;
+      let _modelKey = modelKey;
+      // 如果是根节点，说明它代表模型名字，此时提取模型key
+      if (pRoute === '') {
+        const info = this.props.modelInfo.find(_info => _info.name === data.name);
+        _modelKey = info?.modelKey || modelKey;
+      }
+      this.totalNode += 1;
+      const _locked = (data.name === LOCK_GROUP_NAME) || locked;
+      // 处理子节点
+      const [childNodes, reverseOrder] = this.transDataToRenderByDirectoryTree(
+        data.child, indent + 1, route, _locked, _modelKey, !!familyKey
+      );
+      initReverseOrder = reverseOrder;
+      const allChildren = childNodes.length;
+      result.push({
+        name: `${data.name}${originalId ? `[${originalId}]` : ''}`,
+        // cptKey: _k,
+        key: _key,
+        modelKey: _modelKey,
+        familyKey,
+        // 默认展开第0级节点
+        collapse: indent === 0 ? 1 : DEFAULT_COLLAPSE,
+        children: data.child.length,
+        allChildren,
+        indent,
+        reverseOrder: initReverseOrder,
+        // 默认显示根节点和其直接子代
+        show: (DEFAULT_COLLAPSE === 1) || (indent <= 1),
+        checked: !_locked && DEFAULT_CHECKED,
+        indeterminate: false, // 复选框是否为不确定状态。注意如果为true，必须保证checked为false
+        route,
+        locked: _locked,
+      });
+      result = result.concat(childNodes);
+    }
+    return [result, initReverseOrder + 1];
+  }
+
   /**
    * 展开指定id节点
    * @param {string | number} id - 节点id（index）
@@ -1112,8 +1282,17 @@ class Tree extends React.Component {
     const checked = e !== null ? e.target.checked : check;
     let cptKeys = [];
     const key = this.renderData[id].cptKey;
-    // 叶节点直接处理，否则作为中间节点勾选
-    if (this.renderData[id].children === 0 && key) {
+    // handing the root of tree show or hide
+    if (id === ROOTNODEID) {
+      this.renderData.forEach(item => {
+        if (!item.locked) {
+          item.checked = checked;
+          this.hideIDList.push(item.key);
+          cptKeys.push(item.cptKey || item.familyKey);
+        }
+      });
+      this.checkNode(ROOTNODEID, checked);
+    } else if (this.renderData[id].children === 0 && key) {
       const ids = [];
       this.renderData.forEach(data => {
         if (data.cptKey === key) {

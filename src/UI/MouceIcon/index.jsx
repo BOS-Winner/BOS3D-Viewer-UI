@@ -76,6 +76,9 @@ class MouseIcon extends React.PureComponent {
         case "测量校准模式":
           _icon = `url(${icon.adjustMeasure})`;
           break;
+        case "测量面积模式":
+          _icon = `url(${icon.area})`;
+          break;
         /*
       case "漫游模式":
         _icon = `url(${icon.roam}) 16 16`;

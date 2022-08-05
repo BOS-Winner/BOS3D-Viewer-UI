@@ -5,3 +5,7 @@ export const SHOW_LAYER_SWITCHER = "SHOW_LAYER_SWITCHER_dfasasdf";
 export const SHOW_ANNOTATION_LIST = "SHOW_ANNOTATION_LIST_uio423weaf";
 export const SHOW_ANNOTATION_EDITOR = "SHOW_ANNOTATION_EDITOR_238uroiwa";
 export const UPDATE_LAYER_LIST = "UPDATE_LAYER_LIST_uiopjef";
+export const UPDATE_DRAW_LIST = "UPDATE_DRAW_LIST_dkashdkja";
+export const UPDATA_DRAW_KEY = "UPDATA_DRAW_KEY_sdhakjd";
+export const UPDATE_VIEW_KEY = "UPDATE_VIEW_KEY_sdkjhas";
+export const CHANGE_MOUSE_ICON = "CHANGE_MOUSE_ICON_dsajkhdaj";

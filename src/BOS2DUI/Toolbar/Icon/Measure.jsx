@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Icon from "Base/Icon";
 // import measureImg from "IconImg/white/measure.png";
-import { changeMode } from "../../redux/bottomRedux/action";
+import { changeMode, changeMouseIcon } from "../../redux/bottomRedux/action";
 import * as MODE from "../../redux/bottomRedux/mode";
 import { AntdIcon, mobileCheck } from '../../../UI/utils/utils';
 import iconStyle from '../../Theme/icon.less';
@@ -12,6 +12,7 @@ class PickByRect extends React.PureComponent {
   static propTypes = {
     mode: PropTypes.string.isRequired,
     changeMode: PropTypes.func.isRequired,
+    changeMouseIcon: PropTypes.func.isRequired,
   };
 
   render() {
@@ -25,6 +26,7 @@ class PickByRect extends React.PureComponent {
           showTitle={!mobileCheck()}
           onClick={() => {
             this.props.changeMode(this.props.mode === MODE.pickByMeasure ? '' : MODE.pickByMeasure);
+            this.props.changeMouseIcon(this.props.mode === MODE.pickByMeasure ? '' : MODE.pickByMeasure);
           }}
         />
       </div>
@@ -37,6 +39,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   changeMode: (mode) => dispatch(changeMode(mode)),
+  changeMouseIcon: (mode) => dispatch(changeMouseIcon(mode)),
 });
 const WrappedContainer = connect(
   mapStateToProps,

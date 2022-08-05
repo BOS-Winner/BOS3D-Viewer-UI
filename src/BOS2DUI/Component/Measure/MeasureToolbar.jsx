@@ -5,25 +5,32 @@ import { connect } from "react-redux";
 import Icon from "Base/Icon";
 import Modal from "Base/Modal";
 import style from "MeasureTool/style.less";
-import * as MODE from "../../redux/bottomRedux/mode";
+// import * as MODE from "../../redux/bottomRedux/mode";
 // import * as icons from "MeasureTool/Resource/resource";
-import { changeMode } from "../../redux/bottomRedux/action";
+import { changeMode, changeMouseIcon } from "../../redux/bottomRedux/action";
 import fuckIE from "../../../UI/theme/fuckIE.less";
 import { AntdIcon, mobileCheck } from '../../../UI/utils/utils';
 import iconStyle from '../../Theme/icon.less';
 import customStyle from './index.less';
 
+// MeasureType
+const MeasureType = {
+  "Distance": 0,
+  "Angle": 1,
+  "Area": 2
+};
 class MeasureToolbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 0
+      selectedIndex: MeasureType.Distance,
     };
   }
 
   render() {
     const isMobile = mobileCheck();
     console.log(isMobile);
+    // const { selectedIndex } = this.state;
     const bottomJSX = (
       <section className={isMobile ? `${style.settingWrap} ${customStyle.modelSeting}` : `${style.settingWrap}`}>
         <div className={`${style.left}`}>
@@ -69,12 +76,37 @@ class MeasureToolbar extends React.Component {
       </section>
     );
 
+    // selected function
+    const seletedFunc = (index) => {
+      const { selectedIndex } = this.state;
+      const tempIndex = index === selectedIndex ? 999 : index;
+      this.setState({
+        selectedIndex: tempIndex,
+      });
+      this.props.buttonAction(tempIndex);
+    };
+
+    const measureTypeList = [{
+      name: "测量距离",
+      iconType: "iconceliang",
+      type: MeasureType.Distance,
+    }, {
+      name: "测量角度",
+      iconType: "iconanglemeasurement",
+      type: MeasureType.Angle,
+    }, {
+      name: "测量面积",
+      iconType: "iconareameasurement",
+      type: MeasureType.Area,
+    }];
+
     const content = (
       <div>
         <Modal
           visible
           onCancel={() => {
-            this.props.changeMode(this.props.mode === MODE.pickByMeasure ? '' : MODE.pickByMeasure);
+            this.props.changeMouseIcon("");
+            this.props.changeMode("");
           }}
           title="测量"
           width={isMobile ? "87px" : "96px"}
@@ -87,59 +119,23 @@ class MeasureToolbar extends React.Component {
           closable
         >
           <div className={customStyle.tools}>
-            <div
-              className={this.state.selectedIndex === 0 ? fuckIE.select : ''}
-            >
-              <Icon
-                className={customStyle.customIcon}
-                icon={<AntdIcon type="iconceliang" className={iconStyle.icon} />}
-                title="测量距离"
-                showTitle={!isMobile}
-                onClick={() => {
-                  this.setState({
-                    selectedIndex: 0
-                  });
-                  this.props.buttonAction(0);
-                }}
-                selected={this.state.selectedIndex === 0}
-              />
-            </div>
-
-            <div
-              className={this.state.selectedIndex === 1 ? fuckIE.select : ''}
-            >
-              <Icon
-                className={customStyle.customIcon}
-                icon={<AntdIcon type="iconanglemeasurement" className={iconStyle.icon} />}
-                title="测量角度"
-                showTitle={!isMobile}
-                onClick={() => {
-                  this.setState({
-                    selectedIndex: 1
-                  });
-                  this.props.buttonAction(1);
-                }}
-                selected={this.state.selectedIndex === 1}
-              />
-            </div>
-
-            <div
-              className={this.state.selectedIndex === 2 ? fuckIE.select : ''}
-            >
-              <Icon
-                className={customStyle.customIcon}
-                icon={<AntdIcon type="iconareameasurement" className={iconStyle.icon} />}
-                title="测量面积"
-                showTitle={!isMobile}
-                onClick={() => {
-                  this.setState({
-                    selectedIndex: 2
-                  });
-                  this.props.buttonAction(2);
-                }}
-                selected={this.state.selectedIndex === 2}
-              />
-            </div>
+            {measureTypeList.map(item => (
+              <div
+                className={this.state.selectedIndex === item.type ? fuckIE.select : ''}
+                key={item.type}
+              >
+                <Icon
+                  className={customStyle.customIcon}
+                  icon={<AntdIcon type={item.iconType} className={iconStyle.icon} />}
+                  title={item.name}
+                  showTitle={!isMobile}
+                  onClick={() => {
+                    seletedFunc(item.type);
+                  }}
+                  selected={this.state.selectedIndex === item.type}
+                />
+              </div>
+            ))}
           </div>
         </Modal>
         {bottomJSX}
@@ -162,6 +158,8 @@ MeasureToolbar.propTypes = {
   buttonAction: PropTypes.func,
   parentNode: PropTypes.object,
   changeMode: PropTypes.func.isRequired,
+  changeMouseIcon: PropTypes.func.isRequired,
+  // mode: PropTypes.string.isRequired,
 };
 
 MeasureToolbar.defaultProps = {
@@ -174,6 +172,9 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   changeMode: (mode) => dispatch(changeMode(mode)),
+  changeMouseIcon: mode => {
+    dispatch(changeMouseIcon(mode));
+  },
 });
 // const WrappedContainer = connect(
 //   mapStateToProps,
