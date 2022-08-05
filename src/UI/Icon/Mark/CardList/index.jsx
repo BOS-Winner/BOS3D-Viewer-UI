@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./style.less";
 import Empty from "../../../Base/Empty";
 import NOFondImgPath from '../img/empty.png';
@@ -47,12 +47,22 @@ function CardList(props) {
   });
   const markMgrHeight = document.getElementById("customMark")?.clientHeight || 377;
   const HEIGHT = `${Math.min(100 * domMarkJSX.length, (document.getElementById("customMarkContainer")?.clientHeight - markMgrHeight - 80) || 999999999)}px`;
+  const [autoHeight, setAutoHeight] = useState(HEIGHT);
+
+  // eslint-disable-next-line compat/compat
+  const resizeobserver = new ResizeObserver(() => {
+    const _height = `${document.getElementById("customMarkContainer")?.clientHeight - markMgrHeight - 80}px`;
+    setAutoHeight(_height);
+  });
+  if (document.getElementById("customMark")) {
+    resizeobserver.observe(document.getElementById("customMarkContainer"));
+  }
   return (
     <div className={style.container}>
       <div className={style.header}>
         <Header title={mapTitle[props.curMarkType] || '没匹配到标题'} />
       </div>
-      <div className={style.list} style={{ height: HEIGHT }}>
+      <div className={style.list} style={{ height: autoHeight }}>
         {domMarkJSX.length ? domMarkJSX
           : (
             <div className={style.notFoundWrap}>

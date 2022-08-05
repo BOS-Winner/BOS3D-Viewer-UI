@@ -48,11 +48,10 @@ class ViewControlToolbar extends React.Component {
     super(props);
     this.width = 0;
     this.height = 0;
-    // this.saveCanvasSize();
     this.fscLner = this.fscLner.bind(this);
+    this.viewerUUID = "";
     window.isFullScreen = false;
     this.state = {
-      viewerUUId: "",
       isFullScreen: false,
       // isShowDropDownMenu: false,
       viewController: true,
@@ -117,7 +116,7 @@ class ViewControlToolbar extends React.Component {
    * @param {string} uuid viewerUUid
    */
   hanldeInitViewportId(uuid) {
-    this.setState({ viewerUUId: uuid });
+    this.viewerUUID = uuid;
   }
 
   async getBestViewStatus() {
@@ -585,9 +584,15 @@ class ViewControlToolbar extends React.Component {
   }
 
   saveCanvasSize() {
-    const canvas = document.querySelector(`[id="${this.state.viewerUUId}"]>canvas`);
-    this.width = parseInt(getComputedStyle(canvas).width, 10);
-    this.height = parseInt(getComputedStyle(canvas).height, 10);
+    const canvas = document.querySelector(`[id="${this.viewerUUID}"]>canvas`);
+    try {
+      if (canvas) {
+        this.width = parseInt(getComputedStyle(canvas).width, 10);
+        this.height = parseInt(getComputedStyle(canvas).height, 10);
+      }
+    } catch (error) {
+      console.debug(error);
+    }
   }
 
   fscLner() {

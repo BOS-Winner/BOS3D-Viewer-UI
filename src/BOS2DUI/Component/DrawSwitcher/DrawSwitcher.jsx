@@ -42,6 +42,7 @@ function DrawSwitcher(props) {
         const cloneList = _.cloneDeep(list);
         drawListRef.current = cloneList;
         for (let i = 0; i < cloneList.length; i++) {
+          console.log(cloneList, 'ah');
           if (cloneList[i]['thumbnail'] && cloneList[i]['thumbnail']['fileKey']) {
             fetch(`${props.viewer.host}/data?fileKey=${cloneList[i]['thumbnail']['fileKey']}`)
               .then(response => {

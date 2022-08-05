@@ -10,26 +10,43 @@ class MeasureToolbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 0
+      // selectedIndex: 0,
+      settingToolBottomDistance: 6,
     };
+    this.setToolContainer = React.createRef();
+  }
+
+  componentDidMount() {
+    this.handleSettingToolBarPosition();
+  }
+
+  handleSettingToolBarPosition = () => {
+    const bottomToolContainer = document.querySelector("#bottomToolContainer");
+    const bottomToolRect = bottomToolContainer.getBoundingClientRect();
+    const settingToolRect = this.setToolContainer.current.getBoundingClientRect();
+    if (settingToolRect.left - bottomToolRect.right < 10) {
+      this.setState({
+        settingToolBottomDistance: 80,
+      });
+    }
   }
 
   onClickItem = (index) => {
-    if (index === this.state.selectedIndex) {
+    if (index === this.props.activeMeasureMode) {
       this.props.buttonAction(-1);
-      this.setState({
-        selectedIndex: -1
-      });
+      // this.setState({
+      //   selectedIndex: -1
+      // });
       return;
     }
-    this.setState({
-      selectedIndex: index
-    });
+    // this.setState({
+    //   selectedIndex: index
+    // });
     this.props.buttonAction(index);
   }
 
   render() {
-    const { isMobile, modelDetail } = this.props;
+    const { isMobile } = this.props;
     const isPicker = false; // 是否是新数据，是就隐藏
     // 右侧工具列表
     const TOOL_DATA_LIST = [
@@ -57,7 +74,7 @@ class MeasureToolbar extends React.Component {
           TOOL_DATA_LIST.map(item => (
             <div
               key={item.actionIndex}
-              className={`${style.item}  ${this.state.selectedIndex === item.actionIndex ? style.on : ''} `}
+              className={`${style.item}  ${this.props.activeMeasureMode === item.actionIndex ? style.on : ''} `}
               title={item.tip}
               role="presentation"
               onClick={this.onClickItem.bind(this, item.actionIndex)}
@@ -71,7 +88,13 @@ class MeasureToolbar extends React.Component {
     );
 
     const bottomJSX = (
-      <section className={`${style.settingWrap}`}>
+      <section
+        className={`${style.settingWrap}`}
+        ref={this.setToolContainer}
+        style={{
+          bottom: `${this.state.settingToolBottomDistance}px`
+        }}
+      >
         <div className={`${style.left}`}>
           <div
             role="presentation"
@@ -79,9 +102,9 @@ class MeasureToolbar extends React.Component {
             title="测量校准"
             onClick={() => {
               this.props.buttonAction(5);
-              this.setState({
-                selectedIndex: 5
-              });
+              // this.setState({
+              //   selectedIndex: 5
+              // });
             }}
           >
             <AntdIcon type="iconradianmeasurement" className={style.icon} />
@@ -154,7 +177,7 @@ MeasureToolbar.propTypes = {
   close: PropTypes.func,
   parentNode: PropTypes.object,
   isMobile: PropTypes.bool,
-  modelDetail: PropTypes.object,
+  activeMeasureMode: PropTypes.number.isRequired,
 };
 
 MeasureToolbar.defaultProps = {
@@ -162,7 +185,7 @@ MeasureToolbar.defaultProps = {
   close: () => { },
   parentNode: undefined,
   isMobile: false,
-  modelDetail: {}
+  // modelDetail: {}
 };
 
 export default MeasureToolbar;

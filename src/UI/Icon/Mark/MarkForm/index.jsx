@@ -131,7 +131,6 @@ class MarkForm extends PureComponent {
           hexColor={`#${_.padStart(this.props.domColor.toString(16), 6, '0')}`}
           alpha={this.props.domOpacity / 255}
         />
-        {' '}
 
       </div>
     );

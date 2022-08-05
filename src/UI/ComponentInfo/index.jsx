@@ -91,15 +91,15 @@ class ComponentInfo extends React.Component {
         if (
           _.keys(model.subModel) && _.includes(_.keys(model.subModel), modelKey) // 合并模型的子模型不为空，并且子模型列表中有当前模型key的modelkey，
         ) {
-          _modelKey = model.modelConfig.key;
-        } else if (modelKey === model.modelConfig.key) { // 如果当前的模型不是合并模型
-          _modelKey = model.modelConfig.key;
+          _modelKey = model.getConfig().key;
+        } else if (modelKey === model.getConfig().key) { // 如果当前的模型不是合并模型
+          _modelKey = model.getConfig().key;
         }
       });
       // 考虑如果是自定义场景的，subModels中没有子模型的modelKey，没有办法分辨当前构件是属于哪一个子模型的；
       // 如果没有匹配到 且 scene中有模型
       if (_modelKey === '' && models.length) {
-        _modelKey = models[0].modelConfig.key;
+        _modelKey = models[0].getConfig().key;
       }
       const model = viewer3D.getViewerImpl().getModel(_modelKey);
       if (!model) {

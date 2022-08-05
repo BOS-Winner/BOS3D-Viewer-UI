@@ -34,7 +34,7 @@ export function changeCameraSetting(name, value) {
   return {
     type: actionType.CHANGE_CAMERA_SETTING,
     name,
-    value
+    value,
   };
 }
 
@@ -64,6 +64,13 @@ export function setSetting(setting) {
 export function changeBestView(visible = false) {
   return {
     type: actionType.CHANGE_BEST_VIEW,
+    visible,
+  };
+}
+
+export function changeBaking(visible = false) {
+  return {
+    type: actionType.CHANGE_BAKING,
     visible,
   };
 }

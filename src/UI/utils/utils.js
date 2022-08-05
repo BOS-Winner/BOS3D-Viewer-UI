@@ -123,3 +123,12 @@ export function HVScreen() {
     return 1;
   }
 }
+
+/**
+ * 角度转弧度
+ * @param {number} angle 角度
+ * @returns {number} radian
+ */
+export function angleToRadian(angle) {
+  return angle * Math.PI / 180;
+}

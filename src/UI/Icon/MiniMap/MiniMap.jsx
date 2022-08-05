@@ -52,7 +52,7 @@ class MiniMap extends React.Component {
             "timeOut": "180000",
             "progressBar": false,
           });
-          const keys = this.props.viewer.viewerImpl.modelManager.getModelKeys();
+          const keys = this.props.viewer.viewerImpl.modelManager.getBIMModelKeys();
           this.props.viewer.getModelFloorMapsByKey(keys[0], (maps) => {
             if (maps) {
               if (maps.data) {
@@ -316,7 +316,7 @@ class MiniMap extends React.Component {
                   <Option
                     className={`${style.customDropItem} ${currentMapIndex === index ? style.customDropItemActive : ""}`}
                     value={index}
-                    title={map}
+                    title={map.name}
                     key={map.name}
                   >
                     {map.name}

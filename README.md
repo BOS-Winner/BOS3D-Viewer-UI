@@ -79,7 +79,7 @@ commit message检查就是这样实现的。因此，想自定义hook，可以�
 
 1. 先确保你的npm版本不低于5（起码要能读取package-lock.json），请不要用yarn。觉得npm慢的可以直接换淘宝源（不建议使用cnpm，我司已经发生过多次cnpm依赖关系处理错误的情况）
 
-1. 先clone本项目，并将上文的准备工作做好，然后 *新建并切换到自己的分支进行开发* ，最后提交代码并发起MR。 
+1. 先clone本项目，并将上文的准备工作做好，然后 *新建并切换到自己的分支进行开发* ，最后提交代码并发起MR。
 
 1. 本项目强制`eslint`和 [commit message](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 规则检查，不能通过则无法提交代码。可以通过 `npm run lint:fix` 修复一些简单的问题。不熟悉 commit message 的写法，可以用 `npm run cz` 替代 `git commit -m` 。
 
@@ -102,6 +102,6 @@ commit message检查就是这样实现的。因此，想自定义hook，可以�
 
 ## Q & A
 
-- **Q:** 启动或者打包的时候控制台报错：Webpack build failing with ERR_OSSL_EVP_UNSUPPORTED  
+- **Q:** 启动或者打包的时候控制台报错：Webpack build failing with ERR_OSSL_EVP_UNSUPPORTED
   **A:** OS系统，在环境变量中添加：`export NODE_OPTIONS=--openssl-legacy-provider`
-  
+

@@ -168,6 +168,7 @@ class UndoList extends React.PureComponent {
           <div className={style.footer}>
             <div className={style.line} />
             <button
+              type="button"
               className="bos-btn bos-btn-primary bos-btn-block"
               onClick={e => { this.onClick(e, 0) }}
             >

@@ -33,6 +33,7 @@ const CustomModelType = [
   "3DS",
   "STP",
   "STEP",
+  "NWD",
 ];
 const CATALOG_TREE = "目录树";
 

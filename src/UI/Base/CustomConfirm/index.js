@@ -24,6 +24,9 @@ function customConfirm(props) {
       }}
       closeIconFunc={() => {
         ReactDOM.unmountComponentAtNode(div);
+        if (props && props.closeIconFunc) {
+          props.closeIconFunc();
+        }
       }}
     />,
     div

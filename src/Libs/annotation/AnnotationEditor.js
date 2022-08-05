@@ -208,10 +208,16 @@ AnnotationEditor.changeBackgroundImage = function (data, imageUrl, width, height
 }
 
 AnnotationEditor.prototype.undo = function () {
+  this.selectors.forEach(_selector => {
+    _selector.hide();
+  })
   this._undoRedo.undo();
 }
 
 AnnotationEditor.prototype.redo = function () {
+  this.selectors.forEach(_selector => {
+    _selector.hide();
+  })
   this._undoRedo.redo();
 }
 

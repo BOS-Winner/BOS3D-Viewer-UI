@@ -416,7 +416,8 @@ class ContextMenu extends React.Component {
                         <div
                           role="presentation"
                           onClick={
-                            () => this.showFamily(highLightCptKey, modelHighLightCptKey, topFamliyKey)
+                            () => this.showFamily(
+                              highLightCptKey, modelHighLightCptKey, topFamliyKey)
                           }
                           className={`${style.item}`}
                           title="所属部件/族"
@@ -643,7 +644,7 @@ ContextMenu.propTypes = {
   userMenu: PropTypes.object,
   offline: PropTypes.bool,
   customMenu: PropTypes.array,
-  modelDetail: PropTypes.object,
+  // modelDetail: PropTypes.object,
 };
 
 ContextMenu.defaultProps = {
@@ -655,7 +656,7 @@ ContextMenu.defaultProps = {
   userMenu: { default: [], more: [] },
   offline: false,
   customMenu: [],
-  modelDetail: {}
+  // modelDetail: {}
 };
 
 const mapStateToProps = (state) => ({

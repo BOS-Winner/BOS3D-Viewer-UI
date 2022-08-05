@@ -28,6 +28,8 @@ export const EVENT = {
   // 自定义图标
   addIconToBottom: 'addIconToBottom',
   addContextMenu: 'addContextMenu',
+  // 剖切
+  handleSectionStatus: "handleSectionStatus",
 };
 
 export const DEFAULT_CAMERA = {
@@ -87,6 +89,7 @@ export const DEFAULT_TOOL = {
   cptsearch: true,
   modelinfo: true,
   minimap: true,
+  cloudBakery: true,
   open2d: true
 };
 
@@ -157,6 +160,13 @@ export const DEFAULT_MODAL_PLACE = {
       left: 'initial',
       bottom: 'initial'
     },
+  },
+  cloudBakery: {
+    ...{
+      width: '',
+      height: '',
+    },
+    ...getModalPlaceByIndex(6, "right"),
   },
   roam: {
     ...{
@@ -245,4 +255,12 @@ export const DEFAULT_MODAL_PLACE = {
   wireFrame: true,
 
   moreMenu: true,
+};
+
+export const modeMap = {
+  measureMode: "测量模式",
+  sectionMode: "剖切模式",
+  pickByRectMode: "框选模式",
+  roamMode: "漫游模式",
+  exit: "exitCurrentMode"
 };
