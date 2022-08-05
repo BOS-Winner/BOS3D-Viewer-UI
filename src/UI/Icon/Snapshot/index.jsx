@@ -5,7 +5,7 @@ import Icon from "../../Base/Icon";
 import Modal from "../../Base/Modal";
 import ShotManager from "./ShotManager";
 // import snapshotPng from "../img/white/snapshot.png";
-import fuckIE from "../../theme/fuckIE.less";
+// import fuckIE from "../../theme/fuckIE.less";
 import { AntdIcon } from '../../utils/utils';
 import iconstyle from '../../Toolbar/bottom.less';
 import { DEFAULT_MODAL_PLACE } from "../../constant";
@@ -14,6 +14,7 @@ class Snapshots extends React.Component {
   static propTypes = {
     viewer: PropTypes.object.isRequired,
     mode: PropTypes.string.isRequired,
+    isMobile: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -35,7 +36,7 @@ class Snapshots extends React.Component {
 
   render() {
     const { visible } = this.state;
-    const { isMobile, HorizontalorVerticalScreen } = this.props;
+    const { isMobile } = this.props;
     const modalInfo = {
       width: isMobile ? '176px' : '350px',
       height: isMobile ? '100%' : '70% ',

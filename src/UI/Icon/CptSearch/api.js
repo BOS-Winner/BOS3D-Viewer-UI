@@ -135,8 +135,20 @@ export const getComponentsByAttribute = (
   pageSize,
   attributes,
 ) => {
+  // 处理合并模型的情况
+  let modelKey;
+  if (models.length === 0) {
+    console.warn("必须提供模型key");
+    return null;
+  }
+  if (models.length === 1) {
+    modelKey = models[0];
+  } else if (models.length > 1) {
+    modelKey = models.join(",");
+  }
+
   const prama = getPrama(viewer3D, models[0]);
-  const url = `${prama.url}/api/${prama.projectKey}/queries/combination?pageNumber=${pageNumber}&pageSize=${pageSize}&modelKey=${models[0]}${attributes ? `&attributes=${attributes}` : ''}${prama.shareKey ? `&share=${prama.shareKey}` : ''}`;
+  const url = `${prama.url}/api/${prama.projectKey}/queries/combination?pageNumber=${pageNumber}&pageSize=${pageSize}&modelKey=${modelKey}${attributes ? `&attributes=${attributes}` : ''}${prama.shareKey ? `&share=${prama.shareKey}` : ''}`;
   const params = condition;
   return axios({
     headers: {

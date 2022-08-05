@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import toastr from "customToastr";
 import _ from 'lodash-es';
 import style from './GeneralSearch.less';
-import { AntdIcon, getModelKey } from '../../../utils/utils';
+import { AntdIcon, getModelKey, getAllModelkeys } from '../../../utils/utils';
 import CptSearcher from "../CptSearcher";
 import GeneralSearchItem from './GeneralInputItem';
 import MoreOptionBox from './MoreOptionBox';
@@ -434,7 +434,7 @@ export default function GeneralSearch(props) {
    * @param {function} callbackFunc 回调函数
    */
   async function customSearch(condition, attributes, pageNumber, pageSize = 10, callbackFunc) {
-    const modelKeys = getModelKey(viewer3D);
+    const modelKeys = getAllModelkeys(viewer3D);
     try {
       const result = await getComponentsByAttribute(
         viewer3D, modelKeys, condition, pageNumber, pageSize, attributes);

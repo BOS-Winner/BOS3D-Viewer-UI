@@ -136,7 +136,7 @@ class ModelSetting extends React.Component {
     e.stopPropagation();
     const xyz = [];
     this.inputRefs.current.querySelectorAll("input").forEach(input => {
-      if (/^-?\d+$/.test(input.value)) {
+      if (/^-?[0-9]*(\.[0-9]+)?$/.test(input.value)) {
         xyz.push(Number(input.value));
       }
     });

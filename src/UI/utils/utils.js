@@ -101,6 +101,15 @@ export function getModelKey(viewer) {
 }
 
 /**
+ * 获取场景中的所有模型key
+ * @param {object} viewer bos3d的实例
+ * @returns string[] Modelkey Array
+ */
+export function getAllModelkeys(viewer) {
+  return viewer.viewerImpl.getAllBimModelsKey();
+}
+
+/**
  * 检查当前设备是否是移动端
  * @returns {boolen} 是否是移动端，true为移动端
  */
