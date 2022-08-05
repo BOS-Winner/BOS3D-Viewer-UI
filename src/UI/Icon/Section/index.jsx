@@ -11,7 +11,7 @@ import style from "./style.less";
 import { AntdIcon } from "../../utils/utils";
 import iconstyle from "../../Toolbar/bottom.less";
 import mobilestyle from "./mobilestyle.less";
-import { DEFAULT_MODAL_PLACE } from "../../constant";
+import { DEFAULT_MODAL_PLACE, EVENT, modeMap } from "../../constant";
 // import MeasureControl from '../Measure/MobileHelper/MeasureControl';
 
 class SectionPopup extends React.Component {
@@ -28,50 +28,78 @@ class SectionPopup extends React.Component {
       upDownRoataion: 0,
     };
     this.sectionPlane = null;
-    // this.touchProgress = 50;
-    // this.leftRightRotation = 0;
-    // this.upDownRoataion = 0;
     this.isTouchDevice = props.BIMWINNER.BOS3D.DeviceTest.isTouchDevice();
   }
 
+  componentDidMount() {
+    this.props.ee.on(EVENT.handleSectionStatus, (status) => {
+      this.handleSectionBoxAndPlaneStatus(status);
+    });
+  }
+
   componentDidUpdate(prevProps) {
-    if (prevProps.mode !== "剖切模式" && this.props.mode === "剖切模式") {
-      // 切换模式时提示用户
-      if (prevProps.mode.length > 0) {
+    // open section mode
+    if (prevProps.mode !== modeMap.sectionMode && this.props.mode === modeMap.sectionMode) {
+      // Switching mode tips
+      if (
+        prevProps.mode.length > 0
+        && prevProps.mode !== modeMap.measureMode
+        && prevProps.mode !== modeMap.pickByRectMode
+      ) {
         toastr.remove();
         toastr.info(`剖切模式下将关闭${prevProps.mode}`, "", {
           target: `#${this.props.viewer.viewport}`,
         });
       }
     }
-  }
 
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(prevProps) {
-    // 如果由当前的剖切模式切换到其他模式则关闭当前的剖切模式
-    if (prevProps.mode !== "剖切模式" && this.props.mode === "剖切模式") {
-      // 关闭模型剖切
-      if (this.state.mode === "剖切模式") {
-        this.props.viewer.disableSectionBox();
-      }
-      // 关闭自由剖切模式
+    // Close section mode
+    if (
+      prevProps.mode === modeMap.sectionMode
+      && this.props.mode !== modeMap.sectionMode
+      && !prevProps.modeStack.includes(modeMap.measureMode)
+      && !prevProps.modeStack.includes(modeMap.pickByRectMode)
+    ) {
+      // this.handleSectionBoxAndPlaneStatus(false);
+      // Close the free section mode
       if (this.sectionPlane) {
         this.sectionPlane.exit();
         this.sectionPlane = null;
-        this.setState((state) => ({
-          ...state,
-          mode: "",
-          showModal: false,
-        }));
       }
       this.props.viewer.render();
-      this.setState((state) => ({
-        ...state,
-        mode: "",
-        showModal: false,
-      }));
+      this.closeModal();
     }
   }
+
+  /**
+   * Close modal
+   */
+  closeModal = () => {
+    this.setState({
+      mode: "",
+      showModal: false,
+    });
+  }
+
+  handleSectionBoxOrPlaneVisiable = (status) => {
+    this.setState({
+      showPlane: status,
+      isShowSectionBox: status,
+    });
+  }
+
+  // eslint-disable-next-line react/no-deprecated
+  // componentWillReceiveProps(nextProps) {
+  //   if (
+  //     nextProps.mode === modeMap.sectionMode
+  //   ) {
+  //     this.handleSectionBoxOrPlaneVisiable(true);
+  //     this.handleSectionBoxAndPlaneStatus(true);
+  //   } else {
+  //     this.handleSectionBoxOrPlaneVisiable(false);
+  //     this.handleSectionBoxAndPlaneStatus(false);
+  //   }
+  // }
 
   /**
    * 开启自由剖切
@@ -95,11 +123,13 @@ class SectionPopup extends React.Component {
    * 开启关闭剖切弹窗
    */
   triggerPopUp = () => {
-    const mode = this.props.mode;
-    if (mode === "剖切模式") {
-      this.props.changeMode("");
+    // const mode = this.props.mode;
+    // close section Modal
+    if (this.props.modeStack.includes(modeMap.sectionMode)) {
+      // Change mode
+      this.props.changeMode(modeMap.exit, modeMap.sectionMode);
       // 关闭模型剖切
-      if (this.state.mode === "剖切模式") {
+      if (this.state.mode === modeMap.sectionMode) {
         this.props.viewer.disableSectionBox();
         this.props.viewer.render();
       }
@@ -111,15 +141,34 @@ class SectionPopup extends React.Component {
       this.setState((state) => ({
         ...state,
         mode: "",
+        showModal: false,
       }));
     } else {
-      this.props.changeMode("剖切模式");
+      // show section Modal
+      this.props.changeMode(modeMap.sectionMode);
+      this.setState((state) => ({
+        ...state,
+        showModal: true,
+      }));
     }
-    this.setState((state) => ({
-      ...state,
-      showModal: !state.showModal,
-    }));
   };
+
+  handleSectionBoxAndPlaneStatus = (status = true) => {
+    // if (!this.sectionPlane) return;
+    // show
+    if (status) {
+      // eslint-disable-next-line no-unused-expressions
+      this.sectionPlane && this.sectionPlane.showPlane();
+      this.props.viewer.showSectionBox();
+      this.handleSectionBoxOrPlaneVisiable(true);
+    } else {
+    // hidden
+      // eslint-disable-next-line no-unused-expressions
+      this.sectionPlane && this.sectionPlane.hidePlane();
+      this.props.viewer.hideSectionBox();
+      this.handleSectionBoxOrPlaneVisiable(false);
+    }
+  }
 
   /**
    * 切换剖切模式
@@ -156,6 +205,7 @@ class SectionPopup extends React.Component {
       this.props.viewer.setSectionBoxMode("normal");
       this.props.viewer.render();
     }
+    this.props.changeMode(modeMap.sectionMode);
   };
 
   /**
@@ -195,8 +245,16 @@ class SectionPopup extends React.Component {
     this.setState((state) => {
       if (state.showPlane) {
         this.sectionPlane.hidePlane();
+        if (this.props.modeStack.length > 1) {
+          this.props.changeMode(modeMap.exit);
+        }
       } else {
+        this.props.changeMode(modeMap.sectionMode);
         this.sectionPlane.showPlane();
+        this.props.viewer.render();
+        // 开启自由剖切
+        // this.startFreeSection();
+        console.log(this.sectionPlane);
       }
       return {
         showPlane: !state.showPlane,
@@ -208,7 +266,11 @@ class SectionPopup extends React.Component {
     const visible = this.state.isShowSectionBox;
     if (visible) {
       this.props.viewer.hideSectionBox();
+      if (this.props.modeStack.length > 1) {
+        this.props.changeMode(modeMap.exit);
+      }
     } else {
+      this.props.changeMode(modeMap.sectionMode);
       this.props.viewer.showSectionBox();
     }
     this.setState({
@@ -544,7 +606,11 @@ class SectionPopup extends React.Component {
                       max={360}
                       step={1}
                       value={this.state.leftRightRotation}
-                      onChange={e => { this.customRotation(Number(e.target.value), this.state.upDownRoataion) }}
+                      onChange={e => {
+                        this.customRotation(
+                          Number(e.target.value), this.state.upDownRoataion
+                        );
+                      }}
                     />
                   </div>
                   <span>360°</span>
@@ -559,7 +625,9 @@ class SectionPopup extends React.Component {
                       max={360}
                       step={1}
                       value={this.state.upDownRoataion}
-                      onChange={e => { this.customRotation(this.state.leftRightRotation, Number(e.target.value)) }}
+                      onChange={e => {
+                        this.customRotation(this.state.leftRightRotation, Number(e.target.value));
+                      }}
                     />
                   </div>
                   <span>360°</span>
@@ -609,20 +677,24 @@ class SectionPopup extends React.Component {
 SectionPopup.propTypes = {
   changeMode: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
+  modeStack: PropTypes.array.isRequired,
   viewer: PropTypes.object.isRequired,
   BIMWINNER: PropTypes.object.isRequired,
-  isMobile: PropTypes.bool.isRequired
+  isMobile: PropTypes.bool.isRequired,
+  ee: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   mode: state.button.mode,
+  modeStack: state.button.modeStack,
   viewer: state.system.viewer3D,
   BIMWINNER: state.system.BIMWINNER,
   isMobile: state.system.isMobile,
+  ee: state.system.eventEmitter,
 });
 const mapDispatchToProps = (dispatch) => ({
-  changeMode: (mode) => {
-    dispatch(changeMode(mode));
+  changeMode: (mode, exitMode) => {
+    dispatch(changeMode(mode, exitMode));
   },
 });
 const WrappedContainer = connect(

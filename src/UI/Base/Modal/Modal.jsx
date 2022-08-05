@@ -474,6 +474,9 @@ class Modal extends React.Component {
                     <div>
                       {this.props.icon || <img src={titleIcon} alt="title icon" />}
                       {this.props.title}
+                      {this.props.tip && (
+                        <AntdIcon className={style.closeIcon} style={{ margin: "0 0 0 10px" }} type="iconiconfont_help-01" onClick={this.props.tipCallback} />
+                      )}
                     </div>
                     {/* 更新图标 */}
                     {this.props.closable && !["mobile-theme-one"].includes(this.props.theme) && (
@@ -582,6 +585,8 @@ Modal.propTypes = {
   theme: PropTypes.string,
   mask: PropTypes.bool,
   headerClassName: PropTypes.string,
+  tip: PropTypes.bool,
+  tipCallback: PropTypes.func,
 };
 
 Modal.defaultProps = {
@@ -607,9 +612,11 @@ Modal.defaultProps = {
   theme: "default",
   mask: false,
   headerClassName: "",
+  tip: false,
   onOk: () => { },
   onResize: () => { },
   DragCallBack: () => { },
+  tipCallback: () => {},
 };
 
 export default Modal;

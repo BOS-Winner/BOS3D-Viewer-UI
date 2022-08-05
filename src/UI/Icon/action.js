@@ -5,10 +5,11 @@ import * as actionType from "./actionType";
  * @param {string} mode - 模式名称
  * @return {{mode: string, type: string}}
  */
-export function changeMode(mode) {
+export function changeMode(mode, exitMode = "") {
   return {
     type: actionType.CHANGE_MODE,
-    mode
+    mode,
+    exitMode,
   };
 }
 

@@ -41,6 +41,7 @@ class ModelSetting extends React.Component {
       models,
       curModel: "",
     };
+    this.initModelCount = 0;
   }
 
   shouldComponentUpdate(nextProps) {
@@ -55,7 +56,11 @@ class ModelSetting extends React.Component {
           matrix.elements[12] = xyz[0];
           matrix.elements[13] = xyz[1];
           matrix.elements[14] = xyz[2];
-          this.props.viewer.getViewerImpl().setModelMatrix(matrix, key);
+          if (this.initModelCount === modelKeys.length) {
+            this.props.viewer.getViewerImpl().setModelMatrix(matrix, key);
+          } else {
+            this.initModelCount += 1;
+          }
           if (key === this.state.curModel) {
             this.inputRefs.current.querySelectorAll("input")
               .forEach((input, index) => {
@@ -81,7 +86,7 @@ class ModelSetting extends React.Component {
         allModelKeys.forEach(_modelKey => {
           // 获取模型
           const model = viewer.getViewerImpl().getModel(_modelKey);
-          const { basePoint } = model.config;
+          const basePoint = model.transform ? model.transform.translation : undefined;
           let xyz = [0, 0, 0];
           if (basePoint) {
             xyz = [basePoint?.x || 0, basePoint?.y || 0, basePoint?.z || 0];

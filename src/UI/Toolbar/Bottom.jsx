@@ -28,6 +28,7 @@ import CptSearch from "../Icon/CptSearch";
 import ModelInfo from "../Icon/ModelInfo";
 import Annotation from "../AnnotationUI/AnnotationIcon";
 import MiniMap from "../Icon/MiniMap/MiniMap";
+import CloudBakery from "../Icon/CloudBakery";
 import { AntdIcon } from '../utils/utils';
 import ViewControlToolbar from './ViewControlToolbar/index';
 
@@ -42,6 +43,7 @@ class Bottom extends React.Component {
     isMobile: PropTypes.bool,
     modelLoad: PropTypes.bool.isRequired,
     showAnnotationUI: PropTypes.bool.isRequired,
+    cloudBaking: PropTypes.bool,
     // modelDetail: PropTypes.object,
     // HorizontalorVerticalScreen: PropTypes.number
   };
@@ -50,6 +52,7 @@ class Bottom extends React.Component {
     openAnnotationUI: () => { },
     linkage: {},
     isMobile: false,
+    cloudBaking: false,
     // modelDetail: {}
     // HorizontalorVerticalScreen: 0
   };
@@ -142,19 +145,28 @@ class Bottom extends React.Component {
         {
           TOOLBAR_MIDDLE_SHOW && (
             <Toolbar>
-              {!isPicker && this.props.funcOption.pickByRect && <PickByRect modelLoad={this.props.modelLoad} />}
+              {!isPicker && this.props.funcOption.pickByRect
+              && <PickByRect modelLoad={this.props.modelLoad} />}
               {this.props.funcOption.hide && <Hide />}
               {this.props.funcOption.isolate && <Isolate />}
               {this.props.funcOption.section && <Section />}
               {this.props.funcOption.scatter && <Scatter />}
               {
-                !isPicker && (this.props.funcOption.wireFrame || this.props.funcOption.changeCptColor) && (
+                !isPicker
+                && (this.props.funcOption.wireFrame || this.props.funcOption.changeCptColor)
+                && (
                   <Popup
                     icon={<AntdIcon type="iconcomponentoperation" className={style.icon} />}
                     title="构件操作"
                   >
-                    {this.props.funcOption.wireFrame && <div style={MORE_ITEM_ICON}><WireFrame /></div>}
-                    {this.props.funcOption.changeCptColor && <div style={MORE_ITEM_ICON}><ChangeCptColor /></div>}
+                    {
+                      this.props.funcOption.wireFrame
+                      && <div style={MORE_ITEM_ICON}><WireFrame /></div>
+                    }
+                    {
+                      this.props.funcOption.changeCptColor
+                      && <div style={MORE_ITEM_ICON}><ChangeCptColor /></div>
+                    }
                   </Popup>
                 )
               }
@@ -193,16 +205,29 @@ class Bottom extends React.Component {
             selected={this.state.mode === 'main3D'}
           />
         )}
-        {(funcOption.cptsearch || funcOption.modelinfo || funcOption.minimap || funcOption.undo || funcOption.reset) && (
+        {
+          this.props.cloudBaking && <CloudBakery modelLoad={this.props.modelLoad} />
+        }
+        {(funcOption.cptsearch
+          || funcOption.modelinfo || funcOption.minimap || funcOption.undo || funcOption.reset) && (
           <Popup
             icon={<AntdIcon type="iconmore" className={style.icon} />}
             title="更多"
           >
-            {!isPicker && this.props.funcOption.cptsearch && <div style={MORE_ITEM_ICON}><CptSearch /></div>}
+            {
+              !isPicker
+              && this.props.funcOption.cptsearch && <div style={MORE_ITEM_ICON}><CptSearch /></div>
+            }
             {this.props.funcOption.modelinfo && <div style={MORE_ITEM_ICON}><ModelInfo /></div>}
-            {!isPicker && this.props.funcOption.minimap && <div style={MORE_ITEM_ICON}><MiniMap /></div>}
+            {
+              !isPicker
+              && this.props.funcOption.minimap && <div style={MORE_ITEM_ICON}><MiniMap /></div>
+            }
             {!isPicker && this.props.funcOption.undo && <div style={MORE_ITEM_ICON}><Undo /></div>}
-            {!isPicker && this.props.funcOption.reset && <div style={MORE_ITEM_ICON}><Reset /></div>}
+            {
+              !isPicker
+              && this.props.funcOption.reset && <div style={MORE_ITEM_ICON}><Reset /></div>
+            }
           </Popup>
         )}
         {this.userJSX}
@@ -221,6 +246,7 @@ class Bottom extends React.Component {
     return (
       <div
         className={`${style.bottom} bos3dui-bottom`}
+        id="bottomToolContainer"
         style={{
           display: mode === 'main2D' ? 'none' : this.props.showAnnotationUI ? "none" : "",
           flexWrap: isWideScreen ? 'nowrap' : 'wrap',
@@ -265,9 +291,15 @@ class Bottom extends React.Component {
         <section className={style.mobileToolbarList}>
           <div className={style.mobileToolbarItem}><ViewControlToolbar /></div>
           {this.props.funcOption.roam && <div className={style.mobileToolbarItem}><Roam /></div>}
-          {this.props.funcOption.isolate && <div className={style.mobileToolbarItem}><Isolate /></div>}
+          {
+            this.props.funcOption.isolate
+            && <div className={style.mobileToolbarItem}><Isolate /></div>
+          }
           {this.props.funcOption.hide && <div className={style.mobileToolbarItem}><Hide /></div>}
-          {this.props.funcOption.section && <div className={style.mobileToolbarItem}><Section /></div>}
+          {
+            this.props.funcOption.section
+            && <div className={style.mobileToolbarItem}><Section /></div>
+          }
           {!isPicker && this.props.funcOption.changeCptColor && (
             <div className={style.mobileToolbarItem}>
               <ChangeCptColor />
@@ -278,12 +310,29 @@ class Bottom extends React.Component {
               <Measure />
             </div>
           )}
-          {this.props.funcOption.cptInfo && <div className={style.mobileToolbarItem}><CptInfo /></div>}
-          {!isPicker && this.props.funcOption.infoTree && <div className={style.mobileToolbarItem}><InfoTree /></div>}
-          {!isPicker && this.props.funcOption.snapshot && <div className={style.mobileToolbarItem}><Snapshot /></div>}
+          {
+            this.props.funcOption.cptInfo
+            && <div className={style.mobileToolbarItem}><CptInfo /></div>
+          }
+          {
+            !isPicker
+            && this.props.funcOption.infoTree
+            && <div className={style.mobileToolbarItem}><InfoTree /></div>
+          }
+          {
+            !isPicker
+            && this.props.funcOption.snapshot
+            && <div className={style.mobileToolbarItem}><Snapshot /></div>
+          }
           {this.props.linkage.emitter && funcOption.open2d && <div className={style.mobileToolbarItem}><Open2D linkage={this.props.linkage} selected={this.state.mode === 'main3D'} /></div>}
-          {!isPicker && funcOption.cptsearch && <div className={style.mobileToolbarItem}><CptSearch /></div>}
-          {!isPicker && funcOption.minimap && <div className={style.mobileToolbarItem}><MiniMap /></div>}
+          {
+            !isPicker
+            && funcOption.cptsearch && <div className={style.mobileToolbarItem}><CptSearch /></div>
+          }
+          {
+            !isPicker
+            && funcOption.minimap && <div className={style.mobileToolbarItem}><MiniMap /></div>
+          }
           {!isPicker && this.props.funcOption.annotation && (
             <div className={style.mobileToolbarItem}>
               <Annotation
@@ -328,6 +377,7 @@ const mapStateToProps = (state) => ({
   HorizontalorVerticalScreen: state.system.HorizontalorVerticalScreen,
   mode: state.button.mode,
   modelDetail: state.system.model,
+  cloudBaking: state.userSetting.cloudBaking,
 });
 const mapDispatchToProps = () => ({});
 export default connect(

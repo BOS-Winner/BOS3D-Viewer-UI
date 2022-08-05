@@ -12,8 +12,21 @@ class Confirm extends React.Component {
 
   render() {
     const {
-      title, message, okText, cancelText
+      title, message, okText, cancelText, mode = "normal"
     } = this.props;
+    let currentStyle = {};
+    switch (mode) {
+      case "normal":
+        currentStyle = {};
+        break;
+      case "delete":
+        currentStyle = {
+          backgroundColor: "#FF2845",
+        };
+        break;
+      default:
+        break;
+    }
     return ReactDOM.createPortal((
       <div className={style.container}>
         <AntdIcon type="iconclose" className={style.close} onClick={this.props.closeIconFunc} />
@@ -26,7 +39,7 @@ class Confirm extends React.Component {
         </div>
         <div className={style.footer}>
           <button type="button" className={style.cancelButton} onClick={this.props.cancelFunc}>{cancelText}</button>
-          <button type="button" className={style.okButton} onClick={this.props.okFunc}>{okText}</button>
+          <button type="button" className={style.okButton} style={currentStyle} onClick={this.props.okFunc}>{okText}</button>
         </div>
       </div>
     ), this.props.viewportDiv);
@@ -42,12 +55,14 @@ Confirm.propTypes = {
   cancelFunc: PropTypes.func.isRequired,
   okFunc: PropTypes.func.isRequired,
   closeIconFunc: PropTypes.func.isRequired,
+  mode: PropTypes.string,
 };
 
 Confirm.defaultProps = {
   viewportDiv: document.body,
   okText: '确定',
   cancelText: '取消',
+  mode: "normal",
 };
 
 export default Confirm;

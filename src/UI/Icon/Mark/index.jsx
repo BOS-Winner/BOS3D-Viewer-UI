@@ -209,7 +209,7 @@ class Mark extends React.Component {
     if (this.state.curMarkType === 'dom') {
       const title = subFormInstance.state.title || genDomTitle();
       const id = generateUUID();
-      const sp2d = this.props.viewer.getScreenCoordFromSceneCoord(this.state.startPosition);
+      const sp2d = this.props.viewer.getScreenCoordFromSceneCoord(this.state.startPosition); // mark position
       const endPosition = [
         sp2d[0] + TEXT_X_OFFSET,
         sp2d[1] + TEXT_Y_OFFSET,
@@ -236,7 +236,8 @@ class Mark extends React.Component {
       const title = subFormInstance.state.title || genSpriteTitle();
       const scale = subFormInstance.state.scale ? parseFloat(subFormInstance.state.scale) : 1;
       const id = generateUUID();
-      const imageSize = this.calImageSize(this.viewer, this.state.cptKey);
+      const _imageSize = this.calImageSize(this.viewer, this.state.cptKey);
+      const imageSize = _imageSize > 300 ? 300 : _imageSize;
       return {
         type: 'sprite',
         title,
@@ -270,7 +271,7 @@ class Mark extends React.Component {
     const dpr = window.devicePixelRatio;
     // 需要把endpoint特殊处理，mark的endPosition是个屏幕x，Y轴的坐标，它的一个作用是显示文本标签的文字，请看genMark 关于endpoint部分。此时我们是回归正常的xy轴点。
     // 这样才能正常的截取到中心点位置。具体请打印下日志
-    // console.log(endPosition, 'genDOMThumbnail')
+    // console.log(endPosition, 'genDOMThumbnail');
     const END_POSITION = [];
     END_POSITION[0] = (endPosition[0] - TEXT_X_OFFSET);
     END_POSITION[1] = (endPosition[1] - TEXT_Y_OFFSET);
@@ -294,13 +295,13 @@ class Mark extends React.Component {
       markContainer.style.zIndex = -114514;
       markContainer.style.top = 0;
       markContainer.style.left = 0;
-      const { width, height } = getComputedStyle(viewer.viewportDiv);
-      const { width: bodyWidth, height: bodyHeight } = getComputedStyle(document.body);
+      const { left, top } = viewer.viewportDiv.getBoundingClientRect();
+      // const { width: bodyWidth, height: bodyHeight } = getComputedStyle(document.body);
       // 补差计算，当小屏幕时候，view标签跟body的大小不一样，导致view点不是从0,0开始的。所以要减去这个。ps:全屏模式下无此问题，因为两个是相等的
-      const difX = parseInt(bodyWidth, 10) - parseInt(width, 10);
-      const difY = parseInt(bodyHeight, 10) - parseInt(height, 10);
-      markContainer.style.width = width; // Math.max(...[width, bodyWidth]);
-      markContainer.style.height = height; //  Math.max(...[height, bodyHeight]);;
+      // const difX = parseInt(bodyWidth, 10) - parseInt(width, 10);
+      // const difY = parseInt(bodyHeight, 10) - parseInt(height, 10);
+      // markContainer.style.width = Math.max(...[width, bodyWidth]);
+      // markContainer.style.height = Math.max(...[height, bodyHeight]);
       markContainer.id = '';
       viewer.viewportDiv.appendChild(markContainer);
       // 4. merge modelImg and mark
@@ -310,10 +311,10 @@ class Mark extends React.Component {
         getMarkShot(
           img2,
           markContainer,
-          END_POSITION[0] - LINE_OFFSET * 2.1 / 2 + difX / 2,
-          END_POSITION[1] - LINE_OFFSET * 1.2 / 2 + difY / 2,
-          LINE_OFFSET * 2.1,
-          LINE_OFFSET * 1.2,
+          cropX + left,
+          cropY + top,
+          cropWidth,
+          cropHeight,
         )
           .then(rsp => {
             viewer.viewportDiv.removeChild(markContainer);
@@ -845,6 +846,7 @@ class Mark extends React.Component {
   onCancelMarkModal = () => {
     const cb = () => {
       this.onChangeDetailModal(false);
+      this.exitEdit();
       this.setState({
         // selectedDOMMarkId: '',
         // selectedSpriteMarkId: '',
@@ -906,7 +908,7 @@ class Mark extends React.Component {
       needConfirmRemove,
       needConfirmEdit
     } = this.state;
-    console.log(this.markComRef.current);
+
     return (
       <div
         title="标签"

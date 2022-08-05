@@ -1307,16 +1307,17 @@ class Tree extends React.Component {
     let cptKeys = [];
     const key = this.renderData[id].cptKey;
     // handing the root of tree show or hide
-    if (id === ROOTNODEID) {
-      this.renderData.forEach(item => {
-        if (!item.locked) {
-          item.checked = checked;
-          this.hideIDList.push(item.key);
-          cptKeys.push(item.cptKey || item.familyKey);
-        }
-      });
-      this.checkNode(ROOTNODEID, checked);
-    } else if (this.renderData[id].children === 0 && key) {
+    // if (id === ROOTNODEID) {
+    //   this.renderData.forEach(item => {
+    //     if (!item.locked) {
+    //       item.checked = checked;
+    //       this.hideIDList.push(item.key);
+    //       cptKeys.push(item.cptKey || item.familyKey);
+    //     }
+    //   });
+    //   this.checkNode(ROOTNODEID, checked);
+    // } else
+    if (this.renderData[id] === 0 && key) {
       const ids = [];
       this.renderData.forEach(data => {
         if (data.cptKey === key) {
@@ -1406,6 +1407,9 @@ class Tree extends React.Component {
     }
 
     this.forceUpdate();
+    setTimeout(() => {
+      this.forceUpdate();
+    }, 100);
   }
 
   /**

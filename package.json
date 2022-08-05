@@ -1,6 +1,6 @@
 {
   "name": "bos3d-viewer-ui",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "main": "src/index.jsx",
   "homepage": "http://bos.boswinner.com",
   "repository": {
@@ -39,6 +39,7 @@
     "core-js": "^3.6.5",
     "craco-less": "^1.17.1",
     "date-fns": "^2.14.0",
+    "file-saver": "^2.0.5",
     "formdata-polyfill": "^3.0.20",
     "html2canvas": "^1.0.0-rc.5",
     "lodash-es": "^4.17.15",

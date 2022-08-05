@@ -342,45 +342,45 @@ class Viewer3DUI extends React.Component {
     console.log("当前是否是移动端横屏", isMobile, HorizontalorVerticalScreen);
     const viewer = this.props.store.getState().system.viewer3D;
     return (
-      <React.StrictMode>
-        <ThemeProvider theme={theme}>
-          <Provider store={this.props.store}>
-            {!isMobile && <ViewControlToolbar />}
-            <Bottom
-              showAnnotationUI={this.state.showAnnotationUI}
-              openAnnotationUI={this.openAnnotationUI}
-              modelLoad={this.state.modelLoad}
-            />
-            {
-              this.state.showContextMenu ? (
-                <div ref={this.contextMenuRef}>
-                  <ContextMenu
-                    position={this.state.contextMenuPosition}
-                    viewer={viewer}
-                    familyData={this.state.familyData}
-                    assemblies={this.state.assemblies}
-                    hide={() => this.hideContextMenu()}
-                    userMenu={this.userMenu}
-                  />
-                </div>
+      // <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <Provider store={this.props.store}>
+          {!isMobile && <ViewControlToolbar />}
+          <Bottom
+            showAnnotationUI={this.state.showAnnotationUI}
+            openAnnotationUI={this.openAnnotationUI}
+            modelLoad={this.state.modelLoad}
+          />
+          {
+            this.state.showContextMenu ? (
+              <div ref={this.contextMenuRef}>
+                <ContextMenu
+                  position={this.state.contextMenuPosition}
+                  viewer={viewer}
+                  familyData={this.state.familyData}
+                  assemblies={this.state.assemblies}
+                  hide={() => this.hideContextMenu()}
+                  userMenu={this.userMenu}
+                />
+              </div>
+            ) : null
+          }
+          {
+            this.state.showAnnotationUI
+              ? (
+                <AnnotationUI
+                  snapshot={this.snapshot}
+                  editorData={this.editorData}
+                  onClose={this.closeAnnotationUI}
+                  onSave={this.saveAnnotation}
+                />
               ) : null
-            }
-            {
-              this.state.showAnnotationUI
-                ? (
-                  <AnnotationUI
-                    snapshot={this.snapshot}
-                    editorData={this.editorData}
-                    onClose={this.closeAnnotationUI}
-                    onSave={this.saveAnnotation}
-                  />
-                ) : null
-            }
-            <ProgressBar />
-            <MouseIcon />
-          </Provider>
-        </ThemeProvider>
-      </React.StrictMode>
+          }
+          <ProgressBar />
+          <MouseIcon />
+        </Provider>
+      </ThemeProvider>
+      // </React.StrictMode>
     );
   }
 }

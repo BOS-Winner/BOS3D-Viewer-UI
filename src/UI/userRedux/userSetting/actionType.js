@@ -7,3 +7,4 @@ export const CHANGE_MODEL_SETTING = "CHANGE_MODEL_SETTING_ij43krefa";
 export const SET_SETTING = "SET_SETTING_rtuhie348uei";
 export const SET_CUSTOMTOOLSTATE = "SET_CUSTOMTOOLSTATE+dkajhdkjhqwjkerqkwej";
 export const CHANGE_BEST_VIEW = "CHANGE_BEST_VIEW_sdkjahdkja";
+export const CHANGE_BAKING = "CHANGE_BAKINGSHOWdakjshdkasd";

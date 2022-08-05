@@ -172,6 +172,11 @@ export default function GeneralSearch(props) {
     });
   }
 
+  const [refresh, setRefresh] = useState(false);
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    refresh && setTimeout(() => setRefresh(false));
+  }, [refresh]);
   /**
    * 选择表中构件的回调函数
    * 处理构件在模型中的高亮效果
@@ -223,6 +228,8 @@ export default function GeneralSearch(props) {
       selectedRowKeys: keys,
       selectedRowItems: rows
     });
+
+    setRefresh(true);
   }
 
   // 表格选中配置

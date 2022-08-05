@@ -10,6 +10,7 @@ import iconstyle from '../../Toolbar/bottom.less';
 import MeasureToolbar from "./MeasureToolbar";
 import SettingAlert from "./SettingAlert";
 import MobileHelper from "./MobileHelper";
+import { modeMap, EVENT } from "../../constant";
 
 class Measure extends React.PureComponent {
   constructor(props) {
@@ -17,7 +18,8 @@ class Measure extends React.PureComponent {
     this.state = {
       setModal: {
         visible: false
-      }
+      },
+      activeMeasureMode: 0,
     };
     this.buttonAction = this.buttonAction.bind(this);
 
@@ -31,15 +33,29 @@ class Measure extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    // 开启测量
-    if (prevProps.mode !== "测量模式" && this.props.mode === "测量模式") {
-      const viewer = this.props.viewer;
-      if (prevProps.mode !== '') {
-        toastr.info(`测量模式下将关闭${prevProps.mode}`, "", {
-          target: `#${viewer.viewport}`
-        });
-      }
+    const viewer = this.props.viewer;
+    //  Handle mode Tips
+    if (
+      this.props.modeStack.includes(modeMap.sectionMode)
+      && this.props.mode === modeMap.measureMode
+    ) {
+      toastr.info(`测量模式下,将自动隐藏剖切盒或者剖切面`, "", {
+        target: `#${viewer.viewport}`
+      });
+      this.props.ee.emit(EVENT.handleSectionStatus, false);
+    } else if (
+      prevProps.mode !== ""
+      && prevProps.mode !== modeMap.sectionMode
+      && prevProps.mode !== modeMap.measureMode
+      && this.props.mode === modeMap.measureMode
+    ) {
+      toastr.info(`测量模式下将关闭${prevProps.mode}`, "", {
+        target: `#${viewer.viewport}`
+      });
+    }
 
+    // start measure mode
+    if (prevProps.mode !== modeMap.measureMode && this.props.mode === modeMap.measureMode) {
       const PICK_BY_MEASURE = this.props.BIMWINNER.BOS3D.ToolMode.PICK_BY_MEASURE;
       viewer.viewerImpl.controlManager.enableTool(viewer.viewerImpl, PICK_BY_MEASURE);
       toastr.info("选定合适视角测量", "", {
@@ -47,37 +63,102 @@ class Measure extends React.PureComponent {
       });
       this.measure = viewer.viewerImpl.measure;
       this.measure.open();
-      this.measure.setCurrentMode("Distance");
+      if (!this.props.modeStack.includes(modeMap.sectionMode)) {
+        this.buttonAction(0);
+      }
       if (this.measure) {
         this.measure.didEndMeasureCallback = this.didEndMeasureCallback.bind(this);
       }
       viewer.render();
     }
     // 关闭测量
-    if (this.props.mode !== '测量模式' && prevProps.mode === '测量模式') {
-      const viewer = this.props.viewer;
+    if (
+      this.props.mode !== modeMap.measureMode
+      && prevProps.mode === modeMap.measureMode
+    ) {
+      // this.props.changeMode("");
       const PICK_BY_MEASURE = this.props.BIMWINNER.BOS3D.ToolMode.PICK_BY_MEASURE;
       viewer.viewerImpl.controlManager.disableTool(PICK_BY_MEASURE);
       this.measure.didEndMeasureCallback = undefined;
+      this.buttonAction(-1);
       this.measure = undefined;
+      this.props.ee.emit(EVENT.handleSectionStatus, true);
+      viewer.render();
+    }
+  }
+
+  handleMeasureStatus = (status = true) => {
+    const viewer = this.props.viewer;
+    const PICK_BY_MEASURE = this.props.BIMWINNER.BOS3D.ToolMode.PICK_BY_MEASURE;
+    if (status) {
+      // 启动测量控制器
+      viewer.viewerImpl.controlManager.enableTool(viewer.viewerImpl, PICK_BY_MEASURE);
+      toastr.info("选定合适视角测量", "", {
+        target: `#${viewer.viewport}`
+      });
+      this.measure = viewer.viewerImpl.measure;
+      this.measure.open();
+      // 默认测量距离
+      this.measure.setCurrentMode("Distance");
+      if (this.measure) {
+        this.measure.didEndMeasureCallback = this.didEndMeasureCallback.bind(this);
+      }
+      viewer.render();
+    } else {
+      viewer.viewerImpl.controlManager.disableTool(PICK_BY_MEASURE);
+      this.measure.didEndMeasureCallback = undefined;
+      this.buttonAction(-1);
+      this.measure = undefined;
+      this.props.ee.emit(EVENT.handleSectionStatus, true);
       viewer.render();
     }
   }
 
   onClick() {
-    this.props.changeMode(this.props.mode === "测量模式" ? "" : "测量模式");
-    if (this.props.mode === "测量模式") {
+    // Close the measure mode
+    if (
+      this.props.mode === modeMap.measureMode
+      || this.props.modeStack.includes(modeMap.measureMode)
+    ) {
+      this.props.changeMode(modeMap.exit, modeMap.measureMode);
+      // this.buttonAction(-1);
       this.onCancelSetModal();
+    } else {
+      // start the measure mode
+      this.props.changeMode(modeMap.measureMode);
     }
   }
 
+  /**
+   * 切换测量模式(距离，角度，面积，体积等)
+   * @param {number} index 测量方式的索引
+   * @returns {null}
+   */
   buttonAction(index) {
     if (!this.measure) {
-      return;
+      const { viewer } = this.props;
+      if (this.props.modeStack.includes(modeMap.sectionMode) && index > -1) {
+        const PICK_BY_MEASURE = this.props.BIMWINNER.BOS3D.ToolMode.PICK_BY_MEASURE;
+        viewer.viewerImpl.controlManager.enableTool(viewer.viewerImpl, PICK_BY_MEASURE);
+        toastr.info("选定合适视角测量", "", {
+          target: `#${viewer.viewport}`
+        });
+        this.measure = viewer.viewerImpl.measure;
+        this.measure.open();
+        if (this.measure) {
+          this.measure.didEndMeasureCallback = this.didEndMeasureCallback.bind(this);
+        }
+        viewer.render();
+      } else {
+        return;
+      }
     }
     if (index === -1) {
       this.measure.setCurrentMode("");
       this.props.changeMouseIcon("");
+      this.setState({
+        activeMeasureMode: index,
+      });
       return;
     }
     if (index === 0) {
@@ -120,12 +201,17 @@ class Measure extends React.PureComponent {
       // 删除
       this.measure.removeSelectedMeasure();
     }
+    // change mode;
+    this.setState({
+      activeMeasureMode: index,
+    });
+    this.props.changeMode(modeMap.measureMode);
+    this.props.ee.emit(EVENT.handleSectionStatus, false);
   }
 
   didEndMeasureCallback(result) {
     if (this.measure.getCurrentMode() === "Adjust") {
       // 测量校验弹窗
-      // console.log('result', result)
       this.setState({
         setModal: {
           type: 'Adjust',
@@ -149,7 +235,6 @@ class Measure extends React.PureComponent {
 
   // 确认设置
   onOkSet = (obj) => {
-    console.log(`确认设置`, obj);
     const { setModal } = this.state;
     if (setModal.type === 'Setting') {
       // 弹窗设置回调
@@ -175,7 +260,7 @@ class Measure extends React.PureComponent {
   render() {
     const { setModal } = this.state;
     const { isMobile, modelDetail } = this.props;
-    const selected = (this.props.mode === "测量模式");
+    const selected = (this.props.modeStack.includes(modeMap.measureMode));
     return (
       <div>
         <div
@@ -204,6 +289,8 @@ class Measure extends React.PureComponent {
                 }}
                 isMobile={isMobile}
                 modelDetail={modelDetail}
+                viewer={this.props.viewer}
+                activeMeasureMode={this.state.activeMeasureMode}
               />
             )
             : null
@@ -233,10 +320,12 @@ Measure.propTypes = {
   changeMode: PropTypes.func.isRequired,
   changeMouseIcon: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
+  modeStack: PropTypes.array.isRequired,
   viewer: PropTypes.object.isRequired,
   BIMWINNER: PropTypes.object.isRequired,
   isMobile: PropTypes.bool,
   modelDetail: PropTypes.object,
+  ee: PropTypes.object.isRequired,
 };
 
 Measure.defaultProps = {
@@ -246,15 +335,17 @@ Measure.defaultProps = {
 
 const mapStateToProps = (state) => ({
   mode: state.button.mode,
+  modeStack: state.button.modeStack,
   viewer: state.system.viewer3D,
   BIMWINNER: state.system.BIMWINNER,
   isMobile: state.system.isMobile,
   HorizontalorVerticalScreen: state.system.HorizontalorVerticalScreen,
   modelDetail: state.system.model,
+  ee: state.system.eventEmitter,
 });
 const mapDispatchToProps = (dispatch) => ({
-  changeMode: mode => {
-    dispatch(changeMode(mode));
+  changeMode: (mode, exitMode) => {
+    dispatch(changeMode(mode, exitMode));
   },
   changeMouseIcon: mode => {
     dispatch(changeMouseIcon(mode));

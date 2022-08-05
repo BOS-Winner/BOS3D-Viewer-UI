@@ -42,6 +42,9 @@ class Reset extends React.Component {
       isCheckALL: checked,
       checkedList
     });
+    setTimeout(() => {
+      this.forceUpdate();
+    }, 500);
   }
 
   onReset(e) {
@@ -65,6 +68,7 @@ class Reset extends React.Component {
 
   render() {
     const { isCheckALL, checkedList } = this.state;
+    console.log(this.state);
     return (
       <Modal
         title="复位设置"

@@ -11,7 +11,7 @@ import { snapshotLn, markLn, roadnetLn } from "./generateListener";
 import AnnotationStore from "./AnnotationUI/AnnotationStore";
 import uaFactory from "./userActionFactory";
 import {
-  setToolbarState, changeDisplaySetting, setCustomToolbarState, changeBestView
+  setToolbarState, changeDisplaySetting, setCustomToolbarState, changeBestView, changeBaking
 } from "./userRedux/userSetting/action";
 import { DEFAULT_TOOL } from "./constant";
 import { mobileCheck, HVScreen } from "./utils/utils";
@@ -78,11 +78,15 @@ class BOS3DUI {
     this.changeBestViewVisible = (visible) => {
       store.dispatch(changeBestView(visible));
     };
+    this.changeCloudBakingVisible = visible => {
+      store.dispatch(changeBaking(visible));
+    };
     const viewport = viewer3D.viewportDiv;
     viewport.style.position = "relative";
     const noneDisplay = document.createElement("div");
     noneDisplay.setAttribute("style", "display: none;");
     viewport.appendChild(noneDisplay);
+    // 添加全局的提示
     ReactDOM.render(
       ReactDOM.createPortal(
         <ConfigProvider locale={zhCN} prefixCls="bos3d">

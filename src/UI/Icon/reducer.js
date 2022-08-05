@@ -1,4 +1,5 @@
 import * as actionType from "./actionType";
+import { modeMap } from "../constant";
 
 const UNDO_MAX_LEN = 10;
 
@@ -9,13 +10,82 @@ export default function (state = {
   mouseIcon: '', // 鼠标图标，一个模式下有不同小模式用这个调（直接传入模式名）
   componentInfoVisible: false,
   familyKey: '',
+  modeStack: [],
 }, action) {
   switch (action.type) {
     case actionType.CHANGE_MODE: {
+      let currentMode = "";
+      let currentModeStack = state.modeStack;
+      switch (action.mode) {
+        case modeMap.roamMode:
+          // clear modeStack
+          currentModeStack.length = 0;
+          currentModeStack.push(modeMap.roamMode);
+          currentMode = modeMap.roamMode;
+          break;
+        case modeMap.measureMode:
+          if (!currentModeStack.includes(modeMap.sectionMode)) {
+            currentModeStack.length = 0;
+          }
+          currentModeStack.push(modeMap.measureMode);
+          currentModeStack = Array.from(new Set(currentModeStack));
+          currentMode = modeMap.measureMode;
+          break;
+        case modeMap.sectionMode:
+          if (
+            !currentModeStack.includes(modeMap.measureMode)
+            && !currentModeStack.includes(modeMap.pickByRectMode)
+          ) {
+            currentModeStack.length = 0;
+          }
+          currentModeStack.push(modeMap.sectionMode);
+          currentModeStack = Array.from(new Set(currentModeStack));
+          currentMode = modeMap.sectionMode;
+          break;
+        case modeMap.pickByRectMode:
+          if (!currentModeStack.includes(modeMap.sectionMode)) {
+            currentModeStack.length = 0;
+          }
+          currentModeStack.push(modeMap.pickByRectMode);
+          currentModeStack = Array.from(new Set(currentModeStack));
+          currentMode = modeMap.pickByRectMode;
+          break;
+        case "": // pop
+          currentModeStack.pop();
+          if (currentModeStack.length) {
+            currentMode = currentModeStack[currentModeStack.length - 1];
+          } else {
+            currentMode = "";
+          }
+          break;
+        case modeMap.exit:
+          if (action.exitMode !== "") {
+            currentModeStack = currentModeStack.filter(_mode => _mode !== action.exitMode);
+            if (currentModeStack.length) {
+              currentMode = currentModeStack[currentModeStack.length - 1];
+            } else {
+              currentMode = "";
+            }
+          } else {
+            currentModeStack = currentModeStack.filter(_mode => _mode !== state.mode);
+            if (currentModeStack.length) {
+              currentMode = currentModeStack[currentModeStack.length - 1];
+            } else {
+              currentMode = "";
+            }
+          }
+          break;
+        default: // clear
+          // clear mode
+          currentModeStack.length = 0;
+          currentMode = "";
+          break;
+      }
       return {
         ...state,
-        mode: action.mode,
-        mouseIcon: action.mode,
+        mode: currentMode,
+        mouseIcon: state.mouseIcon === "" ? currentMode : state.mouseIcon,
+        modeStack: currentModeStack,
         // 切换到漫游模式要关闭构件信息
         componentInfoVisible: !(action.mode === "漫游模式") && state.componentInfoVisible,
       };

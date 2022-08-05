@@ -8,6 +8,7 @@ export default function (state = {
   cameraSetting: DEFAULT_CAMERA,
   modelSetting: {}, // {[modelKey]: {basePoint: []}}
   bestView: false,
+  cloudBaking: false,
 }, action) {
   switch (action.type) {
     case actionType.CHANGE_TOOLBAR_STATE:
@@ -67,6 +68,11 @@ export default function (state = {
       return {
         ...state,
         bestView: action.visible
+      };
+    case actionType.CHANGE_BAKING:
+      return {
+        ...state,
+        cloudBaking: action.visible,
       };
     case actionType.RESTORE_SETTING:
       // 暂不支持恢复模型设置
