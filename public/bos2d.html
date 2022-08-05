@@ -20,14 +20,9 @@
   <script>
     const html = document.querySelector("html");
     const viewport = document.querySelector(".viewport");
-    // viewport.style.width = html.clientWidth - 200 + 'px';
-    // viewport.style.height = html.clientHeight - 200 + 'px';
-    // viewport.style.margin = "100px 0 0 100px";
+
   </script>
-  <script type="module">
-    import * as BOS2D from "http://localhost:8899/src/viewer2D/src/index.js";
-    window.BOS2D = BOS2D;
-  </script>
+  <script type="application/javascript" src="https://bos3d.bimwinner.com/static/latest/BOS2D.min.js"></script>
   <%= htmlWebpackPlugin.tags.bodyTags %>
   <script>
     document.body.onload = () => {

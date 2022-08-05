@@ -13,8 +13,6 @@
   <!--禁止email识别-->
   <meta content="email=no" name="format-detection" />
   <title>二三维联动</title>
-  <link rel="stylesheet" type="text/css" href="http://localhost:8899/css/lobibox.css">
-  <link rel="stylesheet" type="text/css" href="http://localhost:8899/css/viewer2D.css">
   <%= htmlWebpackPlugin.tags.headTags %>
   <style>
     *{
@@ -38,14 +36,8 @@
 </head>
 <body>
   <div id="linkage"></div>
-  <script type="module">
-    import * as BOS3D from "http://localhost:8899/src/index.js";
-    window.BOS3D = BOS3D;
-  </script>
-  <script type="module" >
-    import * as BOS2D from "http://localhost:8899/src/viewer2D/src/index.js";
-    window.BOS2D = BOS2D;
-  </script>
+  <script type="application/javascript" src="https://bos3d.bimwinner.com/static/latest/BOS3D.min.js"></script>
+  <script type="application/javascript" src="https://bos3d.bimwinner.com/static/latest/BOS2D.min.js"></script>
   <%= htmlWebpackPlugin.tags.bodyTags %>
   <script>
     document.body.onload = function () {
@@ -55,20 +47,14 @@
         BOS3DUI: window.BOS3DUI,
         BOS2DUI: window.BOS2DUI,
         selector: '#linkage',
-        host: 'https://bos3d-alpha.bimwinner.com',
-        // host: 'https://bos3d-beta.bimwinner.com',
-        // host: 'http://alpha-building-hkiot-bos3d.rickricks.com.cn',
+        host: 'https://bos3d.bimwinner.com',
         token: '',
         share: '',
         onInitComplete: () => {
           // console.log('test: ', linkage.viewer3D, linkage.viewer2D, linkage.bos3dui, linkage.bos2dui)
         }
       });
-      // 乌镇无图纸，测试环境
-      // linkage.addView('M1577341307688', 'test2');
-      // revit，江湖别墅，带轴网，研发，测试
-      linkage.addView("M1620959518127", "j6c46b6c3d4d4676a7e528980a1a42b5");
-      // linkage.addView("M1606899191432", "s3b3e1986d044aa299f0d45ae98a7651");
+      linkage.addView("M123", "projectKey");
       window.linkage = linkage;
     }
   </script>
