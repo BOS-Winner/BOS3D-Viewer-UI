@@ -86,6 +86,29 @@
         background-color: rgba(27, 27, 27, 1);
     }
   }
+
+  .item-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .best-view-status{
+      @size: 6px;
+      width: @size;
+      height: @size;
+      border-radius: @size;
+      margin: 0 4px;
+    }
+
+    .item-icon{
+      @size: 16px;
+      margin: 0 5px;
+      svg {
+        width: @size;
+        height: @size;
+      }
+    }
+  }
 }
 
 

@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, Tooltip } from "antd";
 import _ from "lodash-es";
+import toastr from "toastr";
 import * as style from "./index.less";
 import { isLandscape } from "../../utils/device";
 import { resetHistory } from "../../Icon/action";
 import { AntdIcon } from "../../utils/utils";
 import AxisController from "./AxisController.js";
 import MobileHelper from './MobileHelper/index';
+import { Server } from "../../server/server";
 
 function fuckFSC(dom) {
   if (dom.requestFullscreen) {
@@ -34,20 +36,36 @@ function fuckExitFSC() {
   }
 }
 
+const BestViewStatus = {
+  Open: "#04CB02",
+  Pending: "#FFAD0D",
+  Close: "rgb(4, 203, 4)",
+  Error: "#F03D3D",
+};
+
 class ViewControlToolbar extends React.Component {
   constructor(props) {
     super(props);
-    this.viewerUUId = this.props.viewer.viewerImpl.uuid;
     this.width = 0;
     this.height = 0;
-    this.saveCanvasSize();
+    // this.saveCanvasSize();
     this.fscLner = this.fscLner.bind(this);
     window.isFullScreen = false;
     this.state = {
+      viewerUUId: "",
       isFullScreen: false,
       // isShowDropDownMenu: false,
       viewController: true,
       axisController: false,
+
+      // 最佳视角模式状态
+      bestViewStatus: BestViewStatus.Close,
+
+      // 最佳视角是否需要重新计算
+      bestViewRedo: false,
+
+      // 后台的最佳视角是否已经生成
+      bestViewExisted: false,
     };
     this.onMouseDown = this.onMouseDown.bind(this);
     this.dropDownMenuRef = React.createRef();
@@ -69,6 +87,7 @@ class ViewControlToolbar extends React.Component {
     document.addEventListener("webkitfullscreenchange", this.fscLner);
     document.addEventListener("mozfullscreenchange", this.fscLner);
     document.addEventListener("MSFullscreenChange", this.fscLner);
+    this.hanldeInitViewportId(this.props.viewer.viewerImpl.uuid);
 
     // 初始化轴向控制器
     this.axisController = new AxisController({
@@ -84,6 +103,70 @@ class ViewControlToolbar extends React.Component {
     document.removeEventListener("webkitfullscreenchange", this.fscLner);
     document.removeEventListener("mozfullscreenchange", this.fscLner);
     document.removeEventListener("MSFullscreenChange", this.fscLner);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.bestView && !this.props.bestView) {
+      this.getBestViewStatus();
+    }
+    return true;
+  }
+
+  /**
+   * 获取初始化viewportId
+   * @param {string} uuid viewerUUid
+   */
+  hanldeInitViewportId(uuid) {
+    this.setState({ viewerUUId: uuid });
+  }
+
+  async getBestViewStatus() {
+    const viewer = this.props.viewer;
+    const allModelKeys = viewer.getViewerImpl().getAllBimModelsKey();
+    if (!allModelKeys.length) {
+      const scope = this;
+      clearTimeout(this.customGetBestViewStatusTimer);
+      this.customGetBestViewStatusTimer = setTimeout(() => scope.getBestViewStatus(), 3000);
+      return;
+    }
+    const server = new Server({ viewer: this.props.viewer });
+    const result = await server.getBestViewStatus();
+    if (result.code === "SUCCESS") {
+      // 判断当前有没有生成最佳视角
+      if (result.data["viewport"]) {
+        this.setState({ bestViewExisted: true });
+      }
+      // 如果默认关闭则退出
+      if (!result.data.switch || result.data.switch === "false") return;
+      const { data: { viewport } } = result;
+      const { position: viewportJson } = JSON.parse(viewport);
+      const cameraInfo = {
+        position: {
+          x: viewportJson.camera[0],
+          y: viewportJson.camera[1],
+          z: viewportJson.camera[2]
+        },
+        target: {
+          x: viewportJson.target[0],
+          y: viewportJson.target[1],
+          z: viewportJson.target[2]
+        },
+        up: { x: 0, y: 0, z: 1 },
+      };
+      // 飞向最佳视角
+      this.props.viewer.flyTo(cameraInfo, () => {
+        // 设置为主视角
+        this.setMainView();
+      });
+      // 同步状态
+      this.setState({
+        bestViewStatus: BestViewStatus.Open,
+        bestViewRedo: false,
+        bestViewExisted: true,
+      });
+    } else {
+      toastr.error(result.message);
+    }
   }
 
   /**
@@ -164,6 +247,7 @@ class ViewControlToolbar extends React.Component {
   // 相机的监听回调
   cameraChangeCallback = (info) => {
     if (!this.linkage) return;
+    // return;
     const {
       viewer,
       BIMWINNER: {
@@ -202,9 +286,9 @@ class ViewControlToolbar extends React.Component {
       if (angle < 60 && angle >= 0) {
         angle += 360;
       }
-      this.axisControllerLinkage = false;
+      // this.axisControllerLinkage = false;
       this.axisController.setPoint(angle);
-      this.axisControllerLinkage = true;
+      // this.axisControllerLinkage = true;
     }
   };
 
@@ -234,17 +318,128 @@ class ViewControlToolbar extends React.Component {
       console.log(box);
       const center = box.getCenter(new BOS3D.THREE.Vector3());
       console.log(center);
-      this.linkage = false;
+      // this.linkage = false;
       viewer.rotateCamera([tag * x, 0], center);
-      this.linkage = true;
+      // this.linkage = true;
       return;
     }
 
     // 旋转一周有误差
-    this.linkage = false;
+    // this.linkage = false;
     viewer.rotateCamera([tag * x, 0]);
-    this.linkage = true;
+    // this.linkage = true;
   };
+
+  handleBestView = async () => {
+    const { bestViewStatus, bestViewRedo } = this.state;
+    const server = new Server({ viewer: this.props.viewer });
+
+    // 如果当前状态是关闭的，则开启最佳视角
+    if (bestViewStatus === BestViewStatus.Close || bestViewStatus === BestViewStatus.Pending || BestViewStatus === BestViewStatus.Error) {
+      this.setState({
+        bestViewStatus: BestViewStatus.Pending,
+      });
+      const bestResult = await server.getBestView("", bestViewRedo);
+      if (bestResult.code === "SUCCESS" && bestResult.data?.viewport) {
+        // 同步状态到服务器
+        const result = await server.setBestViewStatus("", true);
+        if (result.code !== "SUCCESS") {
+          toastr.error(result.message);
+        }
+        // tip
+        toastr.success("启用最佳视角模式成功", "", {
+          target: this.props.viewer.getViewerImpl().domElement,
+        });
+        this.setState({
+          bestViewStatus: BestViewStatus.Open,
+          bestViewRedo: false,
+          bestViewExisted: true,
+        });
+        const { data: { viewport } } = bestResult;
+        const { position: viewportJson } = JSON.parse(viewport);
+        const cameraInfo = {
+          position: {
+            x: viewportJson.camera[0],
+            y: viewportJson.camera[1],
+            z: viewportJson.camera[2]
+          },
+          target: {
+            x: viewportJson.target[0],
+            y: viewportJson.target[1],
+            z: viewportJson.target[2]
+          },
+          up: { x: 0, y: 0, z: 1 },
+        };
+        // 飞向最佳视角
+        this.props.viewer.flyTo(cameraInfo, () => {
+          // 设置为主视角
+          this.setMainView();
+        });
+      } else if (bestResult.code !== "SUCCESS") {
+        toastr.error("启用最佳视角模式失败", "", {
+          target: this.props.viewer.getViewerImpl().domElement,
+        });
+        this.setState({
+          bestViewStatus: BestViewStatus.Error,
+          bestViewRedo: true,
+          bestViewExisted: false,
+        });
+      } else {
+        // 请求计算状态
+        clearTimeout(this.timeId);
+        this.timeId = setTimeout(() => {
+          this.handleBestView();
+        }, 1000 * 10);
+      }
+    }
+
+    // 如果当前状态是开启的，则关闭最佳视角
+    if (bestViewStatus === BestViewStatus.Open) {
+      toastr.success("关闭最佳视角模式成功", "", {
+        target: this.props.viewer.getViewerImpl().domElement,
+      });
+      this.setState({ bestViewStatus: BestViewStatus.Close });
+      this.resetMainView();
+      const result = await server.setBestViewStatus("", false);
+      if (result.code !== "SUCCESS") {
+        toastr.error(result.message);
+      }
+    }
+  }
+
+  /**
+   * 重置主视图
+   * @description 如果最佳视角模式开启，则关闭
+   */
+  handleResetMainView = () => {
+    this.resetMainView();
+    if (this.state.bestViewStatus === BestViewStatus.Open) {
+      this.handleBestView();
+    }
+    this.mainView();
+  }
+
+  /**
+   * 设置当前为主视图
+   */
+  handleSetMainView = async () => {
+    // 关闭最佳视角模式
+    // 如果当前状态是开启的，则关闭最佳视角
+    if (this.state.bestViewStatus === BestViewStatus.Open) {
+      const server = new Server({ viewer: this.props.viewer });
+      toastr.success("关闭最佳视角模式成功", "", {
+        target: this.props.viewer.getViewerImpl().domElement,
+      });
+      this.setState({ bestViewStatus: BestViewStatus.Close });
+      this.resetMainView();
+      const result = await server.setBestViewStatus("", false);
+      if (result.code !== "SUCCESS") {
+        toastr.error(result.message);
+      }
+    }
+
+    this.setMainView();
+  }
 
   render() {
     const { isMobile } = this.props;
@@ -267,11 +462,11 @@ class ViewControlToolbar extends React.Component {
       },
       {
         text: "当前视图设为主视图",
-        func: this.setMainView,
+        func: this.handleSetMainView,
       },
       {
         text: "重置主视图",
-        func: this.resetMainView,
+        func: this.handleResetMainView,
       },
       {
         text: this.state.viewController ? "关闭视图控制器" : "打开视图控制器",
@@ -299,6 +494,56 @@ class ViewControlToolbar extends React.Component {
     const menu = () => (
       <Menu className={style.customDropMenu}>
         {menuList.map((item) => MenuItem(item.text, item.func))}
+        {this.props.bestView && (
+          <Menu.Item
+            disabled={this.state.bestViewStatus === BestViewStatus.Pending}
+            onClick={this.handleBestView}
+          >
+            <div className={style.itemContainer}>
+              <div
+                className={style.bestViewStatus}
+                style={{
+                  background: this.state.bestViewStatus,
+                  display: this.state.bestViewExisted || this.state.bestViewStatus === BestViewStatus.Pending || this.state.bestViewStatus === BestViewStatus.Error ? "block" : "none",
+                }}
+              />
+              {
+                this.state.bestViewStatus === BestViewStatus.Pending
+                  ? (
+                    <Tooltip
+                      title="最佳视角模式启用中，请等待一段时间！"
+                      color="#444444"
+                    >
+                      <span>
+                        启用最佳视角模式
+                      </span>
+                    </Tooltip>
+                  ) : (
+                    <span>
+                      {this.state.bestViewStatus === BestViewStatus.Close
+                        ? "启用最佳视角模式"
+                        : "关闭最佳视角模式"}
+                    </span>
+                  )
+              }
+              <Tooltip
+                title="“启用后，系统会自动计算出最适合观察模型位置的视角;计算完成后，点击初始化或主视图按钮即可查看。”"
+                color="#444444"
+                arrowPointAtCenter
+                overlayStyle={{
+                  width: "192px",
+                  height: "117px",
+                  borderRadius: "4px",
+                  fontSize: '13px',
+                  lineHeight: "24px"
+                }}
+              >
+                <AntdIcon type="icontips_kehover" className={style.itemIcon} />
+              </Tooltip>
+            </div>
+          </Menu.Item>
+        )}
+
       </Menu>
     );
 
@@ -340,7 +585,7 @@ class ViewControlToolbar extends React.Component {
   }
 
   saveCanvasSize() {
-    const canvas = document.querySelector(`[id="${this.viewerUUId}"]>canvas`);
+    const canvas = document.querySelector(`[id="${this.state.viewerUUId}"]>canvas`);
     this.width = parseInt(getComputedStyle(canvas).width, 10);
     this.height = parseInt(getComputedStyle(canvas).height, 10);
   }
@@ -447,7 +692,8 @@ ViewControlToolbar.propTypes = {
   BIMWINNER: PropTypes.object.isRequired,
   resetHistory: PropTypes.func.isRequired,
   linkage: PropTypes.object,
-  isMobile: PropTypes.bool
+  isMobile: PropTypes.bool,
+  bestView: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -455,6 +701,7 @@ const mapStateToProps = (state) => ({
   BIMWINNER: state.system.BIMWINNER,
   linkage: state.system.linkage,
   isMobile: state.system.isMobile,
+  bestView: state.userSetting.bestView,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -40,3 +40,4 @@ class BOS2DUI {
 }
 
 window.BOS2DUI = BOS2DUI;
+export default BOS2DUI;

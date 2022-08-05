@@ -130,7 +130,7 @@ function Option(props) {
         const modelKey = renderData[0]?.modelKey;
         const model = props.viewer.getViewerImpl()
           .getModel(modelKey);
-        const url = _.get(model, 'loader.url.serverUrl') || props.viewer.host;
+        const url = _.get(model, 'dataUrl.url.serverUrl') || props.viewer.host;
         const projectKey = model.projectKey;
         const auth = model.accessToken;
         const share = model.shareKey === "" ? "" : `&share=${model.shareKey}`;

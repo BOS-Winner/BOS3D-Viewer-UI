@@ -5,7 +5,7 @@ import vacantLand from "./thumbnail/vacantLand.png";
 import vernalEquinox from "./thumbnail/vernalEquinox.png";
 
 // eslint-disable-next-line compat/compat
-const src = document.currentScript.src;
+const src = document.currentScript ? document.currentScript.src : "";
 let base = src.replace(/\/[\w.~]+\.js/, '');
 // 如果base因为意外没有值、值为空字符串或者没匹配到导致base没变化
 if (!base || base === src) {

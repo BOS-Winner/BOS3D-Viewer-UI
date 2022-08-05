@@ -41,6 +41,8 @@ class DisplayAndEffect extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     const newSetting = nextProps.displaySetting;
     const oldSetting = this.props.displaySetting;
+    const allModelKeys = this.props.viewer.getViewerImpl().getAllBimModelsKey();
+    const models = allModelKeys.map(_key => this.props.viewer.getViewerImpl().getModel(_key));
     if (!_.isEqual(oldSetting, newSetting)) {
       this.BOS3D.GlobalData.EnableSelectionOutline = newSetting.enableSelectionOutline;
       this.BOS3D.GlobalData.EnableSelectionBoundingBox = newSetting.enableSelectionBoundingBox;
@@ -55,7 +57,7 @@ class DisplayAndEffect extends React.Component {
         viewer.enableLogarithmicDepthBuffer(newSetting.enableLogarithmicDepthBuffer);
       }
       if (newSetting.lightIntensityFactor !== oldSetting.lightIntensityFactor) {
-        viewer.setLightIntensityFactor(newSetting.lightIntensityFactor + 1);
+        viewer.setExposure(newSetting.lightIntensityFactor);
       }
       if (newSetting.enableShadow !== oldSetting.enableShadow) {
         viewer.getViewerImpl()
@@ -63,7 +65,7 @@ class DisplayAndEffect extends React.Component {
       }
       if (newSetting.enableExtraLight !== oldSetting.enableExtraLight) {
         const enable = newSetting.enableExtraLight;
-        const models = Object.values(viewer.getViewerImpl().modelManager.models);
+
         if (enable && nextState.hasLight) {
           // 启用外部光且关闭内部光
           models.forEach(m => {
@@ -86,7 +88,6 @@ class DisplayAndEffect extends React.Component {
     }
     // 显示的时候查询是否需要显示外部光
     if (nextProps.isShown && !this.props.isShown) {
-      const models = Object.values(this.props.viewer.getViewerImpl().modelManager.models);
       const hasLight = models.some(m => m.hasLights());
       this.setState({
         hasLight,

@@ -41,7 +41,7 @@ function SkyBox(props) {
         }
       );
     } else {
-      props.viewer.getRootScene().background = undefined;
+      props.viewer.setSkyBox();
       props.viewer.render();
       setCurrentSkyBox(box);
     }

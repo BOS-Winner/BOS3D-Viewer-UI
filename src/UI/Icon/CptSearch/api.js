@@ -10,7 +10,7 @@ function getPrama(viewer3D, modelKey) {
   const model = viewer3D.getViewerImpl().getModel(modelKey);
   return {
     shareKey: model?.shareKey,
-    url: _.get(model, "loader.url.serverUrl") || viewer3D.host,
+    url: _.get(model, "dataUrl.url.serverUrl") || viewer3D.host,
     projectKey: model.projectKey,
     auth: model.accessToken,
   };
@@ -38,7 +38,7 @@ export function getComponentsList(
   if (Array.isArray(modelKey) && modelKey.length) {
     model = viewer3D.getViewerImpl().getModel(modelKey[0]);
   }
-  const url = _.get(model, 'loader.url.serverUrl') || viewer3D.host;
+  const url = _.get(model, 'dataUrl.url.serverUrl') || viewer3D.host;
   const projectKey = model.projectKey;
   const auth = model.accessToken;
   const share = model.shareKey;

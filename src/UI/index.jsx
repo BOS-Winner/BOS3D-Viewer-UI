@@ -10,7 +10,9 @@ import Viewer3DUI from './Viewer3DUI';
 import { snapshotLn, markLn, roadnetLn } from "./generateListener";
 import AnnotationStore from "./AnnotationUI/AnnotationStore";
 import uaFactory from "./userActionFactory";
-import { setToolbarState, changeDisplaySetting, setCustomToolbarState } from "./userRedux/userSetting/action";
+import {
+  setToolbarState, changeDisplaySetting, setCustomToolbarState, changeBestView
+} from "./userRedux/userSetting/action";
 import { DEFAULT_TOOL } from "./constant";
 import { mobileCheck, HVScreen } from "./utils/utils";
 
@@ -73,6 +75,9 @@ class BOS3DUI {
     this.mark = markLn(ee);
     this.roadnet = roadnetLn(ee);
     this.plugin = uaFactory(ee);
+    this.changeBestViewVisible = (visible) => {
+      store.dispatch(changeBestView(visible));
+    };
     const viewport = viewer3D.viewportDiv;
     viewport.style.position = "relative";
     const noneDisplay = document.createElement("div");

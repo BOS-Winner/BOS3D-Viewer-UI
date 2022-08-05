@@ -291,17 +291,36 @@ export default function GeneralSearch(props) {
         "logic": logic === 2 ? "or" : "and",
         "field": field,
         "operator": operator,
-        "value": content
+        "value": operator === "in" ? content.replaceAll("，", ",").replaceAll("&", ",").split(",") : content,
       };
     }
 
     // 组装条件函数
     function assembleItem(field, operator, content, logic) {
-      tempCondition[field] = {
-        "operator": operator,
-        "value": content,
-        "logic": logic === 2 ? "or" : "and"
-      };
+      if (tempCondition[field]) {
+        tempCondition["attribute"] = [{
+          field: "attribute",
+          logic: logic === 2 ? "or" : "and",
+          operator,
+          value: content,
+        }];
+        // let value = tempCondition[field].value;
+        // if (!Array.isArray(value)) {
+        //   value = [value];
+        // }
+        // value.push(content);
+        // tempCondition[field] = {
+        //   "operator": "in",
+        //   "value": value,
+        //   "logic": logic === 2 ? "or" : "and"
+        // };
+      } else {
+        tempCondition[field] = {
+          "operator": operator,
+          "value": operator === "in" ? content.replaceAll("&", ",").split(",") : content,
+          "logic": logic === 2 ? "or" : "and"
+        };
+      }
     }
 
     // 处理构件名称
@@ -335,7 +354,17 @@ export default function GeneralSearch(props) {
           tempCondition['attribute'] = [genConditionItem(item.attribute.join("."), item.option, item.content, item.relation)];
         }
       } else if (item.attribute?.length === 1 && item.content) {
-        assembleItem(item.attribute[0], item.option, item.content, item.relation);
+        // 这里处理的是房间、系统、楼层这三个选项。需要判断用户只选择自定义的情况
+        if (item.attribute[0] !== "attribute") {
+          assembleItem(item.attribute[0], item.option, item.content, item.relation);
+        } else {
+          tempCondition["attribute"] = [{
+            field: "attribute",
+            logic: item.relation ? "and" : "or",
+            operator: item.option,
+            value: item.content,
+          }];
+        }
       }
     });
     // eslint-disable-next-line consistent-return
@@ -417,6 +446,27 @@ export default function GeneralSearch(props) {
   //   搜索函数
   function generalSearch(pageNumber, pageSize = 10, isSearchBtn = false) {
     const condition = handleSearchOption();
+    // 处理搜条件
+    if (condition["attribute"] && Array.isArray(condition["attribute"])) {
+      const tempAttribute = {};
+      condition["attribute"].forEach(item => {
+        if (!tempAttribute[item.field]) {
+          tempAttribute[item.field] = item;
+        } else {
+          let value = tempAttribute[item.field].value;
+          if (!Array.isArray(value)) {
+            value = [value];
+          }
+          value.push(item.value);
+          tempAttribute[item.field] = {
+            ...tempAttribute[item.field],
+            "operator": "in",
+            value,
+          };
+        }
+      });
+      condition["attribute"] = Object.values(tempAttribute);
+    }
     if (!Object.keys(condition).length) {
       toastr.warning("搜索条件不能为空哦！", '', {
         target: `#${viewer3D.viewport}`
@@ -552,31 +602,25 @@ export default function GeneralSearch(props) {
         const defH = 300;
         const tableHeaderH = 100;
         const tableFooterH = 80;
-        const incrementH = tableData.length * 39;
+        const incrementH = Math.min(tableData.length * 39, 250);
         const maxScreenHeight = props.viewer3D.viewportDiv.clientHeight * 0.90 || 730;
         let h = 300;
         h = defH + tableHeaderH + tableFooterH + incrementH;
         h = Math.min(h, maxScreenHeight);
-
-        // let h = tableData.length / 10 > 1 ? 730 : tableData.length * 73;
-        // const h = tableData.length * 73;
-        // // debugger;
-        // // if (tableData.length <= 10) {
-        // //   h = 450 + h;
-        // // }
         handleModalHeight(h);
       } else {
         handleModalHeight(300);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleModalHeight, tableData, tabKeys]);
 
   // 挂载 and 卸载
   useEffect(() => () => {
     reset();
   },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  []);
 
   // 常规输入框
   const InputList = [

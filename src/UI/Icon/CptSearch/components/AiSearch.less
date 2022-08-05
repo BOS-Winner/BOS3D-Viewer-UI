@@ -5,6 +5,146 @@
       height: auto;
     }
   }
+  :global {
+    // 分页省略号导航
+    .bos3d-pagination-item-ellipsis {
+      color: #ffffffba !important;
+    }
+    //修改表头文字、背景颜色
+    .bos3d-table-thead > tr > th {
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(56, 57, 58, 1) !important;
+      border-bottom: 0px solid #f0f0f0;
+
+    }
+
+    //修改列表文字、背景颜色
+    .bos3d-table-tbody > tr > td {
+      color: rgba(255, 255, 255, 0.65);
+      background: rgba(32, 32, 32, 1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    };
+
+    .bos3d-table-tbody > tr.bos3d-table-row:hover > td {
+      border-color: 1px solid #f0f0f0;
+      background: #2B4C82;
+    }
+
+    .bos3d-table-tbody > tr.bos3d-table-row-selected > td {
+      background: #2B4C82;
+      border-color: 1px solid #f0f0f0;
+    }
+
+    .bos3d-table-cell-scrollbar {
+      -webkit-box-shadow: 0 1px 0 1px transparent;
+      box-shadow: 0 1px 0 1px transparent;
+    }
+
+    .bos3d-spin-blur::after {
+      opacity: 0;
+      pointer-events: auto;
+    }
+    .bos3d-pagination {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 0;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 14px;
+      font-variant: tabular-nums;
+      line-height: 1.5715;
+      list-style: none;
+      -webkit-font-feature-settings: "tnum", "tnum";
+      font-feature-settings: "tnum", "tnum";
+      display: flex;
+      align-items: center;
+    }
+    .bos3d-pagination.mini .bos3d-pagination-item {
+      min-width: 24px;
+      height: 24px;
+      margin: 0;
+      line-height: 22px;
+      background: rgba(56, 56, 56, 1);
+      margin: 0 4px;
+    }
+
+    .bos3d-pagination-item a {
+      display: block;
+      padding: 0 6px;
+      color: #fff;
+      -webkit-transition: none;
+      transition: none;
+    }
+
+    .bos3d-pagination-item-active {
+      font-weight: 500;
+      background: #fff;
+      border-color: #2878ff;
+      // color: ;
+    }
+
+    .bos3d-pagination-item-active a {
+      color: #fff;
+      background: #2878ff;
+    }
+
+    .bos3d-pagination-prev button,
+    .bos3d-pagination-next button {
+      color: #fff;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .bos3d-pagination-total-text {
+      display: inline-block;
+      height: 32px;
+      margin-right: -2px;
+      line-height: 30px;
+      vertical-align: middle;
+      color: rgba(153, 153, 153, 1);
+      order: -2;
+    }
+    .bos3d-pagination-options {
+      display: inline-block;
+      // margin-left: 16px;
+      vertical-align: middle;
+      order: -1;
+      .bos3d-select:not(.bos3d-select-customize-input)
+        .bos3d-select-selector {
+        position: relative;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        padding-top: 1px;
+        /* border-radius: 2px; */
+        /* -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); */
+        /* transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); */
+      }
+      .bos3d-select-arrow {
+        display: inline-block;
+        color: inherit;
+        font-style: normal;
+        line-height: 0;
+        text-transform: none;
+        vertical-align: -0.125em;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: absolute;
+        top: 53%;
+        right: 11px;
+        width: 10px;
+        height: 10px;
+        margin-top: -7px;
+        color: #fff;
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        pointer-events: none;
+      }
+    }
+  }
   .result {
     position: relative;
     > span {
@@ -21,148 +161,9 @@
         width: 1px !important;
         height: 5px;
       }
-      
+
     }
-    :global {
-      // 分页省略号导航
-      .bos3d-pagination-item-ellipsis {
-        color: #ffffffba !important;
-      }
-      //修改表头文字、背景颜色
-      .bos3d-table-thead > tr > th {
-        color: rgba(255, 255, 255, 0.85);
-        background: rgba(56, 57, 58, 1) !important;
-        border-bottom: 0px solid #f0f0f0;
 
-      }
-
-      //修改列表文字、背景颜色
-      .bos3d-table-tbody > tr > td {
-        color: rgba(255, 255, 255, 0.65);
-        background: rgba(32, 32, 32, 1);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      };
-
-      .bos3d-table-tbody > tr.bos3d-table-row:hover > td {
-        border-color: 1px solid #f0f0f0;
-        background: #2B4C82;
-      }
-
-      .bos3d-table-tbody > tr.bos3d-table-row-selected > td {
-        background: #2B4C82;
-        border-color: 1px solid #f0f0f0;
-      }
-
-      .bos3d-table-cell-scrollbar {
-        -webkit-box-shadow: 0 1px 0 1px transparent;
-        box-shadow: 0 1px 0 1px transparent;
-      }
-
-      .bos3d-spin-blur::after {
-        opacity: 0;
-        pointer-events: auto;
-      }
-      .bos3d-pagination {
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        padding: 0;
-        color: rgba(0, 0, 0, 0.85);
-        font-size: 14px;
-        font-variant: tabular-nums;
-        line-height: 1.5715;
-        list-style: none;
-        -webkit-font-feature-settings: "tnum", "tnum";
-        font-feature-settings: "tnum", "tnum";
-        display: flex;
-        align-items: center;
-      }
-      .bos3d-pagination.mini .bos3d-pagination-item {
-        min-width: 24px;
-        height: 24px;
-        margin: 0;
-        line-height: 22px;
-        background: rgba(56, 56, 56, 1);
-        margin: 0 4px;
-      }
-
-      .bos3d-pagination-item a {
-        display: block;
-        padding: 0 6px;
-        color: #fff;
-        -webkit-transition: none;
-        transition: none;
-      }
-
-      .bos3d-pagination-item-active {
-        font-weight: 500;
-        background: #fff;
-        border-color: #2878ff;
-        // color: ;
-      }
-
-      .bos3d-pagination-item-active a {
-        color: #fff;
-        background: #2878ff;
-      }
-
-      .bos3d-pagination-prev button,
-      .bos3d-pagination-next button {
-        color: #fff;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      .bos3d-pagination-total-text {
-        display: inline-block;
-        height: 32px;
-        margin-right: -2px;
-        line-height: 30px;
-        vertical-align: middle;
-        color: rgba(153, 153, 153, 1);
-        order: -2;
-      }
-      .bos3d-pagination-options {
-        display: inline-block;
-        // margin-left: 16px;
-        vertical-align: middle;
-        order: -1;
-        .bos3d-select:not(.bos3d-select-customize-input)
-          .bos3d-select-selector {
-          position: relative;
-          color: #fff;
-          background: transparent;
-          border: 0;
-          padding-top: 1px;
-          /* border-radius: 2px; */
-          /* -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); */
-          /* transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); */
-        }
-        .bos3d-select-arrow {
-          display: inline-block;
-          color: inherit;
-          font-style: normal;
-          line-height: 0;
-          text-transform: none;
-          vertical-align: -0.125em;
-          text-rendering: optimizeLegibility;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          position: absolute;
-          top: 53%;
-          right: 11px;
-          width: 10px;
-          height: 10px;
-          margin-top: -7px;
-          color: #fff;
-          font-size: 12px;
-          line-height: 1;
-          text-align: center;
-          pointer-events: none;
-        }
-      }
-    }
     .location {
       position: absolute;
       bottom: 16px;

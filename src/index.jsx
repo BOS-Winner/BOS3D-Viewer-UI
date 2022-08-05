@@ -8,3 +8,7 @@ function BOS3DUI(props) {
  */
 
 window.BOS3DUI = Viewer3DUI;
+
+const BOS3DUI = Viewer3DUI;
+
+export default BOS3DUI;

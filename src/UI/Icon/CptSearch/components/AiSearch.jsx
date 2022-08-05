@@ -157,10 +157,14 @@ export default function AiSearch(props) {
     });
   }
 
-  // 搜索结果的状态
-  // const [searchList, setSearchList] = useState([]);
-
-  // 查询函数
+  /**
+   * 搜索构件列表
+   * @param {number} current 当前页
+   * @param {string} keyword 搜索关键字
+   * @param {number} pageSize 每页多少条
+   * @param {bool} isSearchBtn 是否是搜索按钮点击
+   * @returns null
+   */
   async function getComponentList(current = 1, keyword, pageSize = 10, isSearchBtn = false) {
     // 判断搜索关键字是否合法
     if (!keyword.trim()) {
@@ -182,7 +186,7 @@ export default function AiSearch(props) {
     }
 
     // 如不是第一次请求且数据表中的数据不为空则不发送请求。
-    if (tableData.length && tableData[(current - 1) * pageSize] !== null && !isSearchBtn) {
+    if (tableData.length && tableData[(current - 1) * pageSize] && !isSearchBtn) {
       loaded();
       toastr.clear();
       handlePagination({
@@ -213,12 +217,30 @@ export default function AiSearch(props) {
       // 数据正确
       if (Array.isArray(content)) {
         if (!tableData.length) {
+          let cptList = content;
+          // 处理重复数据
+          const allCptKey = cptList.map(item => item.key);
+          const allCptKeySet = new Set(allCptKey);
+          if (allCptKeySet.size !== tableData.length) {
+            // 数据中有重复数据
+            const tempObj = {};
+            const tempArray = [];
+            allCptKey.forEach((_cptKey, index) => {
+              if (!tempObj[_cptKey]) {
+                tempObj[_cptKey] = cptList[index];
+              } else {
+                tempArray.push({ cpt: cptList[index], index });
+              }
+            });
+            console.log("重复的项：", tempArray);
+            cptList = Object.values(tempObj);
+          }
           // 生成空数组
           const tempArray = new Array(totalElements);
           tempArray.fill(null);
           // 给空数组赋值
           for (let i = 0; i < 500; i++) {
-            tempArray[i] = content[i];
+            tempArray[i] = cptList[i];
             if (i + 1 === totalElements) break;
           }
           handleTableData(tempArray);

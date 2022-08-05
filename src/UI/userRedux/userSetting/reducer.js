@@ -7,6 +7,7 @@ export default function (state = {
   displaySetting: DEFAULT_DISPLAY,
   cameraSetting: DEFAULT_CAMERA,
   modelSetting: {}, // {[modelKey]: {basePoint: []}}
+  bestView: false,
 }, action) {
   switch (action.type) {
     case actionType.CHANGE_TOOLBAR_STATE:
@@ -61,6 +62,11 @@ export default function (state = {
             [action.name]: action.value,
           },
         }
+      };
+    case actionType.CHANGE_BEST_VIEW:
+      return {
+        ...state,
+        bestView: action.visible
       };
     case actionType.RESTORE_SETTING:
       // 暂不支持恢复模型设置

@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import PropTypes from "prop-types";
 import toastr from "toastr";
 import { yjbos3dRecord2json } from "../fileParser";
-import { EXT } from "../fileParser/constant.js";
+import { EXT, IMPORT_ERR } from "../fileParser/constant.js";
 import generateUUID from "../../../utils/generateUUID";
 import { AntdIcon } from "../../../utils/utils";
 import style from "./style.less";
@@ -106,7 +106,7 @@ class Recorder extends React.Component {
 
   importRecord(rst) {
     const result = yjbos3dRecord2json(rst);
-    if (result === 2) {
+    if (result === IMPORT_ERR) {
       toastr.error("导入失败，该文件不是漫游录制文件！");
       return;
     }

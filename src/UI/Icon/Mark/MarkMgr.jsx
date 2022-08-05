@@ -53,7 +53,7 @@ class MarkMgr extends React.Component {
     );
 
     return (
-      <div className={style.mark}>
+      <div className={style.mark} id="customMark">
         <section className={style.tabs}>
           <div
             role="presentation"

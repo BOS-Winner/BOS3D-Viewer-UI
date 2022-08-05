@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Form, Select, InputNumber } from 'antd';
 import style from "./style.less";
 import Modal from "../../Base/Modal";
+import toastr from "../../toastr";
 
 const { Option } = Select;
 
@@ -54,6 +55,10 @@ class SettingAlert extends React.Component {
 
   onConfirm() {
     const { unit, precision, value } = this.state;
+    if (!value && this.props.type === "Adjust") {
+      toastr.error("", "定义尺寸值不能为空！");
+      return;
+    }
     this.props.onOk({
       unit, precision, value
     });

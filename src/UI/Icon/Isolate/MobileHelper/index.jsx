@@ -38,6 +38,7 @@ class IsolateMobileHelper extends React.PureComponent {
       });
     } else {
       viewer.isolateComponentsByKey(keys);
+      viewer.clearHighlightList();
       this.props.updateList({
         type: 'isolate',
         name: "构件隔离",

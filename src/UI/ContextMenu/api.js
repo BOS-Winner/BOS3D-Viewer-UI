@@ -10,7 +10,7 @@ function getPrama(viewer3D, modelKey) {
   const model = viewer3D.getViewerImpl().getModel(modelKey);
   return {
     shareKey: model?.shareKey,
-    url: _.get(model, "loader.url.serverUrl") || viewer3D.host,
+    url: _.get(model, "dataUrl.url.serverUrl") || viewer3D.host,
     projectKey: model.projectKey,
     auth: model.accessToken,
   };
@@ -24,7 +24,7 @@ function getPrama(viewer3D, modelKey) {
 export function getFamilies(viewer3D, modelKey) {
   const model = viewer3D.getViewerImpl().getModel(modelKey);
   const shareKey = model.shareKey;
-  const url = _.get(model, "loader.url.serverUrl") || viewer3D.host;
+  const url = _.get(model, "dataUrl.url.serverUrl") || viewer3D.host;
   const projectKey = model.projectKey;
   const auth = model.accessToken;
   return axios({
@@ -42,7 +42,7 @@ export function getFamilies(viewer3D, modelKey) {
 export function getAssemblies(viewer3D, modelKey) {
   const model = viewer3D.getViewerImpl().getModel(modelKey);
   const shareKey = model.shareKey;
-  const url = _.get(model, "loader.url.serverUrl") || viewer3D.host;
+  const url = _.get(model, "dataUrl.url.serverUrl") || viewer3D.host;
   const projectKey = model.projectKey;
   const auth = model.accessToken;
   return axios({

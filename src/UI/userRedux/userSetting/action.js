@@ -60,3 +60,10 @@ export function setSetting(setting) {
     setting,
   };
 }
+
+export function changeBestView(visible = false) {
+  return {
+    type: actionType.CHANGE_BEST_VIEW,
+    visible,
+  };
+}

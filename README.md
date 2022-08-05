@@ -99,3 +99,9 @@ commit message检查就是这样实现的。因此，想自定义hook，可以�
 其余的都是单独的配置且很显然知道里面是什么，不再赘述。
 
 上述目录内部的具体说明可以在它们内部的`README.md`找到。
+
+## Q & A
+
+- **Q:** 启动或者打包的时候控制台报错：Webpack build failing with ERR_OSSL_EVP_UNSUPPORTED  
+  **A:** OS系统，在环境变量中添加：`export NODE_OPTIONS=--openssl-legacy-provider`
+  

@@ -89,6 +89,9 @@ class Tree extends React.Component {
     const viewer = this.props.viewer;
     const EVT = this.props.BOS3D.EVENTS;
 
+    // 生成待查询字典，方便查询
+    this.handleRenderNodeKeyMap();
+
     // 模型事件回调
     viewer.registerModelEventListener(EVT.ON_CLICK_PICK, this.pickCptCB);
     viewer.registerModelEventListener(EVT.AFTER_RESETSCENE, this.modelInitCB);
@@ -120,6 +123,14 @@ class Tree extends React.Component {
       this.props.viewer.showAllComponents();
       this.props.viewer.clearHighlightList();
     }
+  }
+
+  // 存储模型树字典
+  handleRenderNodeKeyMap() {
+    this.nodeCptKeyMap = {};
+    this.renderData.forEach(node => {
+      this.nodeCptKeyMap[node.cptKey || node.familyKey] = node;
+    });
   }
 
   /**
@@ -181,7 +192,6 @@ class Tree extends React.Component {
       this.forceUpdate();
       return;
     }
-
     // 获取最后一个构件key
     const lastHighCptKey = highLightCptKeys.length && highLightCptKeys[highLightCptKeys.length - 1];
     let startIndex;
@@ -190,7 +200,17 @@ class Tree extends React.Component {
     this.clickSelectedList = this.genRenderIdByCptKey(highLightCptKeys);
 
     // 展开每个节点的父代节点
-    this.clickSelectedList.forEach(_id => this.expandToShowNode(_id));
+    this.clickSelectedList.forEach(_id => {
+      if (_id !== ROOTNODEID) {
+        const node = this.renderData[_id];
+        const routeList = node.route.split("#");
+        const parentId = routeList[routeList.length - 2];
+        // 判断其父节点是否已经展开
+        if (this.renderData[parentId].collapse === -1) {
+          this.expandToShowNode(_id);
+        }
+      }
+    });
 
     // 记录高亮显示的第一个构件节点
     startIndex = this.clickSelectedList[this.clickSelectedList.length - 1];
@@ -441,11 +461,15 @@ class Tree extends React.Component {
       this.renderData.forEach(data => {
         if (keys.includes(data.cptKey || data.familyKey)) {
           this.checkNode(data.key, true);
-          this.onClickNodeName(new Event('build'), data.key, true); // 右键点击隔离后取消树节点选中状态
+          // this.onClickNodeName(new Event('build'), data.key, false); // 右键点击隔离后取消树节点选中状态
+          this.clickSelectedList = Array.from(new Set(this.clickSelectedList));
+          const index = this.clickSelectedList.indexOf(data.key);
+          this.clickSelectedList.splice(index, 1);
         } else {
           this.checkNode(data.key, false);
         }
       });
+      this.checkDidmount(this.clickSelectedList);
       this.forceUpdate();
     }
   }
@@ -968,7 +992,7 @@ class Tree extends React.Component {
           this.totalNode += 1;
           // 叶节点包含name，否则是中间节点为{}[]的情况
         } else if (!_.keys(_d).includes("child")) { // 处理叶子节点
-          let name = _d.name;
+          let name = _d.name || "未命名";
           const { originalId, familyName, familySymbol } = _d;
           if (originalId === 0 || originalId) {
             if (!familyName && !familySymbol) {
@@ -988,7 +1012,7 @@ class Tree extends React.Component {
             reverseOrder: initReverseOrder,
             children: 0, // 子代数
             allChildren: 0, // 全部子代数（包括子代的子代）
-            show: DEFAULT_COLLAPSE === 1, // 是否要显示这个节点,
+            show: DEFAULT_COLLAPSE === 1 || indent <= 1, // 是否要显示这个节点,
             checked: !locked && DEFAULT_CHECKED, // 不选中被锁定的节点
             route,
             querySelected: false, // is selected by query string or not
@@ -1069,7 +1093,7 @@ class Tree extends React.Component {
       initReverseOrder = reverseOrder;
       const allChildren = childNodes.length;
       result.push({
-        name: `${data.name}${originalId ? `[${originalId}]` : ''}`,
+        name: `${data.name || "未命名"}${originalId ? `[${originalId}]` : ''}`,
         // cptKey: _k,
         key: _key,
         modelKey: _modelKey,
@@ -1318,6 +1342,8 @@ class Tree extends React.Component {
     } else {
       // 查找该节点下的所有节点；
       const ids = [id];
+      const notDuplicateCpt = {};
+      const duplicateIds = [];
       let len = this.renderData[id].children;
       let i = 0;
       while (len--) {
@@ -1325,6 +1351,12 @@ class Tree extends React.Component {
         try {
           if (!this.renderData[id + i]?.locked) {
             ids.push(id + i);
+            const node = this.renderData[id + 1];
+            if (!notDuplicateCpt[node.cptKey || node.familyKey]) {
+              notDuplicateCpt[node.cptKey || node.familyKey] = node.id;
+            } else {
+              duplicateIds.push(node.id);
+            }
           }
           if (this.renderData[id + i].children) {
             len += this.renderData[id + i].children;
@@ -1333,14 +1365,10 @@ class Tree extends React.Component {
           console.error(id, i, this.renderData[i + id], error);
         }
       }
-      // 查找树中与上面查找到的节点相同的所有节点
-      const allCheckNodeId = [];
-      ids.forEach(_id => {
-        const tempId = this.findAllSameNode(_id);
-        allCheckNodeId.push(...tempId);
-      });
-      // 上面这些节点选中或者取消选中
-      _.uniq(allCheckNodeId).forEach(_id => this.checkNode(_id, checked));
+
+      const allCheckNodeId = [...ids, ...duplicateIds];
+      this.checkNode(id, checked);
+      _.uniq(duplicateIds).forEach(_id => this.checkNode(_id, checked));
 
       // 去重
       this.hideIDList = Array.from(new Set(this.hideIDList));
@@ -1369,6 +1397,12 @@ class Tree extends React.Component {
     // }
     if (translucentCptKeys.length) {
       this.props.viewer.transparentComponentsByKey(translucentCptKeys);
+    }
+
+    // 恢复高亮状态
+    const hightLightCptKeys = this.genCptKeysByRenderId(this.clickSelectedList);
+    if (hightLightCptKeys.length) {
+      this.props.viewer.highlightComponentsByKey(hightLightCptKeys);
     }
 
     this.forceUpdate();
@@ -1832,12 +1866,20 @@ class Tree extends React.Component {
       const _i = this.clickSelectedList.indexOf(id);
       const needSelect = keep || (_i === -1);
       const ids = [id]; // 存储当前节点的所有叶子节点和非叶子节点
+      const notDuplicateCpt = {};
+      const duplicateIds = [];
       let len = this.renderData[id].children;
       let i = 0;
       while (len--) {
         i++;
         if (!this.renderData[id + i].locked) {
           ids.push(id + i);
+          const node = this.renderData[id + 1];
+          if (!notDuplicateCpt[node.cptKey || node.familyKey]) {
+            notDuplicateCpt[node.cptKey || node.familyKey] = node.id;
+          } else {
+            duplicateIds.push(node.id);
+          }
         }
         if (this.renderData[id + i].children) {
           len += this.renderData[id + i].children;
@@ -1868,16 +1910,8 @@ class Tree extends React.Component {
       } else {
         this.clickSelectedList = ids;
       }
-
-      // 处理当前节点下的所有节点的高亮状态
-      const needHighlight = [];
-      ids.forEach(_id => {
-        const tempNeedHighlight = this.findAllSameNode(_id);
-        needHighlight.push(..._.uniq(tempNeedHighlight));
-      });
-
-      // 更新父节点的高亮状态
-      needHighlight.sort((a, b) => a - b).forEach(_id => {
+      // 有重复节点则更新其更新父节点的高亮状态
+      duplicateIds.forEach(_id => {
         const j = this.clickSelectedList.indexOf(_id);
         // 如果需要高亮
         if (needSelect) {
@@ -1910,11 +1944,10 @@ class Tree extends React.Component {
 
       this.forceUpdate();
       if (!showfamliyCpt) {
-        // 这是什么防止双击的操作？- -！
         this.enableClickNodeName = false;
         setTimeout(() => {
           this.enableClickNodeName = true;
-        }, 300);
+        }, 250);
       }
     }
   }
@@ -1990,21 +2023,23 @@ class Tree extends React.Component {
 
   /**
    * 获取模型中构件key相对应的树节点ID
-   * @param {Array} keys 模型key列表
+   * @param {string | string[]} keys 模型key列表
    * @returns {Array} 树节点ID
    */
   genRenderIdByCptKey = (keys) => {
-    const tempList = [];
-    for (let i = 0, len = this.renderData.length; i < len; i++) {
-      if (
-        !this.renderData[i].locked
-        && keys.includes(this.renderData[i].cptKey || this.renderData[i].familyKey)
-      ) {
-        tempList.push(i);
+    if (!keys) return [];
+    let tempKeys = keys;
+    if (!Array.isArray(keys)) tempKeys = [keys];
+    if (!tempKeys.length) return [];
+
+    const renderDataIdList = [];
+    tempKeys.forEach(_key => {
+      if (this.nodeCptKeyMap[_key] && this.nodeCptKeyMap[_key]["key"] !== undefined) {
+        renderDataIdList.push(this.nodeCptKeyMap[_key]["key"]);
       }
-    }
-    return tempList;
-  }
+    });
+    return renderDataIdList;
+  };
 
   /**
    * 根据树节点id获取模型key
@@ -2013,9 +2048,9 @@ class Tree extends React.Component {
    */
   genCptKeysByRenderId = (ids) => {
     const templist = [];
-    ids.forEach(item => {
-      if (this.renderData[item]?.allChildren === 0) {
-        templist.push(this.renderData[item].cptKey || this.renderData[item].familyKey);
+    ids.forEach(_id => {
+      if (this.renderData[_id]?.allChildren === 0) {
+        templist.push(this.renderData[_id].cptKey || this.renderData[_id].familyKey);
       }
     });
     return templist;
@@ -2227,6 +2262,7 @@ class Tree extends React.Component {
   }
 
   render() {
+    // console.log(this.renderData);
     const content = [];
     let num = Math.min(LOAD_NUM, this.totalNode); // 需要加载数据的条数
     const startIndex = this.state.startIndex;

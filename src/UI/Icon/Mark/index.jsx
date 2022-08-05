@@ -334,27 +334,30 @@ class Mark extends React.Component {
     const { viewer } = this.props;
     const HIGH_LIGHT_KEYS = viewer.getHighlightComponentsKey();
     viewer.clearHighlightList();
+    viewer.viewerImpl._render();
 
     // 先强制更新模型状态，再截图
-    viewer.getViewerImpl()._render();
-    // 1. convert model canvas to img
-    const canvas = viewer.viewportDiv.querySelector('canvas');
-    const img = document.createElement('img');
-    img.src = canvas.toDataURL();
-    img.onload = () => {
-      // 2. crop modelImg
-      const pos = viewer.getScreenCoordFromSceneCoord(props.position);
-      const dpr = window.devicePixelRatio;
-      const modelImg = cropPlusExport(
-        img,
-        (pos[0] - 85) * dpr,
-        (pos[1] - 45) * dpr,
-        LINE_OFFSET * 2.1 * dpr,
-        LINE_OFFSET * 1.2 * dpr,
-      );
-      cb(modelImg);
-      viewer.highlightComponentsByKey(HIGH_LIGHT_KEYS);
-    };
+    setTimeout(() => {
+      viewer.viewerImpl._render();
+      // 1. convert model canvas to img
+      const canvas = viewer.viewportDiv.querySelector('canvas');
+      const img = document.createElement('img');
+      img.src = canvas.toDataURL();
+      img.onload = () => {
+        // 2. crop modelImg
+        const pos = viewer.getScreenCoordFromSceneCoord(props.position);
+        const dpr = window.devicePixelRatio;
+        const modelImg = cropPlusExport(
+          img,
+          (pos[0] - 85) * dpr,
+          (pos[1] - 45) * dpr,
+          LINE_OFFSET * 2.1 * dpr,
+          LINE_OFFSET * 1.2 * dpr,
+        );
+        cb(modelImg);
+        viewer.highlightComponentsByKey(HIGH_LIGHT_KEYS);
+      };
+    }, 50);
   }
 
   // 与三维交互用
@@ -903,7 +906,7 @@ class Mark extends React.Component {
       needConfirmRemove,
       needConfirmEdit
     } = this.state;
-
+    console.log(this.markComRef.current);
     return (
       <div
         title="标签"
@@ -937,7 +940,7 @@ class Mark extends React.Component {
           right={DEFAULT_MODAL_PLACE.mark.right}
           viewportDiv={this.props.viewer.viewportDiv}
         >
-          <section className={style.container}>
+          <section className={style.container} id="customMarkContainer">
             <MarkMgr
               curMarkType={curMarkType}
               changeCurMarkType={this.changeCurMarkType}
@@ -960,6 +963,7 @@ class Mark extends React.Component {
             <MarkCardList
               curMarkType={curMarkType}
               dom={this.state.dom}
+              markDomHeight={this.markComRef.current?.clientHeight}
               sprite={this.state.sprite}
               selectMark={this.selectMark}
               selectedMarkId={selectedDOMMarkId || selectedSpriteMarkId}

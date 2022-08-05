@@ -21,7 +21,8 @@ class SVGRect extends React.Component {
       height: 0,
       init: false,
     };
-    this.throttleGenRect = _.throttle(this.genRect.bind(this), 16);
+    this.throttleGenRect = _.throttle(this.genRect.bind(this), 20);
+    this.timer = null;
   }
 
   componentDidMount() {
@@ -41,6 +42,7 @@ class SVGRect extends React.Component {
   }
 
   genRect(event) {
+    clearTimeout(this.timer);
     // x 属性定义矩形的左侧位置（例如，x="0" 定义矩形到浏览器窗口左侧的距离是 0px）
     const x = event.data.left;
     // y 属性定义矩形的顶端位置（例如，y="0" 定义矩形到浏览器窗口顶端的距离是 0px）
@@ -61,7 +63,7 @@ class SVGRect extends React.Component {
         init: false
       });
     }
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.props.ee.emit(ON_SEARCH_CPT, this.props.viewer.getHighlightComponentsKey());
     }, 1000);
   }

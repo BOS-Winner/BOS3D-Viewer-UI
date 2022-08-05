@@ -20,6 +20,7 @@ class AxisController {
     this.dpr = 1;
     this.callBack = props.callback;
     this.pointX = 0;
+    this.pointXX = 0;
     this.startValue = 0;
   }
 
@@ -216,6 +217,7 @@ class AxisController {
     }
 
     this.pointX = (this.config.def - this.config.start) / this.config.capacity * this.config.unit; // 初始化开始位置
+    this.pointXX=this.pointX;
     const imageData = scaleCtx.getImageData(
       this.pointX * this.dpr,
       0,
@@ -231,7 +233,7 @@ class AxisController {
     let beginX = 0; // 手指x坐标
     let ifMove = false; // 是否开始交互
     let moveDistance = 0;
-
+    const scope = this;
     // 注册事件，移动端和PC端
     const hasTouch = 'ontouchstart' in window;
     const startEvent = hasTouch ? 'touchstart' : 'mousedown';
@@ -242,6 +244,7 @@ class AxisController {
     const start = (e) => {
       e.stopPropagation();
       e.preventDefault();
+      scope.pointX = scope.pointXX;
       ifMove = true;
       if (!e.touches) {
         beginX = e.pageX;
@@ -280,7 +283,22 @@ class AxisController {
           this.pointX = (420 - this.config.start) * this.config.unit / this.config.capacity;
         }
 
-        window.requestAnimationFrame(this.moveDraw.bind(that));
+        // window.requestAnimationFrame(this.moveDraw.bind(that));
+        let nowX = this.pointX;
+        // 是否刻度移动
+        // if (this.config.openUnitChange) {
+        //   const st = (
+        //     this.config.start / this.config.capacity
+        //     - Math.floor(this.config.start / this.config.capacity)
+        //   ) * this.config.unit;
+        //   nowX = Math.round(this.pointX / this.config.unit) * this.config.unit - st;
+        // }
+        const value2 = nowX * this.config.capacity / this.config.unit + this.config.start;
+        if (typeof this.callBack === 'function') {
+          this.callBack(Math.round(value2));
+        } else {
+          throw new Error('scale函数的第二个参数，必须为正确的回调函数！');
+        }
       }
     };
 
@@ -288,10 +306,12 @@ class AxisController {
       e.stopPropagation();
       e.preventDefault();
       ifMove = false;
+      scope.pointX = scope.pointXX;
     };
 
     const end = () => {
       ifMove = false;
+      scope.pointX=scope.pointXX;
     };
 
     this.middleLine.addEventListener(startEvent, start);
@@ -305,19 +325,20 @@ class AxisController {
    * @param {number} value 旋转度数
    */
   setPoint(value) {
-    this.pointX = (value - this.config.start) * this.config.unit / this.config.capacity;
+    // this.pointX = (value - this.config.start) * this.config.unit / this.config.capacity;
+    this.pointXX = (value - this.config.start) * this.config.unit / this.config.capacity;
     this.moveDraw();
   }
 
   moveDraw() {
-    let nowX = this.pointX;
+    let nowX = this.pointXX;
     // 是否刻度移动
     if (this.config.openUnitChange) {
       const st = (
         this.config.start / this.config.capacity
           - Math.floor(this.config.start / this.config.capacity)
       ) * this.config.unit;
-      nowX = Math.round(this.pointX / this.config.unit) * this.config.unit - st;
+      nowX = Math.round(this.pointXX / this.config.unit) * this.config.unit - st;
     }
     this.ctx.clearRect(0, 0, this.config.width, this.config.height);
     // ctx.drawImage(this.scale.getContext("2d"), now * this.dpr, 0, this.config.width * this.dpr, this.config.height * this.dpr, 0, 0, this.config.width, this.config.height);
@@ -326,12 +347,12 @@ class AxisController {
     // drawMidLine();
     this.drawMidLine(this.ctx);
     // drawSign();
-    const value = nowX * this.config.capacity / this.config.unit + this.config.start;
-    if (typeof this.callBack === 'function') {
-      this.callBack(Math.round(value));
-    } else {
-      throw new Error('scale函数的第二个参数，必须为正确的回调函数！');
-    }
+    // const value = nowX * this.config.capacity / this.config.unit + this.config.start;
+    // if (typeof this.callBack === 'function') {
+    //   this.callBack(Math.round(value));
+    // } else {
+    //   throw new Error('scale函数的第二个参数，必须为正确的回调函数！');
+    // }
   }
 
   /**

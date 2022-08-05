@@ -6,14 +6,14 @@ import EVENTS from "../EVENTS";
 import CONSTANTS from "../constant";
 import style from "./style.less";
 import toastr from "../../UI/toastr";
-import { mobileCheck, HVScreen } from '../../UI/utils/utils';
+import { mobileCheck } from '../../UI/utils/utils';
 
 function WindowManager(props) {
   const container3DId = useRef(Math.round(Math.random() * 1000).toString());
   const container2DId = useRef(Math.round(Math.random() * 1000).toString());
   const isMobile = mobileCheck();
-  const isHVScreen = HVScreen();
-  console.log('is mobile:', isMobile, 'is HVScreen', isHVScreen);
+  // const isHVScreen = HVScreen();
+  // console.log(props, "props");
   const initContainerSize = useRef(null);
   const windowSize = useRef({
     full: {
@@ -224,7 +224,7 @@ function WindowManager(props) {
     myContext.viewer3D
       .registerModelEventListener(myContext.BOS3D.EVENTS.ON_RECTPICK_REMOVE, on3DComponentPick);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props?.id]);
+  }, []);
 
   let className2D = '';
   switch (mode) {

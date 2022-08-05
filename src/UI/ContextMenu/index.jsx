@@ -29,6 +29,8 @@ class ContextMenu extends React.Component {
       highLightCpt: [],
       modelHighLightCpt: [],
       topFamliyKey: '',
+      top: -9999,
+      left: -9999,
     };
   }
 
@@ -41,6 +43,8 @@ class ContextMenu extends React.Component {
       this._visibel(familyAndAssembliesNodeList);
       this.transDataToArray(familyAndAssembliesNodeList);
     }
+
+    this.checkPosition();
   }
 
   // 判断高亮构件是否属于部件族
@@ -183,8 +187,9 @@ class ContextMenu extends React.Component {
     let _top = 0;
     const { position: { x, y } } = this.props;
     const { width, height } = this.props.viewer.viewportDiv.getBoundingClientRect();
-    const elWidth = 130;
-    const elHeight = this.props.viewer.getHighlightComponentsKey().length > 0 ? 160 : 50;
+    const { width: menuWidth, height: menuHeight } = this.rootRef.current.getBoundingClientRect();
+    const elWidth = menuWidth;
+    const elHeight = menuHeight;
     _left = x + 2;
     _top = y + 2;
     if (y + elHeight > height) {
@@ -193,12 +198,16 @@ class ContextMenu extends React.Component {
     if (x + elWidth > width) {
       _left = x - elWidth;
     }
-    return { left: _left, top: _top };
+    // return { left: _left, top: _top };
+    this.setState({
+      top: _top,
+      left: _left,
+    });
   }
 
   render() {
     const {
-      highLightCpt, modelHighLightCpt, topFamliyKey, visible
+      highLightCpt, modelHighLightCpt, topFamliyKey, visible, top, left
     } = this.state;
     const { customMenu } = this.props;
     const { default: userDefault, more: userMore } = this.props.userMenu;
@@ -273,7 +282,8 @@ class ContextMenu extends React.Component {
     const genMenu = (menu) => {
       const content = [];
       menu.forEach(item => {
-        if (!item.children) {
+        const showItem = !item.getVisible || (typeof item.getVisible === 'function' && item.getVisible());
+        if (!item.children && showItem) {
           // 添加功能
           let func = item.func;
           if (iniMenu[item.label]) {
@@ -290,7 +300,7 @@ class ContextMenu extends React.Component {
               {item.aka || item.label}
             </div>
           );
-        } else {
+        } else if (showItem) {
           content.push(
             <div
               role="presentation"
@@ -312,7 +322,7 @@ class ContextMenu extends React.Component {
       });
       return content;
     };
-    const { left, top } = this.checkPosition();
+    // const { left, top } = this.checkPosition();
     return (
       <div
         role="presentation"
@@ -322,7 +332,6 @@ class ContextMenu extends React.Component {
         style={{
           left,
           top,
-          width: '115px'
         }}
       >
         {this.state.mode === 0

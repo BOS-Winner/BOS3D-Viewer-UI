@@ -159,8 +159,8 @@ class Viewer3DUI extends React.Component {
     });
     viewer.registerModelEventListener(EVENTS.ON_LOAD_COMPLETE, (e) => {
       this.modelList.push(e.modelKey);
-      const models = viewer.viewerImpl.modelManager.models;
-      const modelKeys = Object.keys(models);
+      const modelKeys = viewer.getViewerImpl().getAllBimModelsKey();
+      const models = modelKeys.map(_key => viewer.getViewerImpl().getModel(_key));
       if (modelKeys.length > 0) {
         const modelDetail = models[modelKeys[0]];
         this.props.updateModelDetail(modelDetail);

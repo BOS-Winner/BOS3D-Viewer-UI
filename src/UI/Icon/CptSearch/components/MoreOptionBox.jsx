@@ -18,7 +18,7 @@ const initCondition = {
 
 const optionList = [{
   value: '==',
-  label: <span>&equiv;</span>
+  label: <span>=</span>
 },
 {
   value: '!=',
@@ -39,6 +39,10 @@ const optionList = [{
 {
   value: '<=',
   label: <span>&le;</span>
+},
+{
+  value: 'in',
+  label: <span>属于</span>
 },
 {
   value: 'like',

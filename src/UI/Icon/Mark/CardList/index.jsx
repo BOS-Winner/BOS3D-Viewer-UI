@@ -45,9 +45,8 @@ function CardList(props) {
       />
     );
   });
-
-  const HEIGHT = `${100 * domMarkJSX.length}px`;
-
+  const markMgrHeight = document.getElementById("customMark")?.clientHeight || 377;
+  const HEIGHT = `${Math.min(100 * domMarkJSX.length, (document.getElementById("customMarkContainer")?.clientHeight - markMgrHeight - 80) || 999999999)}px`;
   return (
     <div className={style.container}>
       <div className={style.header}>

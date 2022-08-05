@@ -24,10 +24,11 @@ class ModelSetting extends React.Component {
   constructor(props) {
     super(props);
     this.inputRefs = React.createRef();
-    this.curModel = '';
+    // this.curModel = '';
     // this.curModelCenter = new THREE.Vector3(0, 0, 0);
     // 防止用户先加载模型后加载UI，导致模型列表为空
-    const m = props.viewer.getViewerImpl().modelManager.models;
+    const allModelKeys = this.props.viewer.getViewerImpl().getAllBimModelsKey();
+    const m = allModelKeys.map(_key => this.props.viewer.getViewerImpl().getModel(_key));
     const modelKeys = _.keys(m);
     const models = {};
     modelKeys.forEach(modelKey => {
@@ -38,6 +39,7 @@ class ModelSetting extends React.Component {
     });
     this.state = {
       models,
+      curModel: "",
     };
   }
 
@@ -54,7 +56,7 @@ class ModelSetting extends React.Component {
           matrix.elements[13] = xyz[1];
           matrix.elements[14] = xyz[2];
           this.props.viewer.getViewerImpl().setModelMatrix(matrix, key);
-          if (key === this.curModel) {
+          if (key === this.state.curModel) {
             this.inputRefs.current.querySelectorAll("input")
               .forEach((input, index) => {
                 input.value = xyz[index];
@@ -72,29 +74,38 @@ class ModelSetting extends React.Component {
     this.props.viewer.registerModelEventListener(
       this.props.BIMWINNER.BOS3D.EVENTS.ON_LOAD_COMPLETE,
       e => {
-        this.curModel = _.keys(this.props.viewer.viewerImpl.modelManager.models)[0] || '';
-        /*
-        if (this.curModel) {
-          const matrix = this.props.viewer.viewerImpl.getModelMatrix(this.curModel);
-          this.curModelCenter = new THREE.Vector3(
-            matrix.elements[12], matrix.elements[13], matrix.elements[14]
-          );
-        }
-        */
+        const viewer = this.props.viewer;
+        const curModel = viewer.getViewerImpl().getAllBimModelsKey()[0] || "";
+        // 初始化所有模型的basePoints
+        const allModelKeys = viewer.getViewerImpl().getAllBimModelsKey();
+        allModelKeys.forEach(_modelKey => {
+          // 获取模型
+          const model = viewer.getViewerImpl().getModel(_modelKey);
+          const { basePoint } = model.config;
+          let xyz = [0, 0, 0];
+          if (basePoint) {
+            xyz = [basePoint?.x || 0, basePoint?.y || 0, basePoint?.z || 0];
+          }
+          this.props.changeSetting(_modelKey, "basePoint", xyz);
+        });
+
         // 存储模型的key和名字
         this.setState(state => ({
           models: {
             ...state.models,
             [e.modelKey]: e.target.models[e.modelKey].getConfig().modelName || '',
-          }
+          },
+          curModel,
         }));
+
+        this.changeModel(curModel);
       }
     );
   }
 
   changeModel(value) {
-    this.curModel = value;
-    const curModelSetting = this.props.modelSetting[this.curModel];
+    const curModel = value;
+    const curModelSetting = this.props.modelSetting[curModel];
     if (curModelSetting) {
       const basePoint = curModelSetting.basePoint;
       if (basePoint) {
@@ -104,6 +115,9 @@ class ModelSetting extends React.Component {
           });
       }
     }
+    this.setState({
+      curModel,
+    });
     /*
     const matrix = this.props.viewer.viewerImpl.getModelMatrix(this.curModel);
     this.curModelCenter = new THREE.Vector3(
@@ -122,7 +136,7 @@ class ModelSetting extends React.Component {
       }
     });
     if (xyz.length === 3) {
-      this.props.changeSetting(this.curModel, "basePoint", xyz);
+      this.props.changeSetting(this.state.curModel, "basePoint", xyz);
     } else {
       toastr.error("坐标格式错误", "", {
         target: `#${this.props.viewer.viewport}`
@@ -143,6 +157,7 @@ class ModelSetting extends React.Component {
 
   render() {
     const { isMobile } = this.props;
+    // console.log(this.curModel, this.state.models, _.keys(this.state.models));
     return (
       <div className={style.settingContainer}>
         <div className={`${style.settingItem} ${style.settingItemModelSelect} `}>
@@ -155,6 +170,7 @@ class ModelSetting extends React.Component {
                   e.stopPropagation();
                   this.changeModel(e.target.value);
                 }}
+                value={this.state.curModel}
               >
                 {_.keys(this.state.models).map(key => (
                   <option value={key} key={key}>
@@ -173,6 +189,7 @@ class ModelSetting extends React.Component {
                   onChange={e => { this.changeModel(e) }}
                   dropdownClassName="boss3d-theme-one-form-form-antd-dropdown bos3d-select-dropdown-select-single-has-anticon"
                   getPopupContainer={() => this.props.viewer.viewportDiv}
+                  value={this.state.curModel}
                 >
                   {
                     _.keys(this.state.models).map(key => (

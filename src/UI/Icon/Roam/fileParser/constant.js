@@ -12,3 +12,4 @@ export const IMPORT_ERR_TYPE = {
   FORMAT_ERROR: "geshichuowu",
   LUJINGMANYOU: "lujingmanyou"
 };
+export const IMPORT_ERR = "import_err";

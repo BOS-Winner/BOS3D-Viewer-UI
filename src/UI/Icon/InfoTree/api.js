@@ -9,23 +9,29 @@ import axios from "../../utils/axios";
  * @param {boolean} [offline = false] - 是否是离线模式
  * @return {AxiosPromise<any>}
  */
-export function getTreeList(viewer3D, modelKey, apiVersion = 'api', offline = false) {
+export function getTreeList(
+  viewer3D,
+  modelKey,
+  apiVersion = "api",
+  offline = false
+) {
   if (offline) {
     return axios().get(`./${modelKey}/resource/tree/list.json`);
   } else {
     const model = viewer3D.getViewerImpl().getModel(modelKey);
-    const url = _.get(model, 'loader.url.serverUrl') || viewer3D.host;
+    const url = _.get(model, "dataUrl.url.serverUrl") || viewer3D.host;
     const projectKey = model.projectKey;
     const auth = model.accessToken;
     const share = model.shareKey;
     return axios({
       headers: {
-        Authorization: auth
-      }
-    })
-      .get(
-        `${url}/${apiVersion}/${projectKey}/trees/list?modelKey=${modelKey}${share ? (`&share=${share}`) : ""}`
-      );
+        Authorization: auth,
+      },
+    }).get(
+      `${url}/${apiVersion}/${projectKey}/trees/list?modelKey=${modelKey}${
+        share ? `&share=${share}` : ""
+      }`
+    );
   }
 }
 
@@ -37,7 +43,7 @@ export function getTreeList(viewer3D, modelKey, apiVersion = 'api', offline = fa
  * @param {boolean} [offline = false] - 是否是离线模式
  * @return {AxiosPromise<any>}
  */
-export function getData(url, fileKey, modelKey = '', offline = false) {
+export function getData(url, fileKey, modelKey = "", offline = false) {
   if (offline) {
     return axios().get(`./${modelKey}/resource/data/${fileKey}`);
   } else {

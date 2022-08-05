@@ -1,4 +1,4 @@
-import { IMPORT_ERR_MSG, IMPORT_ERR_TYPE, FILE_SEP } from "./constant";
+import { IMPORT_ERR_MSG, IMPORT_ERR_TYPE, FILE_SEP, IMPORT_ERR } from "./constant";
 
 export default function (info, frameList) {
   const sep = FILE_SEP;
@@ -20,7 +20,8 @@ export default function (info, frameList) {
     for (let i = 0; i < len; i += 17) {
       // 判断是否是漫游录制路径
       if (frames[i + 15] !== "漫游录制") {
-        throw new Error(IMPORT_ERR_TYPE.LUJINGMANYOU);
+        // throw new Error(IMPORT_ERR_TYPE.LUJINGMANYOU);
+        return IMPORT_ERR;
       }
       keyFrameList.push({
         id: frames[i],
